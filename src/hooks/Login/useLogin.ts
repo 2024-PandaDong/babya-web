@@ -3,8 +3,8 @@ import config from "src/config/config.json"
 import axios from "axios";
 
 const useLogin = () => {
-    const [id, setId] = useState("");
-    const [pwd, setPwd] = useState("");
+    const [id, setId] = useState<string>("");
+    const [pwd, setPwd] = useState<string>("");
     const [isTextHide, setIsTextHide] = useState(false);
 
     const handleChangeValue = (e: React.ChangeEvent<HTMLInputElement>) => {

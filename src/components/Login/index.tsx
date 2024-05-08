@@ -1,5 +1,6 @@
 import React from "react";
 import * as S from "src/components/Login/style";
+import useLogin from "src/hooks/Login/useLogin";
 import LoginPanelImg from "src/assets/img/Login/PanelImage.svg"
 import IdImage from "src/assets/img/Login/IdImage.svg";
 import DeleteImage from "src/assets/img/Login/IdDeleteImage.svg";
@@ -7,6 +8,8 @@ import PwImage from "src/assets/img/Login/PasswordImage.svg";
 import HideImage from "src/assets/img/Login/PasswordHideImage.svg";
 
 const Login = () => {
+    const { ...login } = useLogin()
+
     return (
         <S.LoginBackground>
             <S.LoginContainer>
@@ -27,15 +30,27 @@ const Login = () => {
                             <S.InputForm>
                                 <S.InputTitle htmlFor="id">아이디</S.InputTitle>
                                 <S.InputWrap>
-                                    <S.Input image={IdImage} id="id" placeholder="아이디를 입력해주세요."></S.Input>
-                                    <S.InputBtn src={DeleteImage}></S.InputBtn>
+                                    <S.Input
+                                        id="id"
+                                        type="text"
+                                        image={IdImage}
+                                        value={login.id}
+                                        placeholder="아이디를 입력해주세요."
+                                        onChange={login.handleChangeValue}></S.Input>
+                                    {login.id && (<S.InputBtn src={DeleteImage} onClick={login.handleClickDelete}></S.InputBtn>)}
                                 </S.InputWrap>
                             </S.InputForm>
                             <S.InputForm>
                                 <S.InputTitle htmlFor="pw">비밀번호</S.InputTitle>
                                 <S.InputWrap>
-                                    <S.Input image={PwImage} id="pw" placeholder="비밀번호를 입력해주세요."></S.Input>
-                                    <S.InputBtn src={HideImage}></S.InputBtn>
+                                    <S.Input
+                                        id="pw"
+                                        type={login.isTextHide ? "text" : "password"}
+                                        image={PwImage}
+                                        value={login.pwd}
+                                        placeholder="비밀번호를 입력해주세요."
+                                        onChange={login.handleChangeValue}></S.Input>
+                                    {login.pwd && (<S.InputBtn src={HideImage} onClick={login.handleClickHide}></S.InputBtn>)}
                                 </S.InputWrap>
                             </S.InputForm>
                         </S.InputFormWrap>

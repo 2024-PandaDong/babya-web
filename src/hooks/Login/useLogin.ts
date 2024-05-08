@@ -5,7 +5,7 @@ import axios from "axios";
 const useLogin = () => {
     const [id, setId] = useState<string>("");
     const [pwd, setPwd] = useState<string>("");
-    const [isTextHide, setIsTextHide] = useState(false);
+    const [isTextShow, setIsTextShow] = useState(false);
 
     const handleChangeValue = (e: React.ChangeEvent<HTMLInputElement>) => {
         if (e.target.id === "id") {
@@ -19,8 +19,8 @@ const useLogin = () => {
         setId("")
     }
 
-    const handleClickHide = () => {
-        setIsTextHide((current) => !current);
+    const handleClickShow = () => {
+        setIsTextShow((current) => !current);
     }
 
     const handleClickSubmit = async () => {
@@ -39,10 +39,10 @@ const useLogin = () => {
     return {
         id,
         pwd,
-        isTextHide,
+        isTextShow,
         handleChangeValue,
         handleClickDelete,
-        handleClickHide,
+        handleClickShow,
         handleClickSubmit,
     }
 }

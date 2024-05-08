@@ -5,6 +5,7 @@ import LoginPanelImg from "src/assets/img/Login/PanelImage.svg"
 import IdImage from "src/assets/img/Login/IdImage.svg";
 import DeleteImage from "src/assets/img/Login/IdDeleteImage.svg";
 import PwImage from "src/assets/img/Login/PasswordImage.svg";
+import ShowImage from "src/assets/img/Login/PasswordShowImage.svg"
 import HideImage from "src/assets/img/Login/PasswordHideImage.svg";
 
 const Login = () => {
@@ -45,12 +46,15 @@ const Login = () => {
                                 <S.InputWrap>
                                     <S.Input
                                         id="pw"
-                                        type={login.isTextHide ? "text" : "password"}
+                                        type={login.isTextShow ? "text" : "password"}
                                         image={PwImage}
                                         value={login.pwd}
                                         placeholder="비밀번호를 입력해주세요."
                                         onChange={login.handleChangeValue}></S.Input>
-                                    {login.pwd && (<S.InputBtn src={HideImage} onClick={login.handleClickHide}></S.InputBtn>)}
+                                    {login.pwd &&
+                                        (<S.InputBtn
+                                            src={login.isTextShow ? ShowImage : HideImage}
+                                            onClick={login.handleClickShow}></S.InputBtn>)}
                                 </S.InputWrap>
                             </S.InputForm>
                         </S.InputFormWrap>

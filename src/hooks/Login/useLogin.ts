@@ -1,4 +1,6 @@
 import React, { useState } from "react";
+import config from "src/config/config.json"
+import axios from "axios";
 
 const useLogin = () => {
     const [id, setId] = useState("");
@@ -21,6 +23,19 @@ const useLogin = () => {
         setIsTextHide((current) => !current);
     }
 
+    const handleClickSubmit = async () => {
+        try {
+            await axios.post(`${config.serverUrl}/auth/login`, {
+                email: id,
+                pw: pwd,
+            }).then((res) => {
+                console.log(res);
+            })
+        } catch(error) {
+            console.log(error);
+        }
+    }
+
     return {
         id,
         pwd,
@@ -28,6 +43,7 @@ const useLogin = () => {
         handleChangeValue,
         handleClickDelete,
         handleClickHide,
+        handleClickSubmit,
     }
 }
 

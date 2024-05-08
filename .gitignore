@@ -13,4 +13,4 @@ package-lock.json
 npm-debug.log*
 .env
 build
-
+config.json

@@ -129,7 +129,7 @@ export const InputWrap = styled.div`
     position: relative;
 `
 
-export const Input = styled.input<{image: string}>`
+export const Input = styled.input<{$image: string}>`
     width: 100%;
     height: 100%;
 
@@ -141,7 +141,7 @@ export const Input = styled.input<{image: string}>`
     background-color: #F6F6F6;
     background-repeat: no-repeat;
     background-position: 15px center;
-    background-image: ${({image}) => `url(${image})`};
+    background-image: ${({$image}) => `url(${$image})`};
     
     outline: none;
     padding-left: 47px;

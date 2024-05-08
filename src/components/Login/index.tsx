@@ -34,7 +34,7 @@ const Login = () => {
                                     <S.Input
                                         id="id"
                                         type="text"
-                                        image={IdImage}
+                                        $image={IdImage}
                                         value={login.id}
                                         placeholder="아이디를 입력해주세요."
                                         onChange={login.handleChangeValue}></S.Input>
@@ -47,7 +47,7 @@ const Login = () => {
                                     <S.Input
                                         id="pw"
                                         type={login.isTextShow ? "text" : "password"}
-                                        image={PwImage}
+                                        $image={PwImage}
                                         value={login.pwd}
                                         placeholder="비밀번호를 입력해주세요."
                                         onChange={login.handleChangeValue}></S.Input>

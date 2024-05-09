@@ -63,7 +63,7 @@ const Login = () => {
                             <S.AccountBtn>계정찾기</S.AccountBtn>
                         </S.AccountWrap>
                         <S.SubmitButtonWrap>
-                            <S.SubmitButton onClick={login.handleClickSubmit}>로그인</S.SubmitButton>
+                            <S.SubmitButton onClick={login.LoginSubmit}>로그인</S.SubmitButton>
                         </S.SubmitButtonWrap>
                     </S.Login>
                 </S.LoginWrap>

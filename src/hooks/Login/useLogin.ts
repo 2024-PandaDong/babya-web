@@ -23,7 +23,17 @@ const useLogin = () => {
         setIsTextShow((current) => !current);
     }
 
-    const handleClickSubmit = async () => {
+    const LoginSubmit = async () => {
+        if (id === "") {
+            // Toast로 바꿀 예정
+            console.log("아이디를 입력해주세요")
+            return
+        }
+        if (pwd === "") {
+            // Toast로 바꿀 예정
+            console.log("비밀번호를 입력해주세요")
+            return
+        }
         try {
             await axios.post(`${config.serverUrl}/auth/login`, {
                 email: id,
@@ -43,7 +53,7 @@ const useLogin = () => {
         handleChangeValue,
         handleClickDelete,
         handleClickShow,
-        handleClickSubmit,
+        LoginSubmit,
     }
 }
 

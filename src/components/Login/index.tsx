@@ -7,6 +7,7 @@ import DeleteImage from "src/assets/img/Login/IdDeleteImage.svg";
 import PwImage from "src/assets/img/Login/PasswordImage.svg";
 import ShowImage from "src/assets/img/Login/PasswordShowImage.svg"
 import HideImage from "src/assets/img/Login/PasswordHideImage.svg";
+import {InputFeatBtnWrap} from "src/components/Login/style";
 
 const Login = () => {
     const { ...login } = useLogin()
@@ -31,30 +32,38 @@ const Login = () => {
                             <S.InputForm>
                                 <S.InputTitle htmlFor="id">아이디</S.InputTitle>
                                 <S.InputWrap>
+                                    <S.InputTypeImgWrap htmlFor="id">
+                                        <S.InputTypeImg src={IdImage}/>
+                                    </S.InputTypeImgWrap>
                                     <S.Input
                                         id="id"
                                         type="text"
-                                        $image={IdImage}
                                         value={login.id}
                                         placeholder="아이디를 입력해주세요."
-                                        onChange={login.handleChangeValue}></S.Input>
-                                    {login.id && (<S.InputBtn src={DeleteImage} onClick={login.handleClickDelete}></S.InputBtn>)}
+                                        onChange={login.handleChangeValue} />
+                                    <S.InputFeatBtnWrap>
+                                        {login.id && (<S.InputFeatBtn src={DeleteImage} onClick={login.handleClickDelete}></S.InputFeatBtn>)}
+                                    </S.InputFeatBtnWrap>
                                 </S.InputWrap>
                             </S.InputForm>
                             <S.InputForm>
                                 <S.InputTitle htmlFor="pw">비밀번호</S.InputTitle>
                                 <S.InputWrap>
+                                    <S.InputTypeImgWrap htmlFor="pw">
+                                        <S.InputTypeImg src={PwImage}/>
+                                    </S.InputTypeImgWrap>
                                     <S.Input
                                         id="pw"
                                         type={login.isTextShow ? "text" : "password"}
-                                        $image={PwImage}
                                         value={login.pwd}
                                         placeholder="비밀번호를 입력해주세요."
-                                        onChange={login.handleChangeValue}></S.Input>
-                                    {login.pwd &&
-                                        (<S.InputBtn
-                                            src={login.isTextShow ? ShowImage : HideImage}
-                                            onClick={login.handleClickShow}></S.InputBtn>)}
+                                        onChange={login.handleChangeValue} />
+                                    <S.InputFeatBtnWrap>
+                                        {login.pwd &&
+                                            (<S.InputFeatBtn
+                                                src={login.isTextShow ? ShowImage : HideImage}
+                                                onClick={login.handleClickShow}></S.InputFeatBtn>)}
+                                    </S.InputFeatBtnWrap>
                                 </S.InputWrap>
                             </S.InputForm>
                         </S.InputFormWrap>

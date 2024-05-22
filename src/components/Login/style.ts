@@ -126,36 +126,63 @@ export const InputWrap = styled.div`
     width: 100%;
     height: 55px;
     
+    display: flex;
+    flex-direction: row;
+    
+
+    border-radius: 16px;
+    background-color: #F6F6F6;
+
+    margin-top: 15px;
     position: relative;
 `
 
-export const Input = styled.input<{$image: string}>`
-    width: 100%;
+export const InputTypeImgWrap = styled.label`
+    width: 55px;
+    height: 55px;
+    
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+`
+
+export const InputTypeImg = styled.img`
+    width: auto;
+    height: auto;
+`
+
+export const Input = styled.input`
+    width: calc(100% - 110px);
     height: 100%;
 
     color: #000;
     font-size: 16px;
     
     border: none;
-    border-radius: 16px;
-    background-color: #F6F6F6;
-    background-repeat: no-repeat;
-    background-position: 15px center;
-    background-image: ${({$image}) => `url(${$image})`};
+    background-color: transparent;
     
     outline: none;
-    padding-left: 47px;
-    margin-top: 15px;
+    
+    &:-webkit-autofill:focus,
+    &:-webkit-autofill:active { transition: background-color 5000s ease-in-out 0s; }
 `
 
-export const InputBtn = styled.img`
+export const InputFeatBtnWrap = styled.div`
+    width: 55px;
+    height: 55px;
+
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+`
+
+export const InputFeatBtn = styled.img`
     width: auto;
     height: auto;
     
-    top: 30px;
-    right: 15px;
     cursor: pointer;
-    position: absolute;
 `
 
 export const AccountWrap = styled.div`

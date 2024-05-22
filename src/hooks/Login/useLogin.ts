@@ -35,11 +35,11 @@ const useLogin = () => {
             return
         }
         try {
-            await axios.post(`${config.serverUrl}/auth/login`, {
+            await axios.post(`${config.BABYA_Server}/auth/login`, {
                 email: id,
                 pw: pwd,
             }).then((res) => {
-                console.log(res);
+                console.log(res.data.data);
             })
         } catch(error) {
             console.log(error);

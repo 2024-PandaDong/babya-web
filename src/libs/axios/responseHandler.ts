@@ -1,5 +1,6 @@
 import axios, {AxiosError} from "axios";
 import {ACCESS_TOKEN_KEY, REFRESH_TOKEN_KEY, REQUEST_TOKEN_KEY} from "src/constants/token/token.constants";
+import babyaAxios from "src/libs/axios/customAxios";
 import token from "src/libs/token/token";
 import cookie from "src/libs/cookie/cookie";
 import config from "src/config/config.json";
@@ -23,7 +24,7 @@ export const errorInterceptor = async (error: AxiosError) => {
                 cookie.setCookie(ACCESS_TOKEN_KEY, newAccessToken);
 
                 originConfig.headers![REQUEST_TOKEN_KEY] = `Bearer ${newAccessToken}`;
-                return axios(originConfig); 
+                return axios(originConfig);
             } catch (e) {
                 token.clearToken();
                 window.location.href = "/login";

@@ -1,4 +1,4 @@
-import Swal from "sweetalert2";
+import Swal, {SweetAlertIcon} from "sweetalert2";
 
 const Toast = Swal.mixin({
     toast: true,
@@ -11,3 +11,10 @@ const Toast = Swal.mixin({
         toast.addEventListener("mouseleave", Swal.resumeTimer);
     },
 });
+
+export const showToast = (icon: SweetAlertIcon, title: string) => {
+    Toast.fire({
+        icon,
+        title,
+    })
+}

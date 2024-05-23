@@ -34,7 +34,6 @@ const useLogin = () => {
             return
         }
         if (pwd === "") {
-            // Toast로 바꿀 예정
             showToast("error", "비밀번호를 입력해주세요")
             return
         }

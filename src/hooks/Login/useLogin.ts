@@ -1,8 +1,13 @@
 import React, { useState } from "react";
+import {useNavigate} from "react-router-dom";
 import config from "src/config/config.json"
 import axios from "axios";
+import { showToast} from "src/libs/toast/Swal";
+import token from "src/libs/token/token";
+import { ACCESS_TOKEN_KEY, REFRESH_TOKEN_KEY } from "src/constants/tokens/token.constants";
 
 const useLogin = () => {
+    const navigate = useNavigate();
     const [id, setId] = useState<string>("");
     const [pwd, setPwd] = useState<string>("");
     const [isTextShow, setIsTextShow] = useState(false);
@@ -25,13 +30,11 @@ const useLogin = () => {
 
     const LoginSubmit = async () => {
         if (id === "") {
-            // Toast로 바꿀 예정
-            console.log("아이디를 입력해주세요")
+            showToast("error", "아이디를 입력해주세요");
             return
         }
         if (pwd === "") {
-            // Toast로 바꿀 예정
-            console.log("비밀번호를 입력해주세요")
+            showToast("error", "비밀번호를 입력해주세요")
             return
         }
         try {
@@ -39,9 +42,13 @@ const useLogin = () => {
                 email: id,
                 pw: pwd,
             }).then((res) => {
-                console.log(res.data.data);
+                token.setToken(ACCESS_TOKEN_KEY, res.data.data.accessToken);
+                token.setToken(REFRESH_TOKEN_KEY, res.data.data.refreshToken);
+                showToast("success", "로그인 성공");
+                navigate("/");
             })
         } catch(error) {
+            showToast("error", "로그인 실패");
             console.log(error);
         }
     }

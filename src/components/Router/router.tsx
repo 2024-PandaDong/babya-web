@@ -9,7 +9,7 @@ const Router = () => {
             <GlobalStyle />
             <Routes>
                 <Route path="/login" element={<LoginPage />} />
-            <Routes>
+            </Routes>
         </BrowserRouter>
     )
 }

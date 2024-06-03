@@ -1,12 +1,14 @@
 import React from "react";
 import * as S from './style';
+import useSidebar from "src/hooks/Sidebar/useSidebar";
 import useLogOut from "src/hooks/Login/useLogOut";
 import {MenuData} from "src/constants/datas/MenuData";
 import Logo from "src/assets/img/Common/Sidebar/BabyaLogo.svg";
 import Profile from "src/assets/img/Common/Sidebar/ExamProfile.svg";
 
 const Sidebar = () => {
-    const { handleMenuClick, handleLogOutClick } = useLogOut();
+    const { handleMenuClick } = useSidebar();
+    const { handleLogOutClick } = useLogOut();
 
     return (
         <S.SidebarContainer>

@@ -1,9 +1,12 @@
 import React from 'react';
 import * as S from "./style";
+import useBanner from "src/hooks/Banner/useBanner";
 import BannerCreateIcon from "src/assets/img/Banner/BannerCreateIcon.svg";
 import BannerPost from "src/components/Banner/BannerPost";
 
 const Banner = () => {
+    const {handleBannerWriteClick} = useBanner();
+
     return (
         <S.BannerBackground>
             <S.BannerContainer>
@@ -35,7 +38,7 @@ const Banner = () => {
                     <S.BannerBox>
                         <S.BannerButtonWrap>
                             <S.BannerAllDeleteButton>전체 삭제</S.BannerAllDeleteButton>
-                            <S.BannerCreateButtonWrap>
+                            <S.BannerCreateButtonWrap onClick={handleBannerWriteClick}>
                                 <S.BannerCreateIcon src={BannerCreateIcon}></S.BannerCreateIcon>
                                 <S.BannerCreateText>배너 그룹 관리</S.BannerCreateText>
                             </S.BannerCreateButtonWrap>

@@ -246,4 +246,6 @@ export const BannerCreateText = styled.span`
     color: #FFF;
     font-family: Pretendard-SemiBold, sans-serif;
     font-size: 1.1rem;
+    
+    margin-right: 10px;
 `

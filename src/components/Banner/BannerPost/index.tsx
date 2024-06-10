@@ -21,7 +21,7 @@ const BannerPost = () => {
                     <S.CheckBoxWrap>
                         <S.CheckBox></S.CheckBox>
                     </S.CheckBoxWrap>
-                    <S.Num>1</S.Num>
+                    <S.Num>{i+1}</S.Num>
                     <S.TitleName>여성가족부 저출산정책 변경</S.TitleName>
                     <S.Area>서울특별시</S.Area>
                     <S.Category>출산전</S.Category>

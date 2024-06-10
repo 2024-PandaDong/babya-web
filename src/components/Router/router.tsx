@@ -1,7 +1,7 @@
 import React from "react";
 import { Routes, Route } from "react-router-dom";
-import LoginPage from "src/pages/LoginPage";
-import BannerPage from "src/pages/BannerPage";
+import LoginPage from "src/pages/Auth/page";
+import BannerPage from "src/pages/Banner/page";
 
 const Router = () => {
     return (

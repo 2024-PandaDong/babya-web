@@ -1,6 +1,6 @@
 import React from "react";
-import * as S from "src/components/Login/style";
-import useLogin from "src/hooks/Login/useLogin";
+import * as S from "src/components/Auth/style";
+import useLogin from "src/hooks/Auth/useLogin";
 import LoginPanelImg from "src/assets/img/Login/PanelImage.svg"
 import IdImage from "src/assets/img/Login/IdImage.svg";
 import DeleteImage from "src/assets/img/Login/IdDeleteImage.svg";

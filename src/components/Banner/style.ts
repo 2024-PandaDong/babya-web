@@ -19,7 +19,6 @@ export const BannerContainer = styled.div`
     display: flex;
     flex-direction: column;
     gap: 10px;
-    //background: #000;
 `
 
 export const BannerTitleWrap = styled.div`

@@ -2,7 +2,7 @@ import React from "react";
 import * as S from './style';
 import useSidebar from "src/hooks/Sidebar/useSidebar";
 import useLogOut from "src/hooks/Auth/useLogOut";
-import {MenuData} from "src/constants/datas/Banner/MenuData";
+import {MenuData} from "src/constants/datas/Sidebar/MenuData";
 import Logo from "src/assets/img/Common/Sidebar/BabyaLogo.svg";
 import Profile from "src/assets/img/Common/Sidebar/ExamProfile.svg";
 

@@ -512,7 +512,7 @@ export const BannerImagePreviewWrap = styled.div`
 
     border: 1px solid #D9D9D9;
     
-    padding: 12px;
+    padding: 7px 12px;
 `
 
 export const BannerImagePreview = styled.img`
@@ -524,7 +524,7 @@ export const BannerImagePreview = styled.img`
 
 export const BannerImagePreviewButtonWrap = styled.div`
     width: 29%;
-    height: 60%;
+    height: 65%;
     
     display: flex;
     flex-direction: column;
@@ -533,7 +533,7 @@ export const BannerImagePreviewButtonWrap = styled.div`
 
 export const BannerImageChangeButton = styled.button`
     width: 100%;
-    height: 45%;
+    height: 40%;
     
     color: #FFF;
     font-family: Pretendard-Bold, sans-serif;
@@ -547,7 +547,7 @@ export const BannerImageChangeButton = styled.button`
 
 export const BannerImageDeleteButton = styled.button`
     width: 100%;
-    height: 45%;
+    height: 40%;
 
     color: #FFF;
     font-family: Pretendard-Bold, sans-serif;

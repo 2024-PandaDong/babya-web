@@ -441,10 +441,10 @@ export const BannerPeriodContent = styled.div`
     gap: 5px;
 `
 
-export const BannerPeriodDate = styled(DatePicker)`
+export const BannerPeriodDate = styled(DatePicker)<{$fontColor: string}>`
     width: 140px;
     
-    color: #D9D9D9;
+    color: ${({ $fontColor }) => $fontColor};
     font-family: Pretendard-SemiBold, sans-serif;
     font-size: 1rem;
     
@@ -501,6 +501,69 @@ export const BannerImageContentWrap = styled.div`
     align-items: center;
 `
 
+export const BannerImagePreviewWrap = styled.div`
+    width: 95%;
+    height: 95%;
+
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+
+    border: 1px solid #D9D9D9;
+    
+    padding: 12px;
+`
+
+export const BannerImagePreview = styled.img`
+    width: 50%;
+    height: 100%;
+    
+    border-radius: 10px;
+`
+
+export const BannerImagePreviewButtonWrap = styled.div`
+    width: 29%;
+    height: 60%;
+    
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+`
+
+export const BannerImageChangeButton = styled.button`
+    width: 100%;
+    height: 45%;
+    
+    color: #FFF;
+    font-family: Pretendard-Bold, sans-serif;
+    font-size: 1.2rem;
+    
+    border-radius: 10px;
+    background: #BFB3FF;
+    
+    cursor: pointer;
+`
+
+export const BannerImageDeleteButton = styled.button`
+    width: 100%;
+    height: 45%;
+
+    color: #FFF;
+    font-family: Pretendard-Bold, sans-serif;
+    font-size: 1.2rem;
+
+    border-radius: 10px;
+    background: #BEBEBE;
+
+    cursor: pointer;
+`
+
+
+
+
+
+
 export const BannerImageContentBox = styled.div`
     width: 95%;
     height: 80%;
@@ -525,4 +588,8 @@ export const BannerImageContent = styled.span`
     color: #D9D9D9;
     font-family: Pretendard-SemiBold, sans-serif;
     font-size: 1rem;
+`
+
+export const BannerImageInputRef = styled.input.attrs({type: 'file'})`
+    display: none;
 `

@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useRef, useState} from 'react';
 import * as S from "./style";
 import {AreaData} from "src/constants/datas/Banner/AreaData";
 import ClickIcon from "src/assets/img/Banner/GroupManagementClickIcon.svg";
@@ -7,9 +7,12 @@ import DateIcon from "src/assets/img/Banner/DateIcon.svg";
 import FolderIcon from "src/assets/img/Banner/FolderIcon.svg";
 import 'react-datepicker/dist/react-datepicker.css';
 import { ko } from "date-fns/locale";
+import {BannerImageChangeButton, BannerImagePreviewButtonWrap} from "./style";
 
 const BannerWrite = () => {
     const initialDate = new Date();
+    const fileInput = useRef(null);
+    const [imageFile, setImageFile] = useState<string>("");
     const [isStartDateOpen, setIsStartDateOpen] = React.useState(false);
     const [isEndDateOpen, setIsEndDateOpen] = React.useState(false);
     const [startDate, setStartDate] = useState(initialDate);
@@ -23,6 +26,26 @@ const BannerWrite = () => {
     const handleChangeEndDate = (date) => {
         setEndDate(date);
         setIsEndDateOpen(false);
+    }
+
+    const handleFileClick = () => {
+        fileInput.current.click();
+    }
+
+    const handleFileChange = (e) => {
+        console.log(e.target.files[0]);
+        const file = e.target.files?.[0];
+        const reader = new FileReader();
+        reader.readAsDataURL(file);
+        reader.onloadend = () => {
+            if (typeof reader.result === "string") {
+                setImageFile(reader.result);
+            }
+        }
+    }
+
+    const handleFileDelete = () => {
+        setImageFile("");
     }
 
     return (
@@ -110,7 +133,8 @@ const BannerWrite = () => {
                                         locale={ko}
                                         selected={startDate}
                                         onChange={(date) => handleChangeStartDate(date)}
-                                        dateFormat="시작일: yyyy.MM.dd"/>
+                                        dateFormat="시작일: yyyy.MM.dd"
+                                        $fontColor={initialDate === startDate ? '#D9D9D9' : '#000'}/>
                                     <S.BannerPeriodDateIcon
                                         src={DateIcon}
                                         onClick={() => setIsStartDateOpen((prev) => !prev)}/>
@@ -120,7 +144,8 @@ const BannerWrite = () => {
                                         locale={ko}
                                         selected={endDate}
                                         onChange={(date) => handleChangeEndDate(date)}
-                                        dateFormat="마감일: yyyy.MM.dd"/>
+                                        dateFormat="마감일: yyyy.MM.dd"
+                                        $fontColor={initialDate === endDate ? '#D9D9D9' : '#000'}/>
                                     <S.BannerPeriodDateIcon
                                         src={DateIcon}
                                         onClick={() => setIsEndDateOpen((prev) => !prev)}/>
@@ -133,12 +158,28 @@ const BannerWrite = () => {
                                     사진 <br /> (370px, 200px)
                                 </S.BannerImageTitle>
                             </S.BannerImageTitleWrap>
-                            <S.BannerImageContentWrap>
-                                <S.BannerImageContentBox>
-                                    <S.BannerImageContentIcon src={FolderIcon}></S.BannerImageContentIcon>
-                                    <S.BannerImageContent>배너사진을 추가 해주세요</S.BannerImageContent>
-                                </S.BannerImageContentBox>
-                            </S.BannerImageContentWrap>
+                            {imageFile
+                                ? (<S.BannerImageContentWrap>
+                                        <S.BannerImagePreviewWrap>
+                                            <S.BannerImagePreview src={imageFile} />
+                                            <S.BannerImagePreviewButtonWrap>
+                                                <S.BannerImageChangeButton onClick={handleFileClick}>사진변경</S.BannerImageChangeButton>
+                                                <S.BannerImageDeleteButton onClick={handleFileDelete}>사진삭제</S.BannerImageDeleteButton>
+                                            </S.BannerImagePreviewButtonWrap>
+                                        </S.BannerImagePreviewWrap>
+                                        <S.BannerImageInputRef ref={fileInput} accept="image/*" onChange={handleFileChange} />
+                                    </S.BannerImageContentWrap>
+                                )
+                                : (<S.BannerImageContentWrap>
+                                        <S.BannerImageContentBox onClick={handleFileClick}>
+                                            <S.BannerImageContentIcon src={FolderIcon}></S.BannerImageContentIcon>
+                                            <S.BannerImageContent>배너사진을 추가 해주세요</S.BannerImageContent>
+                                            <S.BannerImageInputRef ref={fileInput} accept="image/*" onChange={handleFileChange} />
+                                        </S.BannerImageContentBox>
+                                    </S.BannerImageContentWrap>
+                                )
+                            }
+
                         </S.BannerImageWrap>
                     </S.BaseSetting>
                 </S.BaseSettingBox>

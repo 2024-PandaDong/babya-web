@@ -1,8 +1,8 @@
 import React, { useState } from "react";
-import {useNavigate} from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import config from "src/config/config.json"
 import axios from "axios";
-import { showToast} from "src/libs/toast/Swal";
+import { showToast } from "src/libs/toast/Swal";
 import token from "src/libs/token/token";
 import { ACCESS_TOKEN_KEY, REFRESH_TOKEN_KEY } from "src/constants/tokens/token.constants";
 

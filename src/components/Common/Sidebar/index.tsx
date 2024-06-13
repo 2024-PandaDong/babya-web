@@ -7,7 +7,7 @@ import Logo from "src/assets/img/Common/Sidebar/BabyaLogo.svg";
 import Profile from "src/assets/img/Common/Sidebar/ExamProfile.svg";
 
 const Sidebar = () => {
-    const { handleMenuClick } = useSidebar();
+    const { pathname, handleMenuClick } = useSidebar();
     const { handleLogOutClick } = useLogOut();
 
     return (
@@ -24,7 +24,7 @@ const Sidebar = () => {
             </S.InfoWrap>
             <S.MenuWrap>
                 {MenuData.map((data) => (
-                    <S.MenuBox key={data.id}>
+                    <S.MenuBox key={data.id} $isbackground={pathname === data.path ? "#BBAFFF" : "transparent"}>
                         <S.Menu onClick={()=>handleMenuClick(data.path)}>
                             <S.MenuImg src={data.icon} />
                             <S.MenuName>{data.name}</S.MenuName>

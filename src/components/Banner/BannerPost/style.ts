@@ -16,10 +16,24 @@ export const TitleWrap = styled.div`
 
 export const ContentWrap = styled.div`
     width: 100%;
-    height: 15%;
+    height: 92.8%;
 
     display: flex;
+    flex-direction: column;
     
+    overflow-y: auto;
+    
+    &::-webkit-scrollbar{
+        display: none;
+    }
+`
+
+export const Content = styled.div`
+    width: 100%;
+    min-height: 70px;
+
+    display: flex;
+
     border-bottom: 1px solid #D9D9D9;
 `
 

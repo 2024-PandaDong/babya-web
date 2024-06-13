@@ -16,21 +16,23 @@ const BannerPost = () => {
                     <S.Management>관리</S.Management>
                 </S.ManagementWrap>
             </S.TitleWrap>
-            {Array.from({ length: 4 }).map((_, i) => (
-                <S.ContentWrap>
-                    <S.CheckBoxWrap>
-                        <S.CheckBox></S.CheckBox>
-                    </S.CheckBoxWrap>
-                    <S.Num>{i+1}</S.Num>
-                    <S.TitleName>여성가족부 저출산정책 변경</S.TitleName>
-                    <S.Area>서울특별시</S.Area>
-                    <S.Category>출산전</S.Category>
-                    <S.ManagementWrap>
-                        <S.ModifyButton>수정</S.ModifyButton>
-                        <S.DisableButton>비활성화</S.DisableButton>
-                    </S.ManagementWrap>
-                </S.ContentWrap>
-            ))}
+            <S.ContentWrap>
+                {Array.from({ length: 8 }).map((_, i) => (
+                    <S.Content>
+                        <S.CheckBoxWrap>
+                            <S.CheckBox></S.CheckBox>
+                        </S.CheckBoxWrap>
+                        <S.Num>{i+1}</S.Num>
+                        <S.TitleName>여성가족부 저출산정책 변경</S.TitleName>
+                        <S.Area>서울특별시</S.Area>
+                        <S.Category>출산전</S.Category>
+                        <S.ManagementWrap>
+                            <S.ModifyButton>수정</S.ModifyButton>
+                            <S.DisableButton>비활성화</S.DisableButton>
+                        </S.ManagementWrap>
+                    </S.Content>
+              ))}
+            </S.ContentWrap>
         </S.Container>
     )
 }

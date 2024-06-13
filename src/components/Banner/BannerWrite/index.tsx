@@ -33,13 +33,14 @@ const BannerWrite = () => {
     }
 
     const handleFileChange = (e) => {
-        console.log(e.target.files[0]);
         const file = e.target.files?.[0];
-        const reader = new FileReader();
-        reader.readAsDataURL(file);
-        reader.onloadend = () => {
-            if (typeof reader.result === "string") {
-                setImageFile(reader.result);
+        if (file) {
+            const reader = new FileReader();
+            reader.readAsDataURL(file);
+            reader.onloadend = () => {
+                if (typeof reader.result === "string") {
+                    setImageFile(reader.result);
+                }
             }
         }
     }

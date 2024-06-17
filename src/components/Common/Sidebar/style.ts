@@ -72,7 +72,7 @@ export const MenuWrap = styled.div`
     height: auto;
 `
 
-export const MenuBox = styled.div`
+export const MenuBox = styled.div<{ $isbackground: string }>`
     width: 100%;
     height: 70px;
     
@@ -80,6 +80,8 @@ export const MenuBox = styled.div`
     flex-direction: row;
     justify-content: center;
     align-items: center;
+    
+    background-color: ${({ $isbackground }) => ($isbackground)};
 `
 
 export const Menu = styled.div`

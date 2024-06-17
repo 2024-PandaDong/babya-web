@@ -28,6 +28,12 @@ const useLogin = () => {
         setIsTextShow((current) => !current);
     }
 
+    const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
+        if (e.key === "Enter") {
+            LoginSubmit();
+        }
+    }
+
     const LoginSubmit = async () => {
         if (id === "") {
             showToast("error", "아이디를 입력해주세요");
@@ -60,6 +66,7 @@ const useLogin = () => {
         handleChangeValue,
         handleClickDelete,
         handleClickShow,
+        handleKeyDown,
         LoginSubmit,
     }
 }

@@ -7,7 +7,6 @@ import DateIcon from "src/assets/img/Banner/DateIcon.svg";
 import FolderIcon from "src/assets/img/Banner/FolderIcon.svg";
 import 'react-datepicker/dist/react-datepicker.css';
 import { ko } from "date-fns/locale";
-import {BannerImageChangeButton, BannerImagePreviewButtonWrap} from "./style";
 
 const BannerWrite = () => {
     const initialDate = new Date();

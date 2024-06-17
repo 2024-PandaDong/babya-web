@@ -263,7 +263,7 @@ export const AreaCheckboxText = styled.label`
 
 export const BaseSettingWrap = styled.div`
     width: 88%;
-    min-height: 650px;
+    min-height: 670px;
     
     display: flex;
     flex-direction: column;

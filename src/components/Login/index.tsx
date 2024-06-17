@@ -56,6 +56,7 @@ const Login = () => {
                                         type={login.isTextShow ? "text" : "password"}
                                         value={login.pwd}
                                         placeholder="비밀번호를 입력해주세요."
+                                        onKeyDown={login.handleKeyDown}
                                         onChange={login.handleChangeValue} />
                                     <S.InputFeatBtnWrap>
                                         {login.pwd &&

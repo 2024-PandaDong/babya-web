@@ -1,5 +1,6 @@
-import React, {useRef, useState} from 'react';
+import React from 'react';
 import * as S from "./style";
+import useBannerWrite from "src/hooks/Banner/useBannerWrite";
 import {AreaData} from "src/constants/datas/Banner/AreaData";
 import ClickIcon from "src/assets/img/Banner/GroupManagementClickIcon.svg";
 import NonClickIcon from "src/assets/img/Banner/GroupManagementNonClickIcon.svg";
@@ -9,60 +10,33 @@ import 'react-datepicker/dist/react-datepicker.css';
 import { ko } from "date-fns/locale";
 
 const BannerWrite = () => {
-    const initialDate = new Date();
-    const fileInput = useRef(null);
-    const [imageFile, setImageFile] = useState<string>("");
-    const [isStartDateOpen, setIsStartDateOpen] = React.useState(false);
-    const [isEndDateOpen, setIsEndDateOpen] = React.useState(false);
-    const [startDate, setStartDate] = useState(initialDate);
-    const [endDate, setEndDate] = useState(initialDate);
-
-    const handleChangeStartDate = (date) => {
-        setStartDate(date);
-        setIsStartDateOpen(false);
-    }
-
-    const handleChangeEndDate = (date) => {
-        setEndDate(date);
-        setIsEndDateOpen(false);
-    }
-
-    const handleFileClick = () => {
-        fileInput.current.click();
-    }
-
-    const handleFileChange = (e) => {
-        const file = e.target.files?.[0];
-        if (file) {
-            const reader = new FileReader();
-            reader.readAsDataURL(file);
-            reader.onloadend = () => {
-                if (typeof reader.result === "string") {
-                    setImageFile(reader.result);
-                }
-            }
-        }
-    }
-
-    const handleFileDelete = () => {
-        setImageFile("");
-    }
+    const { ...bannerWrite } = useBannerWrite();
 
     return (
         <S.BannerWriteBackground>
             <S.GroupManagementWrap>
                 <S.GroupManagementTitle>배너 그룹 관리</S.GroupManagementTitle>
                 <S.GroupManagement>
-                    <S.GroupManagementMenuWrap>
-                        <S.BeforeButtonWrap>
-                            <S.BeforeButtonImg src={ClickIcon}></S.BeforeButtonImg>
-                            <S.BeforeButtonText>출산전 배너 관리</S.BeforeButtonText>
-                        </S.BeforeButtonWrap>
-                        <S.AfterButtonWrap>
-                            <S.AfterButtonImg src={NonClickIcon}></S.AfterButtonImg>
-                            <S.AfterButtonText>출산후 배너 관리</S.AfterButtonText>
-                        </S.AfterButtonWrap>
-                    </S.GroupManagementMenuWrap>
+                    <S.GroupManagementCategoryWrap>
+                        <S.CategoryButtonWrap
+                            id="before"
+                            $border={bannerWrite.data.type === "1" ? "#BBAFFF": "transparent"}
+                            onClick={bannerWrite.handleCategoryChange}>
+                            <S.CategoryButtonImg id="before" src={bannerWrite.data.type === "1" ? ClickIcon : NonClickIcon} />
+                            <S.CategoryButtonText id="before" $color={bannerWrite.data.type === "1" ? "#BBAFFF": "#D9D9D9"}>
+                                출산전 배너 관리
+                            </S.CategoryButtonText>
+                        </S.CategoryButtonWrap>
+                        <S.CategoryButtonWrap
+                            id="after"
+                            $border={bannerWrite.data.type === "2" ? "#BBAFFF": "transparent"}
+                            onClick={bannerWrite.handleCategoryChange}>
+                            <S.CategoryButtonImg id="after" src={bannerWrite.data.type === "2" ? ClickIcon : NonClickIcon} />
+                            <S.CategoryButtonText id="after" $color={bannerWrite.data.type === "2" ? "#BBAFFF": "#D9D9D9"}>
+                                출산후 배너 관리
+                            </S.CategoryButtonText>
+                        </S.CategoryButtonWrap>
+                    </S.GroupManagementCategoryWrap>
                     <S.SaveButtonWrap>
                         <S.SaveButton>저장하기</S.SaveButton>
                     </S.SaveButtonWrap>
@@ -94,7 +68,11 @@ const BannerWrite = () => {
                                 <S.Title>배너 제목명</S.Title>
                             </S.TitleWrap>
                             <S.ContentWrap>
-                                <S.Content placeholder="배너 제목을 입력해주세요."></S.Content>
+                                <S.Content
+                                    id="title"
+                                    placeholder="배너 제목을 입력해주세요."
+                                    onChange={bannerWrite.handleDataChange}
+                                />
                             </S.ContentWrap>
                         </S.BannerTitleNameWrap>
                         <S.BannerSubTitleWrap>
@@ -102,7 +80,11 @@ const BannerWrite = () => {
                                 <S.Title>배너 소제목</S.Title>
                             </S.TitleWrap>
                             <S.ContentWrap>
-                                <S.Content placeholder="배너 소제목을 입력해주세요.(최대 6글자)"></S.Content>
+                                <S.Content
+                                    id="subTitle"
+                                    placeholder="배너 소제목을 입력해주세요.(최대 6글자)"
+                                    onChange={bannerWrite.handleDataChange}
+                                />
                             </S.ContentWrap>
                         </S.BannerSubTitleWrap>
                         <S.BannerSourceWrap>
@@ -110,7 +92,11 @@ const BannerWrite = () => {
                                 <S.Title>출처</S.Title>
                             </S.TitleWrap>
                             <S.ContentWrap>
-                                <S.Content placeholder="배너 출처를 입력해주세요."></S.Content>
+                                <S.Content
+                                    id="source"
+                                    placeholder="배너 출처를 입력해주세요."
+                                    onChange={bannerWrite.handleDataChange}
+                                />
                             </S.ContentWrap>
                         </S.BannerSourceWrap>
                         <S.BannerLinkWrap>
@@ -118,7 +104,11 @@ const BannerWrite = () => {
                                 <S.Title>링크(URL)</S.Title>
                             </S.TitleWrap>
                             <S.ContentWrap>
-                                <S.Content placeholder="배너 링크(URL)을 입력해주세요."></S.Content>
+                                <S.Content
+                                    id="link"
+                                    placeholder="배너 링크(URL)을 입력해주세요."
+                                    onChange={bannerWrite.handleDataChange}
+                                />
                             </S.ContentWrap>
                         </S.BannerLinkWrap>
                         <S.BannerPeriodWrap>
@@ -129,26 +119,26 @@ const BannerWrite = () => {
                                 <S.BannerPeriodContent>
                                     <S.BannerPeriodDate
                                         readOnly
-                                        open={isStartDateOpen}
+                                        open={bannerWrite.isStartDateOpen}
                                         locale={ko}
-                                        selected={startDate}
-                                        onChange={(date) => handleChangeStartDate(date)}
+                                        selected={bannerWrite.data.startDate}
+                                        onChange={(date) => bannerWrite.handleChangeStartDate(date)}
                                         dateFormat="시작일: yyyy.MM.dd"
-                                        $fontColor={initialDate === startDate ? '#D9D9D9' : '#000'}/>
+                                        $fontColor={bannerWrite.initialDate === bannerWrite.data.startDate ? '#D9D9D9' : '#000'}/>
                                     <S.BannerPeriodDateIcon
                                         src={DateIcon}
-                                        onClick={() => setIsStartDateOpen((prev) => !prev)}/>
+                                        onClick={() => bannerWrite.setIsStartDateOpen((prev) => !prev)}/>
                                     <S.BannerPeriodDate
                                         readOnly
-                                        open={isEndDateOpen}
+                                        open={bannerWrite.isEndDateOpen}
                                         locale={ko}
-                                        selected={endDate}
-                                        onChange={(date) => handleChangeEndDate(date)}
+                                        selected={bannerWrite.data.endDate}
+                                        onChange={(date) => bannerWrite.handleChangeEndDate(date)}
                                         dateFormat="마감일: yyyy.MM.dd"
-                                        $fontColor={initialDate === endDate ? '#D9D9D9' : '#000'}/>
+                                        $fontColor={bannerWrite.initialDate === bannerWrite.data.endDate ? '#D9D9D9' : '#000'}/>
                                     <S.BannerPeriodDateIcon
                                         src={DateIcon}
-                                        onClick={() => setIsEndDateOpen((prev) => !prev)}/>
+                                        onClick={() => bannerWrite.setIsEndDateOpen((prev) => !prev)}/>
                                 </S.BannerPeriodContent>
                             </S.BannerPeriodContentWrap>
                         </S.BannerPeriodWrap>
@@ -158,23 +148,23 @@ const BannerWrite = () => {
                                     사진 <br /> (370px, 200px)
                                 </S.BannerImageTitle>
                             </S.BannerImageTitleWrap>
-                            {imageFile
+                            {bannerWrite.data.fileUrl
                                 ? (<S.BannerImageContentWrap>
                                         <S.BannerImagePreviewWrap>
-                                            <S.BannerImagePreview src={imageFile} />
+                                            <S.BannerImagePreview src={bannerWrite.data.fileUrl} />
                                             <S.BannerImagePreviewButtonWrap>
-                                                <S.BannerImageChangeButton onClick={handleFileClick}>사진변경</S.BannerImageChangeButton>
-                                                <S.BannerImageDeleteButton onClick={handleFileDelete}>사진삭제</S.BannerImageDeleteButton>
+                                                <S.BannerImageChangeButton onClick={bannerWrite.handleFileClick}>사진변경</S.BannerImageChangeButton>
+                                                <S.BannerImageDeleteButton onClick={bannerWrite.handleFileDelete}>사진삭제</S.BannerImageDeleteButton>
                                             </S.BannerImagePreviewButtonWrap>
                                         </S.BannerImagePreviewWrap>
-                                        <S.BannerImageInputRef ref={fileInput} accept="image/*" onChange={handleFileChange} />
+                                        <S.BannerImageInputRef ref={bannerWrite.fileInput} accept="image/*" onChange={bannerWrite.handleFileChange} />
                                     </S.BannerImageContentWrap>
                                 )
                                 : (<S.BannerImageContentWrap>
-                                        <S.BannerImageContentBox onClick={handleFileClick}>
+                                        <S.BannerImageContentBox onClick={bannerWrite.handleFileClick}>
                                             <S.BannerImageContentIcon src={FolderIcon}></S.BannerImageContentIcon>
                                             <S.BannerImageContent>배너사진을 추가 해주세요</S.BannerImageContent>
-                                            <S.BannerImageInputRef ref={fileInput} accept="image/*" onChange={handleFileChange} />
+                                            <S.BannerImageInputRef ref={bannerWrite.fileInput} accept="image/*" onChange={bannerWrite.handleFileChange} />
                                         </S.BannerImageContentBox>
                                     </S.BannerImageContentWrap>
                                 )

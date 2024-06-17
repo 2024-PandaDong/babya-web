@@ -48,7 +48,7 @@ export const GroupManagement = styled.div`
     padding: 0 20px;
 `
 
-export const GroupManagementMenuWrap = styled.div`
+export const GroupManagementCategoryWrap = styled.div`
     width: 50%;
     height: 100%;
     
@@ -56,7 +56,7 @@ export const GroupManagementMenuWrap = styled.div`
     flex-direction: row;
 `
 
-export const BeforeButtonWrap = styled.button`
+export const CategoryButtonWrap = styled.button<{$border: string}>`
     width: 50%;
     height: 100%;
     
@@ -65,42 +65,19 @@ export const BeforeButtonWrap = styled.button`
     justify-content: space-evenly;
     align-items: center;
     
-    border-bottom: 3px solid #BBAFFF;
+    border-bottom: 3px solid ${({$border}) => $border};
     
     cursor: pointer;
     padding-top: 3px;
 `
 
-export const BeforeButtonImg = styled.img`
+export const CategoryButtonImg = styled.img`
     width: 30px;
     height: 30px;
 `
 
-export const BeforeButtonText = styled.span`
-    color: #BBAFFF;
-    font-family: Pretendard-SemiBold, sans-serif;
-    font-size: 1.3rem;
-`
-
-export const AfterButtonWrap = styled.button`
-    width: 50%;
-    height: 100%;
-    
-    display: flex;
-    flex-direction: row;
-    justify-content: space-evenly;
-    align-items: center;
-    
-    cursor: pointer;
-`
-
-export const AfterButtonImg = styled.img`
-    width: 30px;
-    height: 30px;
-`
-
-export const AfterButtonText = styled.span`
-    color: #D9D9D9;
+export const CategoryButtonText = styled.span<{$color: string}>`
+    color: ${({$color}) => $color};
     font-family: Pretendard-SemiBold, sans-serif;
     font-size: 1.3rem;
 `

@@ -20,19 +20,19 @@ const BannerWrite = () => {
                     <S.GroupManagementCategoryWrap>
                         <S.CategoryButtonWrap
                             id="before"
-                            $border={bannerWrite.data.type === "1" ? "#BBAFFF": "transparent"}
+                            $border={bannerWrite.data.type === "1"}
                             onClick={bannerWrite.handleCategoryChange}>
                             <S.CategoryButtonImg id="before" src={bannerWrite.data.type === "1" ? ClickIcon : NonClickIcon} />
-                            <S.CategoryButtonText id="before" $color={bannerWrite.data.type === "1" ? "#BBAFFF": "#D9D9D9"}>
+                            <S.CategoryButtonText id="before" $color={bannerWrite.data.type === "1"}>
                                 출산전 배너 관리
                             </S.CategoryButtonText>
                         </S.CategoryButtonWrap>
                         <S.CategoryButtonWrap
                             id="after"
-                            $border={bannerWrite.data.type === "2" ? "#BBAFFF": "transparent"}
+                            $border={bannerWrite.data.type === "2"}
                             onClick={bannerWrite.handleCategoryChange}>
                             <S.CategoryButtonImg id="after" src={bannerWrite.data.type === "2" ? ClickIcon : NonClickIcon} />
-                            <S.CategoryButtonText id="after" $color={bannerWrite.data.type === "2" ? "#BBAFFF": "#D9D9D9"}>
+                            <S.CategoryButtonText id="after" $color={bannerWrite.data.type === "2"}>
                                 출산후 배너 관리
                             </S.CategoryButtonText>
                         </S.CategoryButtonWrap>
@@ -71,8 +71,7 @@ const BannerWrite = () => {
                                 <S.Content
                                     id="title"
                                     placeholder="배너 제목을 입력해주세요."
-                                    onChange={bannerWrite.handleDataChange}
-                                />
+                                    onChange={bannerWrite.handleDataChange} />
                             </S.ContentWrap>
                         </S.BannerTitleNameWrap>
                         <S.BannerSubTitleWrap>
@@ -83,8 +82,7 @@ const BannerWrite = () => {
                                 <S.Content
                                     id="subTitle"
                                     placeholder="배너 소제목을 입력해주세요.(최대 6글자)"
-                                    onChange={bannerWrite.handleDataChange}
-                                />
+                                    onChange={bannerWrite.handleDataChange} />
                             </S.ContentWrap>
                         </S.BannerSubTitleWrap>
                         <S.BannerSourceWrap>
@@ -95,8 +93,7 @@ const BannerWrite = () => {
                                 <S.Content
                                     id="source"
                                     placeholder="배너 출처를 입력해주세요."
-                                    onChange={bannerWrite.handleDataChange}
-                                />
+                                    onChange={bannerWrite.handleDataChange} />
                             </S.ContentWrap>
                         </S.BannerSourceWrap>
                         <S.BannerLinkWrap>
@@ -107,8 +104,7 @@ const BannerWrite = () => {
                                 <S.Content
                                     id="url"
                                     placeholder="배너 링크(URL)을 입력해주세요."
-                                    onChange={bannerWrite.handleDataChange}
-                                />
+                                    onChange={bannerWrite.handleDataChange} />
                             </S.ContentWrap>
                         </S.BannerLinkWrap>
                         <S.BannerPeriodWrap>
@@ -124,8 +120,8 @@ const BannerWrite = () => {
                                         selected={bannerWrite.data.startDate}
                                         onChange={(date) => bannerWrite.handleChangeStartDate(date)}
                                         dateFormat="시작일: yyyy.MM.dd"
-                                        $margin={bannerWrite.isStartDateOpen ? "-5" : "0"}
-                                        $fontColor={bannerWrite.initialDate === bannerWrite.data.startDate ? '#D9D9D9' : '#000'}/>
+                                        $margin={bannerWrite.isStartDateOpen}
+                                        $fontColor={bannerWrite.initialDate === bannerWrite.data.startDate}/>
                                     <S.BannerPeriodDateIcon
                                         src={DateIcon}
                                         onClick={() => bannerWrite.setIsStartDateOpen((prev) => !prev)}/>
@@ -136,8 +132,8 @@ const BannerWrite = () => {
                                         selected={bannerWrite.data.endDate}
                                         onChange={(date) => bannerWrite.handleChangeEndDate(date)}
                                         dateFormat="마감일: yyyy.MM.dd"
-                                        $margin={bannerWrite.isEndDateOpen ? "-5" : "0"}
-                                        $fontColor={bannerWrite.initialDate === bannerWrite.data.endDate ? '#D9D9D9' : '#000'}/>
+                                        $margin={bannerWrite.isEndDateOpen}
+                                        $fontColor={bannerWrite.initialDate === bannerWrite.data.endDate}/>
                                     <S.BannerPeriodDateIcon
                                         src={DateIcon}
                                         onClick={() => bannerWrite.setIsEndDateOpen((prev) => !prev)}/>
@@ -171,7 +167,6 @@ const BannerWrite = () => {
                                     </S.BannerImageContentWrap>
                                 )
                             }
-
                         </S.BannerImageWrap>
                     </S.BaseSetting>
                 </S.BaseSettingBox>

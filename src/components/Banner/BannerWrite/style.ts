@@ -56,7 +56,7 @@ export const GroupManagementCategoryWrap = styled.div`
     flex-direction: row;
 `
 
-export const CategoryButtonWrap = styled.button<{$border: string}>`
+export const CategoryButtonWrap = styled.button<{$border: boolean}>`
     width: 50%;
     height: 100%;
     
@@ -65,8 +65,7 @@ export const CategoryButtonWrap = styled.button<{$border: string}>`
     justify-content: space-evenly;
     align-items: center;
     
-    border-bottom: 3px solid ${({$border}) => $border};
-    
+    border-bottom: 3px solid ${({$border}) => $border ? "#BBAFFF" : "transparent"};
     cursor: pointer;
     padding-top: 3px;
 `
@@ -76,8 +75,8 @@ export const CategoryButtonImg = styled.img`
     height: 30px;
 `
 
-export const CategoryButtonText = styled.span<{$color: string}>`
-    color: ${({$color}) => $color};
+export const CategoryButtonText = styled.span<{$color: boolean}>`
+    color: ${({$color}) => $color ? "#BBAFFF": "#D9D9D9"};
     font-family: Pretendard-SemiBold, sans-serif;
     font-size: 1.3rem;
 `
@@ -418,10 +417,10 @@ export const BannerPeriodContent = styled.div`
     gap: 5px;
 `
 
-export const BannerPeriodDate = styled(DatePicker)<{$margin: string, $fontColor: string}>`
+export const BannerPeriodDate = styled(DatePicker)<{$margin: boolean, $fontColor: boolean}>`
     width: 140px;
     
-    color: ${({ $fontColor }) => $fontColor};
+    color: ${({ $fontColor }) => $fontColor ? '#D9D9D9' : '#000'};
     font-family: Pretendard-SemiBold, sans-serif;
     font-size: 1rem;
     
@@ -430,7 +429,7 @@ export const BannerPeriodDate = styled(DatePicker)<{$margin: string, $fontColor:
     cursor: initial;
     
     margin-left: 15px;
-    margin-right: ${({$margin}) => $margin}px;
+    margin-right: ${({$margin}) => $margin ? "-5" : "0"}px;
 `
 
 export const BannerPeriodDateIcon = styled.img`

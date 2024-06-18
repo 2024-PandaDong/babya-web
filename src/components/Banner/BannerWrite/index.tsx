@@ -124,6 +124,7 @@ const BannerWrite = () => {
                                         selected={bannerWrite.data.startDate}
                                         onChange={(date) => bannerWrite.handleChangeStartDate(date)}
                                         dateFormat="시작일: yyyy.MM.dd"
+                                        $margin={bannerWrite.isStartDateOpen ? "-5" : "0"}
                                         $fontColor={bannerWrite.initialDate === bannerWrite.data.startDate ? '#D9D9D9' : '#000'}/>
                                     <S.BannerPeriodDateIcon
                                         src={DateIcon}
@@ -135,6 +136,7 @@ const BannerWrite = () => {
                                         selected={bannerWrite.data.endDate}
                                         onChange={(date) => bannerWrite.handleChangeEndDate(date)}
                                         dateFormat="마감일: yyyy.MM.dd"
+                                        $margin={bannerWrite.isEndDateOpen ? "-5" : "0"}
                                         $fontColor={bannerWrite.initialDate === bannerWrite.data.endDate ? '#D9D9D9' : '#000'}/>
                                     <S.BannerPeriodDateIcon
                                         src={DateIcon}

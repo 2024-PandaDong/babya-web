@@ -418,7 +418,7 @@ export const BannerPeriodContent = styled.div`
     gap: 5px;
 `
 
-export const BannerPeriodDate = styled(DatePicker)<{$fontColor: string}>`
+export const BannerPeriodDate = styled(DatePicker)<{$margin: string, $fontColor: string}>`
     width: 140px;
     
     color: ${({ $fontColor }) => $fontColor};
@@ -430,6 +430,7 @@ export const BannerPeriodDate = styled(DatePicker)<{$fontColor: string}>`
     cursor: initial;
     
     margin-left: 15px;
+    margin-right: ${({$margin}) => $margin}px;
 `
 
 export const BannerPeriodDateIcon = styled.img`
@@ -501,7 +502,7 @@ export const BannerImagePreview = styled.img`
 
 export const BannerImagePreviewButtonWrap = styled.div`
     width: 29%;
-    height: 65%;
+    height: 60%;
     
     display: flex;
     flex-direction: column;

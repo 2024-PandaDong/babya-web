@@ -38,7 +38,7 @@ const BannerWrite = () => {
                         </S.CategoryButtonWrap>
                     </S.GroupManagementCategoryWrap>
                     <S.SaveButtonWrap>
-                        <S.SaveButton>저장하기</S.SaveButton>
+                        <S.SaveButton onClick={bannerWrite.SubmitBannerCreate}>저장하기</S.SaveButton>
                     </S.SaveButtonWrap>
                 </S.GroupManagement>
             </S.GroupManagementWrap>
@@ -105,7 +105,7 @@ const BannerWrite = () => {
                             </S.TitleWrap>
                             <S.ContentWrap>
                                 <S.Content
-                                    id="link"
+                                    id="url"
                                     placeholder="배너 링크(URL)을 입력해주세요."
                                     onChange={bannerWrite.handleDataChange}
                                 />
@@ -151,7 +151,7 @@ const BannerWrite = () => {
                             {bannerWrite.data.fileUrl
                                 ? (<S.BannerImageContentWrap>
                                         <S.BannerImagePreviewWrap>
-                                            <S.BannerImagePreview src={bannerWrite.data.fileUrl} />
+                                            <S.BannerImagePreview src={bannerWrite.fileImage} />
                                             <S.BannerImagePreviewButtonWrap>
                                                 <S.BannerImageChangeButton onClick={bannerWrite.handleFileClick}>사진변경</S.BannerImageChangeButton>
                                                 <S.BannerImageDeleteButton onClick={bannerWrite.handleFileDelete}>사진삭제</S.BannerImageDeleteButton>

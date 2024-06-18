@@ -240,7 +240,7 @@ export const AreaCheckboxText = styled.label`
 
 export const BaseSettingWrap = styled.div`
     width: 88%;
-    min-height: 670px;
+    min-height: 700px;
     
     display: flex;
     flex-direction: column;
@@ -259,7 +259,7 @@ export const BaseSettingTitle = styled.span`
 
 export const BaseSettingBox = styled.div`
     width: 100%;
-    height: 92%;
+    height: 93%;
 
     display: flex;
     flex-direction: row;
@@ -272,8 +272,8 @@ export const BaseSettingBox = styled.div`
 `
 
 export const BaseSetting = styled.div`
-    width: 90%;
-    height: 88%;
+    width: 92%;
+    height: 90%;
     
     display: flex;
     flex-direction: column;
@@ -283,7 +283,7 @@ export const BaseSetting = styled.div`
 
 export const BannerTitleNameWrap = styled.div`
     width: 100%;
-    height: 12%;
+    height: 11.5%;
     
     display: flex;
     flex-direction: row;
@@ -291,7 +291,7 @@ export const BannerTitleNameWrap = styled.div`
 
 export const BannerSubTitleWrap = styled.div`
     width: 100%;
-    height: 12%;
+    height: 11.5%;
 
     display: flex;
     flex-direction: row;
@@ -299,7 +299,7 @@ export const BannerSubTitleWrap = styled.div`
 
 export const BannerSourceWrap = styled.div`
     width: 100%;
-    height: 12%;
+    height: 11.5%;
 
     display: flex;
     flex-direction: row;
@@ -307,7 +307,7 @@ export const BannerSourceWrap = styled.div`
 
 export const BannerLinkWrap = styled.div`
     width: 100%;
-    height: 12%;
+    height: 11.5%;
 
     display: flex;
     flex-direction: row;
@@ -364,7 +364,7 @@ export const Content = styled.input`
 
 export const BannerPeriodWrap = styled.div`
     width: 100%;
-    height: 12%;
+    height: 11.5%;
 
     display: flex;
     flex-direction: row;
@@ -440,7 +440,7 @@ export const BannerPeriodDateIcon = styled.img`
 
 export const BannerImageWrap = styled.div`
     width: 100%;
-    height: 40%;
+    height: 42.5%;
 
     display: flex;
     flex-direction: row;
@@ -480,7 +480,7 @@ export const BannerImageContentWrap = styled.div`
 
 export const BannerImagePreviewWrap = styled.div`
     width: 95%;
-    height: 95%;
+    height: 92%;
 
     display: flex;
     flex-direction: row;
@@ -493,8 +493,8 @@ export const BannerImagePreviewWrap = styled.div`
 `
 
 export const BannerImagePreview = styled.img`
-    width: 50%;
-    height: 100%;
+    width: 370px;
+    height: 200px;
     
     border-radius: 10px;
 `
@@ -535,11 +535,6 @@ export const BannerImageDeleteButton = styled.button`
 
     cursor: pointer;
 `
-
-
-
-
-
 
 export const BannerImageContentBox = styled.div`
     width: 95%;

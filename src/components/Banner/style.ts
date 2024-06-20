@@ -19,7 +19,7 @@ export const BannerContainer = styled.div`
     
     display: flex;
     flex-direction: column;
-    gap: 10px;
+    gap: 12px;
 `
 
 export const BannerTitleWrap = styled.div`

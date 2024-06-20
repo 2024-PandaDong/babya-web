@@ -4,9 +4,13 @@ import {REQUEST_TOKEN_KEY, ACCESS_TOKEN_KEY} from "src/constants/tokens/token.co
 import Token from "src/libs/token/token";
 import config from "src/config/config.json";
 import axios from "axios";
+import Swal from "sweetalert2";
+import {showToast} from "src/libs/toast/Swal";
+import token from "src/libs/token/token";
 
 interface BannerListProps {
     "id": number,
+    "lc": string,
     "url": string,
     "title": string,
     "subTitle": string,
@@ -28,6 +32,35 @@ const useBanner = () => {
 
     const handleChangeType = (type) => {
         setType(type);
+    }
+
+    const handleClickDisable = (bannerId: number) => {
+        Swal.fire({
+            title: "정말로 배너를 비활성화하시겠습니까?",
+            text: "배너를 비활성화하면 다시 되돌릴 수 없습니다.",
+            showCancelButton: true,
+            confirmButtonColor: "#d33",
+            cancelButtonColor: "#D9D9D9",
+            confirmButtonText: "공지 삭제",
+            cancelButtonText: "취소",
+            reverseButtons: false,
+        }).then(async (result) => {
+            if (result.isConfirmed) {
+                try {
+                    await axios
+                        .delete(`${config.BABYA_Server}/banner/disable/${bannerId}`, {
+                            headers: {[REQUEST_TOKEN_KEY]: `Bearer ${token.getToken(ACCESS_TOKEN_KEY)}`,}
+                        })
+                        .then(() => {
+                            showToast("success", "배너 비활성화 성공");
+                            setBannerList(prevData => prevData.filter(item => item.id !== bannerId));
+                        });
+                } catch (error) {
+                    showToast("error", "배너 비활성화 실패");
+                    console.log(error);
+                }
+            }
+        });
     }
 
     useEffect(() => {
@@ -57,6 +90,7 @@ const useBanner = () => {
         type,
         bannerList,
         handleChangeType,
+        handleClickDisable,
         handleBannerWriteClick,
     }
 }

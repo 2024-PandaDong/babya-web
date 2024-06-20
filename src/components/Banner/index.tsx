@@ -2,9 +2,10 @@ import React from 'react';
 import * as S from "./style";
 import useBanner from "src/hooks/Banner/useBanner";
 import BannerCreateIcon from "src/assets/img/Banner/BannerCreateIcon.svg";
+import dataTransform from "src/utils/Transform/dataTransform";
 
 const Banner = () => {
-    const {type, bannerList, handleChangeType, handleBannerWriteClick} = useBanner();
+    const {type, bannerList, handleChangeType, handleClickDisable, handleBannerWriteClick} = useBanner();
 
     return (
         <S.BannerBackground>
@@ -70,11 +71,11 @@ const Banner = () => {
                                         </S.CheckBoxWrap>
                                         <S.Num>{i+1}</S.Num>
                                         <S.TitleName>{banner.title}</S.TitleName>
-                                        <S.Area>서울 특별시</S.Area>
+                                        <S.Area>{dataTransform.AreaTypeDataTransform(banner.lc)}</S.Area>
                                         <S.Category>{banner.type === "1" ? "출산전" : "출산후"}</S.Category>
                                         <S.ManagementWrap>
                                             <S.ModifyButton>수정</S.ModifyButton>
-                                            <S.DisableButton>비활성화</S.DisableButton>
+                                            <S.DisableButton onClick={() => handleClickDisable(banner.id)}>비활성화</S.DisableButton>
                                         </S.ManagementWrap>
                                     </S.Content>
                                 ))}

@@ -37,8 +37,7 @@ const useBanner = () => {
                         [REQUEST_TOKEN_KEY]: `Bearer ${Token.getToken(ACCESS_TOKEN_KEY)}`
                     }
                 }).then((res) => {
-                    console.log(res.data.data);
-                    setBannerList(res.data.data)
+                    setBannerList(res.data.data);
                 })
             } catch(error) {
                 console.log(error);

@@ -81,7 +81,7 @@ export const Num = styled.span`
     
     color: #000;
     font-family: Pretendard-Medium, sans-serif;
-    font-size: 0.9rem;
+    font-size: 0.95rem;
     
     display: flex;
     flex-direction: row;
@@ -95,7 +95,7 @@ export const TitleName = styled.span`
 
     color: #000;
     font-family: Pretendard-Medium, sans-serif;
-    font-size: 0.9rem;
+    font-size: 0.95rem;
 
     display: flex;
     flex-direction: row;
@@ -109,7 +109,7 @@ export const Area = styled.span`
 
     color: #000;
     font-family: Pretendard-Medium, sans-serif;
-    font-size: 0.9rem;
+    font-size: 0.95rem;
 
     display: flex;
     flex-direction: row;
@@ -123,7 +123,7 @@ export const Category = styled.span`
 
     color: #000;
     font-family: Pretendard-Medium, sans-serif;
-    font-size: 0.9rem;
+    font-size: 0.95rem;
 
     display: flex;
     flex-direction: row;
@@ -144,7 +144,7 @@ export const ManagementWrap = styled.div`
 export const Management = styled.span`
     color: #000;
     font-family: Pretendard-Medium, sans-serif;
-    font-size: 0.9rem;
+    font-size: 0.95rem;
 `
 
 export const ModifyButton = styled.button`
@@ -153,7 +153,7 @@ export const ModifyButton = styled.button`
     
     color: #FFF;
     font-family: Pretendard-Bold, sans-serif;
-    font-size: 0.9rem;
+    font-size: 0.95rem;
     
     border-radius: 5px;
     background: #BFB3FF;
@@ -168,7 +168,7 @@ export const DisableButton = styled.button`
 
     color: #FFF;
     font-family: Pretendard-Bold, sans-serif;
-    font-size: 0.9rem;
+    font-size: 0.95rem;
 
     border-radius: 5px;
     background: #BEBEBE;

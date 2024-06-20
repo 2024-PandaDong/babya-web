@@ -138,19 +138,21 @@ export const BannerSearchWrap = styled.div`
     flex-direction: row;
     justify-content: flex-end;
     align-items: center;
-    //background: #000;
 `
 
 export const BannerSearch = styled.input`
     width: 60%;
     min-width: 180px;
     height: 90%;
+    
+    color: #000;
+    font-family: Pretendard-Medium, sans-serif;
 
     border: 1px solid #D9D9D9;
     border-radius: 5px;
     background-color: transparent;
 
-    padding-left: 15px;
+    padding: 0 15px;
     outline: none;
     
     &::placeholder {

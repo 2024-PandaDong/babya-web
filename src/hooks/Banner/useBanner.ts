@@ -1,5 +1,5 @@
 import {useNavigate} from "react-router-dom";
-import {useState, useEffect} from "react";
+import React, {useState, useEffect} from "react";
 import {REQUEST_TOKEN_KEY, ACCESS_TOKEN_KEY} from "src/constants/tokens/token.constants"
 import Token from "src/libs/token/token";
 import config from "src/config/config.json";
@@ -17,10 +17,17 @@ interface BannerListProps {
 
 const useBanner = () => {
     const navigate = useNavigate();
+    const [type, setType] = useState<string>("1");
     const [bannerList, setBannerList] = useState<BannerListProps[]>([]);
+
+    console.log(bannerList)
 
     const handleBannerWriteClick = () => {
         navigate("/banner-write");
+    }
+
+    const handleChangeType = (type) => {
+        setType(type);
     }
 
     useEffect(() => {
@@ -31,7 +38,7 @@ const useBanner = () => {
                         page: 1,
                         size: 10,
                         keyword: "all",
-                        type: "1",
+                        type: type,
                     },
                     headers: {
                         [REQUEST_TOKEN_KEY]: `Bearer ${Token.getToken(ACCESS_TOKEN_KEY)}`
@@ -45,9 +52,11 @@ const useBanner = () => {
         }
 
         GetBannerList();
-    }, [])
+    }, [type])
     return {
+        type,
         bannerList,
+        handleChangeType,
         handleBannerWriteClick,
     }
 }

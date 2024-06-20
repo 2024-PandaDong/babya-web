@@ -3,21 +3,10 @@ import axios from "axios";
 import config from "src/config/config.json";
 import {REQUEST_TOKEN_KEY, ACCESS_TOKEN_KEY} from "src/constants/tokens/token.constants";
 import Token from "src/libs/token/token";
+import {BannerWriteProps} from "src/types/Banner/BannerWrite/BannerWrite.interface";
 import {showToast} from "src/libs/toast/Swal";
 import {NavigateFunction, useNavigate} from "react-router-dom";
 import {format} from "date-fns";
-
-interface Props {
-    title: string,
-    subTitle: string,
-    source: string,
-    url: string,
-    fileUrl: string,
-    type: string,
-    lc: string,
-    startDate: string,
-    endDate: string,
-}
 
 const useBannerWrite = () => {
     const date: Date = new Date();
@@ -28,7 +17,7 @@ const useBannerWrite = () => {
     const [isStartDateOpen, setIsStartDateOpen] = useState(false);
     const [isEndDateOpen, setIsEndDateOpen] = useState(false);
     const [fileImage, setFileImage] = useState<string>("");
-    const [data, setData] = useState<Props>({
+    const [data, setData] = useState<BannerWriteProps>({
         title: "",
         subTitle: "",
         source: "",

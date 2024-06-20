@@ -9,7 +9,6 @@ import FolderIcon from "src/assets/img/Banner/FolderIcon.svg";
 import 'react-datepicker/dist/react-datepicker.css';
 import { format } from "date-fns";
 import { ko } from "date-fns/locale";
-import {AreaCheckboxContainer} from "./style";
 
 const BannerWrite = () => {
     const { ...bannerWrite } = useBannerWrite();

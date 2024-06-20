@@ -110,7 +110,7 @@ export const SaveButton = styled.button`
 
 export const AreaSelectWrap = styled.div`
     width: 88%;
-    min-height: 370px;
+    min-height: auto;
     
     display: flex;
     flex-direction: column;
@@ -122,12 +122,12 @@ export const AreaSelectTitle = styled.span`
     font-family: Pretendard-SemiBold, sans-serif;
     font-size: 1.4rem;
     
-    padding-left: 20px;
+    padding: 0 0 20px 20px;
 `
 
 export const AreaSelect = styled.div`
     width: 100%;
-    height: 88%;
+    height: auto;
     
     display: flex;
     flex-flow: row wrap;
@@ -196,7 +196,7 @@ export const AreaCheckboxContainer = styled.div`
 `
 
 export const AreaCheckboxWrap = styled.div`
-    width: 19%;
+    min-width: 19%;
     height: auto;
     
     display: flex;
@@ -428,6 +428,7 @@ export const BannerPeriodDate = styled(DatePicker)<{$margin: boolean, $fontColor
     font-size: 1rem;
     
     border: none;
+    background: none;
     outline: none;
     cursor: initial;
     

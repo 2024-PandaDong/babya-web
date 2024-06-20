@@ -19,6 +19,7 @@ interface BannerListProps {
     "source": string,
 }
 
+
 const useBanner = () => {
     const navigate = useNavigate();
     const [type, setType] = useState<string>("1");
@@ -35,13 +36,14 @@ const useBanner = () => {
     }
 
     const handleClickDisable = (bannerId: number) => {
+        console.log(bannerId);
         Swal.fire({
             title: "정말로 배너를 비활성화하시겠습니까?",
             text: "배너를 비활성화하면 다시 되돌릴 수 없습니다.",
             showCancelButton: true,
             confirmButtonColor: "#d33",
             cancelButtonColor: "#D9D9D9",
-            confirmButtonText: "공지 삭제",
+            confirmButtonText: "배너 비활성화",
             cancelButtonText: "취소",
             reverseButtons: false,
         }).then(async (result) => {

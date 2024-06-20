@@ -420,10 +420,10 @@ export const BannerPeriodContent = styled.div`
     gap: 5px;
 `
 
-export const BannerPeriodDate = styled(DatePicker)<{$margin: boolean, $fontColor: boolean}>`
+export const BannerPeriodDate = styled(DatePicker)<{$style: boolean}>`
     width: 140px;
     
-    color: ${({ $fontColor }) => $fontColor ? '#D9D9D9' : '#000'};
+    color: ${({ $style }) => $style ? "#D9D9D9": "#000"};
     font-family: Pretendard-SemiBold, sans-serif;
     font-size: 1rem;
     
@@ -433,7 +433,7 @@ export const BannerPeriodDate = styled(DatePicker)<{$margin: boolean, $fontColor
     cursor: initial;
     
     margin-left: 15px;
-    margin-right: ${({$margin}) => $margin ? "-5" : "0"}px;
+    margin-right: ${({$style}) => $style ? "-5" : "0"}px;
 `
 
 export const BannerPeriodDateIcon = styled.img`

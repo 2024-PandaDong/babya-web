@@ -115,11 +115,10 @@ const BannerWrite = () => {
                                         dateFormat="시작일: yyyy.MM.dd"
                                         open={bannerWrite.isStartDateOpen}
                                         selected={bannerWrite.data.startDate}
-                                        $margin={bannerWrite.isStartDateOpen}
-                                        $fontColor={String(bannerWrite.date) === bannerWrite.data.startDate}
+                                        $style={bannerWrite.isStartDateOpen}
                                         onChange={(date: Date) => {
-                                            const startDate = format(date, 'yyyy-MM-dd');
-                                            bannerWrite.handleChangeStartDate(startDate);}}/>
+                                            const startDate = format(date, 'yyyy-MM-dd')
+                                            bannerWrite.handleChangeStartDate(startDate)}}/>
                                     <S.BannerPeriodDateIcon src={DateIcon} onClick={() => bannerWrite.setIsStartDateOpen((prev) => !prev)}/>
                                     <S.BannerPeriodDate
                                         readOnly
@@ -127,11 +126,10 @@ const BannerWrite = () => {
                                         dateFormat="마감일: yyyy.MM.dd"
                                         open={bannerWrite.isEndDateOpen}
                                         selected={bannerWrite.data.endDate}
-                                        $margin={bannerWrite.isEndDateOpen}
-                                        $fontColor={String(bannerWrite.date) === bannerWrite.data.endDate}
+                                        $style={bannerWrite.isEndDateOpen}
                                         onChange={(date: Date) => {
-                                            const endDate = format(date, 'yyyy-MM-dd');
-                                            bannerWrite.handleChangeEndDate(endDate);}}/>
+                                            const endDate = format(date, 'yyyy-MM-dd')
+                                            bannerWrite.handleChangeEndDate(endDate)}}/>
                                     <S.BannerPeriodDateIcon src={DateIcon} onClick={() => bannerWrite.setIsEndDateOpen((prev) => !prev)}/>
                                 </S.BannerPeriodContent>
                             </S.BannerPeriodContentWrap>

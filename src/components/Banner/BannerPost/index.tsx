@@ -1,7 +1,10 @@
 import React from 'react';
 import * as S from './style';
+import useBanner from "src/hooks/Banner/useBanner";
 
 const BannerPost = () => {
+    const {bannerList} = useBanner();
+
     return (
         <S.Container>
             <S.TitleWrap>
@@ -17,15 +20,15 @@ const BannerPost = () => {
                 </S.ManagementWrap>
             </S.TitleWrap>
             <S.ContentWrap>
-                {Array.from({ length: 8 }).map((_, i) => (
-                    <S.Content>
+                {bannerList.map((banner, i) => (
+                    <S.Content key={banner.id}>
                         <S.CheckBoxWrap>
                             <S.CheckBox></S.CheckBox>
                         </S.CheckBoxWrap>
                         <S.Num>{i+1}</S.Num>
-                        <S.TitleName>여성가족부 저출산정책 변경</S.TitleName>
-                        <S.Area>서울특별시</S.Area>
-                        <S.Category>출산전</S.Category>
+                        <S.TitleName>{banner.title}</S.TitleName>
+                        <S.Area>서울 특별시</S.Area>
+                        <S.Category>{banner.type === "1" ? "출산전" : "출산후"}</S.Category>
                         <S.ManagementWrap>
                             <S.ModifyButton>수정</S.ModifyButton>
                             <S.DisableButton>비활성화</S.DisableButton>

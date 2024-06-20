@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import Check from "src/assets/img/Banner/Check.svg";
 
 export const Container = styled.div`
     width: 100%;
@@ -64,13 +65,12 @@ export const CheckBox = styled.input.attrs({ type: "checkbox" })`
 
     &:checked:before {
         height: 90%;
-        content: '✓';
-        font-size: 0.85rem;
+        content: '';
         display: block;
-        text-align: center;
         color: #FFF;
-        background: #3a69fd;
-        border: 1px solid #3a69fd;
+        background: #BBAFFF url(${Check}) no-repeat center center;
+        background-size: calc(55%);
+        border: 1px solid #BBAFFF;
         border-radius: 5px;
     }
 `

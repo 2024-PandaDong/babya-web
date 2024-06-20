@@ -29,8 +29,6 @@ const useBannerWrite = () => {
         endDate: initialDate,
     })
 
-    console.log(data)
-
     const handleChangeData = (e: React.ChangeEvent<HTMLInputElement>) => {
         const {id, value} = e.target;
 

@@ -20,6 +20,7 @@ export const BannerWriteBackground = styled.div`
 export const GroupManagementWrap = styled.div`
     width: 88%;
     min-height: 130px;
+    
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -58,6 +59,7 @@ export const GroupManagementCategoryWrap = styled.div`
 
 export const CategoryButtonWrap = styled.button<{$border: boolean}>`
     width: 50%;
+    min-width: 200px;
     height: 100%;
     
     display: flex;
@@ -93,6 +95,7 @@ export const SaveButtonWrap = styled.div`
 
 export const SaveButton = styled.button`
     width: 38%;
+    min-width: 110px;
     height: 55%;
     
     color: #FFF;
@@ -107,7 +110,7 @@ export const SaveButton = styled.button`
 
 export const AreaSelectWrap = styled.div`
     width: 88%;
-    min-height: 300px;
+    min-height: 370px;
     
     display: flex;
     flex-direction: column;
@@ -124,7 +127,7 @@ export const AreaSelectTitle = styled.span`
 
 export const AreaSelect = styled.div`
     width: 100%;
-    height: 85%;
+    height: 88%;
     
     display: flex;
     flex-flow: row wrap;
@@ -182,29 +185,29 @@ export const NationwideCheckboxText = styled.label`
     cursor: pointer;
 `
 
-export const AreaCheckboxWrap = styled.div`
+export const AreaCheckboxContainer = styled.div`
     width: auto;
     height: calc(100% - 46px);
     
     display: flex;
-    flex-flow: column wrap;
+    flex-flow: row wrap;
     
-    gap: 20px 40px;
+    gap: 20px 10px;
 `
 
-export const AreaCheckboxBox = styled.div`
-    width: auto;
+export const AreaCheckboxWrap = styled.div`
+    width: 19%;
     height: auto;
     
     display: flex;
     flex-direction: row;
     align-items: center;
     
-    gap: 25px;
+    gap: 15px;
 `
 
 export const AreaCheckbox = styled.input.attrs({ type: 'checkbox' })`
-    width: 30px;
+    min-width: 30px;
     height: 30px;
 
     border: 1px solid #D9D9D9;
@@ -494,6 +497,7 @@ export const BannerImagePreviewWrap = styled.div`
 
 export const BannerImagePreview = styled.img`
     width: 370px;
+    min-width: 200px;
     height: 200px;
     
     border-radius: 10px;

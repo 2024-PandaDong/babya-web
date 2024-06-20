@@ -7,7 +7,9 @@ import NonClickIcon from "src/assets/img/Banner/GroupManagementNonClickIcon.svg"
 import DateIcon from "src/assets/img/Banner/DateIcon.svg";
 import FolderIcon from "src/assets/img/Banner/FolderIcon.svg";
 import 'react-datepicker/dist/react-datepicker.css';
+import { format } from "date-fns";
 import { ko } from "date-fns/locale";
+import {AreaCheckboxContainer} from "./style";
 
 const BannerWrite = () => {
     const { ...bannerWrite } = useBannerWrite();
@@ -21,7 +23,7 @@ const BannerWrite = () => {
                         <S.CategoryButtonWrap
                             id="before"
                             $border={bannerWrite.data.type === "1"}
-                            onClick={bannerWrite.handleCategoryChange}>
+                            onClick={bannerWrite.handleChangeCategory}>
                             <S.CategoryButtonImg id="before" src={bannerWrite.data.type === "1" ? ClickIcon : NonClickIcon} />
                             <S.CategoryButtonText id="before" $color={bannerWrite.data.type === "1"}>
                                 출산전 배너 관리
@@ -30,7 +32,7 @@ const BannerWrite = () => {
                         <S.CategoryButtonWrap
                             id="after"
                             $border={bannerWrite.data.type === "2"}
-                            onClick={bannerWrite.handleCategoryChange}>
+                            onClick={bannerWrite.handleChangeCategory}>
                             <S.CategoryButtonImg id="after" src={bannerWrite.data.type === "2" ? ClickIcon : NonClickIcon} />
                             <S.CategoryButtonText id="after" $color={bannerWrite.data.type === "2"}>
                                 출산후 배너 관리
@@ -46,17 +48,23 @@ const BannerWrite = () => {
                 <S.AreaSelectTitle>배너 지역 선택</S.AreaSelectTitle>
                 <S.AreaSelect>
                     <S.NationwideCheckboxWrap>
-                        <S.NationwideCheckbox id="Nationwide"></S.NationwideCheckbox>
+                        <S.NationwideCheckbox
+                            id="Nationwide"
+                            checked={bannerWrite.isChecked["전국"]}
+                            onClick={() => bannerWrite.handleChangeArea("전국", "00")}></S.NationwideCheckbox>
                         <S.NationwideCheckboxText htmlFor="Nationwide">전체(전국)</S.NationwideCheckboxText>
                     </S.NationwideCheckboxWrap>
-                    <S.AreaCheckboxWrap>
+                    <S.AreaCheckboxContainer>
                         {AreaData.map((area) => (
-                            <S.AreaCheckboxBox key={area.id}>
-                                <S.AreaCheckbox id={area.name}></S.AreaCheckbox>
+                            <S.AreaCheckboxWrap key={area.id}>
+                                <S.AreaCheckbox
+                                    id={area.name}
+                                    checked={bannerWrite.isChecked[area.name]}
+                                    onClick={() => bannerWrite.handleChangeArea(area.name, area.code)}></S.AreaCheckbox>
                                 <S.AreaCheckboxText htmlFor={area.name}>{area.name}</S.AreaCheckboxText>
-                            </S.AreaCheckboxBox>
+                            </S.AreaCheckboxWrap>
                         ))}
-                    </S.AreaCheckboxWrap>
+                    </S.AreaCheckboxContainer>
                 </S.AreaSelect>
             </S.AreaSelectWrap>
             <S.BaseSettingWrap>
@@ -68,10 +76,7 @@ const BannerWrite = () => {
                                 <S.Title>배너 제목명</S.Title>
                             </S.TitleWrap>
                             <S.ContentWrap>
-                                <S.Content
-                                    id="title"
-                                    placeholder="배너 제목을 입력해주세요."
-                                    onChange={bannerWrite.handleDataChange} />
+                                <S.Content id="title" placeholder="배너 제목을 입력해주세요." onChange={bannerWrite.handleChangeData} />
                             </S.ContentWrap>
                         </S.BannerTitleNameWrap>
                         <S.BannerSubTitleWrap>
@@ -79,10 +84,7 @@ const BannerWrite = () => {
                                 <S.Title>배너 소제목</S.Title>
                             </S.TitleWrap>
                             <S.ContentWrap>
-                                <S.Content
-                                    id="subTitle"
-                                    placeholder="배너 소제목을 입력해주세요.(최대 6글자)"
-                                    onChange={bannerWrite.handleDataChange} />
+                                <S.Content id="subTitle" placeholder="배너 소제목을 입력해주세요.(최대 6글자)" onChange={bannerWrite.handleChangeData} />
                             </S.ContentWrap>
                         </S.BannerSubTitleWrap>
                         <S.BannerSourceWrap>
@@ -90,10 +92,7 @@ const BannerWrite = () => {
                                 <S.Title>출처</S.Title>
                             </S.TitleWrap>
                             <S.ContentWrap>
-                                <S.Content
-                                    id="source"
-                                    placeholder="배너 출처를 입력해주세요."
-                                    onChange={bannerWrite.handleDataChange} />
+                                <S.Content id="source" placeholder="배너 출처를 입력해주세요." onChange={bannerWrite.handleChangeData} />
                             </S.ContentWrap>
                         </S.BannerSourceWrap>
                         <S.BannerLinkWrap>
@@ -101,10 +100,7 @@ const BannerWrite = () => {
                                 <S.Title>링크(URL)</S.Title>
                             </S.TitleWrap>
                             <S.ContentWrap>
-                                <S.Content
-                                    id="url"
-                                    placeholder="배너 링크(URL)을 입력해주세요."
-                                    onChange={bannerWrite.handleDataChange} />
+                                <S.Content id="url" placeholder="배너 링크(URL)을 입력해주세요." onChange={bannerWrite.handleChangeData} />
                             </S.ContentWrap>
                         </S.BannerLinkWrap>
                         <S.BannerPeriodWrap>
@@ -115,28 +111,28 @@ const BannerWrite = () => {
                                 <S.BannerPeriodContent>
                                     <S.BannerPeriodDate
                                         readOnly
-                                        open={bannerWrite.isStartDateOpen}
                                         locale={ko}
-                                        selected={bannerWrite.data.startDate}
-                                        onChange={(date) => bannerWrite.handleChangeStartDate(date)}
                                         dateFormat="시작일: yyyy.MM.dd"
+                                        open={bannerWrite.isStartDateOpen}
+                                        selected={bannerWrite.data.startDate}
                                         $margin={bannerWrite.isStartDateOpen}
-                                        $fontColor={bannerWrite.initialDate === bannerWrite.data.startDate}/>
-                                    <S.BannerPeriodDateIcon
-                                        src={DateIcon}
-                                        onClick={() => bannerWrite.setIsStartDateOpen((prev) => !prev)}/>
+                                        $fontColor={String(bannerWrite.date) === bannerWrite.data.startDate}
+                                        onChange={(date: Date) => {
+                                            const startDate = format(date, 'yyyy-MM-dd');
+                                            bannerWrite.handleChangeStartDate(startDate);}}/>
+                                    <S.BannerPeriodDateIcon src={DateIcon} onClick={() => bannerWrite.setIsStartDateOpen((prev) => !prev)}/>
                                     <S.BannerPeriodDate
                                         readOnly
-                                        open={bannerWrite.isEndDateOpen}
                                         locale={ko}
-                                        selected={bannerWrite.data.endDate}
-                                        onChange={(date) => bannerWrite.handleChangeEndDate(date)}
                                         dateFormat="마감일: yyyy.MM.dd"
+                                        open={bannerWrite.isEndDateOpen}
+                                        selected={bannerWrite.data.endDate}
                                         $margin={bannerWrite.isEndDateOpen}
-                                        $fontColor={bannerWrite.initialDate === bannerWrite.data.endDate}/>
-                                    <S.BannerPeriodDateIcon
-                                        src={DateIcon}
-                                        onClick={() => bannerWrite.setIsEndDateOpen((prev) => !prev)}/>
+                                        $fontColor={String(bannerWrite.date) === bannerWrite.data.endDate}
+                                        onChange={(date: Date) => {
+                                            const endDate = format(date, 'yyyy-MM-dd');
+                                            bannerWrite.handleChangeEndDate(endDate);}}/>
+                                    <S.BannerPeriodDateIcon src={DateIcon} onClick={() => bannerWrite.setIsEndDateOpen((prev) => !prev)}/>
                                 </S.BannerPeriodContent>
                             </S.BannerPeriodContentWrap>
                         </S.BannerPeriodWrap>
@@ -155,18 +151,17 @@ const BannerWrite = () => {
                                                 <S.BannerImageDeleteButton onClick={bannerWrite.handleFileDelete}>사진삭제</S.BannerImageDeleteButton>
                                             </S.BannerImagePreviewButtonWrap>
                                         </S.BannerImagePreviewWrap>
-                                        <S.BannerImageInputRef ref={bannerWrite.fileInput} accept="image/*" onChange={bannerWrite.handleFileChange} />
+                                        <S.BannerImageInputRef ref={bannerWrite.fileRef} accept="image/*" onChange={bannerWrite.handleFileChange} />
                                     </S.BannerImageContentWrap>
                                 )
                                 : (<S.BannerImageContentWrap>
                                         <S.BannerImageContentBox onClick={bannerWrite.handleFileClick}>
                                             <S.BannerImageContentIcon src={FolderIcon}></S.BannerImageContentIcon>
                                             <S.BannerImageContent>배너사진을 추가 해주세요</S.BannerImageContent>
-                                            <S.BannerImageInputRef ref={bannerWrite.fileInput} accept="image/*" onChange={bannerWrite.handleFileChange} />
+                                            <S.BannerImageInputRef ref={bannerWrite.fileRef} accept="image/*" onChange={bannerWrite.handleFileChange} />
                                         </S.BannerImageContentBox>
                                     </S.BannerImageContentWrap>
-                                )
-                            }
+                                )}
                         </S.BannerImageWrap>
                     </S.BaseSetting>
                 </S.BaseSettingBox>

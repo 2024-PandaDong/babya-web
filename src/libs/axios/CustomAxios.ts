@@ -7,6 +7,7 @@ import {
 } from "src/constants/tokens/token.constants";
 import token from "src/libs/token/token"; // 토큰 관련 유틸리티 함수를 가져온다.
 import requestHandler from "src/libs/axios/requestHandler"; // 요청을 처리하는 핸들러 함수를 가져온다.
+import errorResponseHandler from "src/libs/axios/errorResponseHandler";
 // Axios 인스턴스를 생성하는 함수
 const createAxiosInstance = (config: AxiosRequestConfig) => {
     // ACCESS_TOKEN_KEY에 해당하는 토큰을 가져온다.
@@ -47,5 +48,5 @@ babyaAxios.interceptors.request.use(
 // 응답 인터셉터를 설정하여 응답을 가로챈다.
 babyaAxios.interceptors.response.use(
     (response) => response, // 응답이 성공할 경우 그대로 응답을 반환한다.
-    requestHandler // 응답 핸들러를 사용한다.
+    errorResponseHandler // 응답 핸들러를 사용한다.
 );

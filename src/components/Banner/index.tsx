@@ -2,10 +2,10 @@ import React from 'react';
 import * as S from "./style";
 import useBanner from "src/hooks/Banner/useBanner";
 import BannerCreateIcon from "src/assets/img/Banner/BannerCreateIcon.svg";
-import BannerPost from "src/components/Banner/BannerPost";
+import dataTransform from "src/utils/Transform/dataTransform";
 
 const Banner = () => {
-    const {handleBannerWriteClick} = useBanner();
+    const { ...Banner } = useBanner();
 
     return (
         <S.BannerBackground>
@@ -20,11 +20,17 @@ const Banner = () => {
                         </S.BannerFilterTitleWrap>
                         <S.BannerCheckboxContainer>
                             <S.BannerCheckboxWrap>
-                                <S.BannerCheckbox id="before"></S.BannerCheckbox>
+                                <S.BannerCheckbox
+                                    id="before"
+                                    checked={Banner.type === "1"}
+                                    onClick={() => Banner.handleChangeType("1")} />
                                 <S.BannerCheckboxText htmlFor="before">출산전 배너</S.BannerCheckboxText>
                             </S.BannerCheckboxWrap>
                             <S.BannerCheckboxWrap>
-                                <S.BannerCheckbox id="after"></S.BannerCheckbox>
+                                <S.BannerCheckbox
+                                    id="after"
+                                    checked={Banner.type === "2"}
+                                    onClick={() => Banner.handleChangeType("2")} />
                                 <S.BannerCheckboxText htmlFor="after">출산후 배너</S.BannerCheckboxText>
                             </S.BannerCheckboxWrap>
                         </S.BannerCheckboxContainer>
@@ -38,12 +44,44 @@ const Banner = () => {
                     <S.BannerBox>
                         <S.BannerButtonWrap>
                             <S.BannerAllDeleteButton>전체 삭제</S.BannerAllDeleteButton>
-                            <S.BannerCreateButtonWrap onClick={handleBannerWriteClick}>
+                            <S.BannerCreateButtonWrap onClick={Banner.handleBannerWriteClick}>
                                 <S.BannerCreateIcon src={BannerCreateIcon}></S.BannerCreateIcon>
                                 <S.BannerCreateText>배너 그룹 관리</S.BannerCreateText>
                             </S.BannerCreateButtonWrap>
                         </S.BannerButtonWrap>
-                        <BannerPost />
+                        {/* <BannerPost> */}
+                        <S.Container>
+                            <S.TitleWrap>
+                                <S.CheckBoxWrap>
+                                    <S.CheckBox></S.CheckBox>
+                                </S.CheckBoxWrap>
+                                <S.Num>NO</S.Num>
+                                <S.TitleName>제목명</S.TitleName>
+                                <S.Area>지역</S.Area>
+                                <S.Category>카테고리</S.Category>
+                                <S.ManagementWrap>
+                                    <S.Management>관리</S.Management>
+                                </S.ManagementWrap>
+                            </S.TitleWrap>
+                            <S.ContentWrap>
+                                {Banner.bannerList.map((banner, i) => (
+                                    <S.Content key={banner.id}>
+                                        <S.CheckBoxWrap>
+                                            <S.CheckBox></S.CheckBox>
+                                        </S.CheckBoxWrap>
+                                        <S.Num>{i+1}</S.Num>
+                                        <S.TitleName>{banner.title}</S.TitleName>
+                                        <S.Area>{dataTransform.AreaTypeDataTransform(banner.lc)}</S.Area>
+                                        <S.Category>{banner.type === "1" ? "출산전" : "출산후"}</S.Category>
+                                        <S.ManagementWrap>
+                                            <S.ModifyButton onClick={() => Banner.handleBannerModifyClick(banner.id)}>수정</S.ModifyButton>
+                                            <S.DisableButton onClick={() => Banner.handleClickDisable(banner.id)}>비활성화</S.DisableButton>
+                                        </S.ManagementWrap>
+                                    </S.Content>
+                                ))}
+                            </S.ContentWrap>
+                        </S.Container>
+                        {/* </BannerPost> */}
                     </S.BannerBox>
                 </S.BannerWrap>
             </S.BannerContainer>

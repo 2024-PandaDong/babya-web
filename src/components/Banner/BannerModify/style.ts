@@ -2,7 +2,7 @@ import styled from "styled-components";
 import DatePicker from 'react-datepicker';
 import Check from "src/assets/img/Banner/Check.svg";
 
-export const BannerWriteBackground = styled.div`
+export const BannerModifyBackground = styled.div`
     width: 100%;
     height: 100%;
 

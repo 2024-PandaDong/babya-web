@@ -21,7 +21,6 @@ const requestHandler = (config: AxiosRequestConfig): AxiosRequestConfig => {
     // 요청의 헤더에 기본 헤더와 함께 추가 헤더를 설정한다.
     config.headers = {
         ...config.headers,
-        "Content-Type": "application/json", // 콘텐츠 타입을 JSON으로 설정한다.
         [REQUEST_TOKEN_KEY] : `Bearer ${token.getToken(ACCESS_TOKEN_KEY)}`, // 요청 토큰을 설정한다.
     };
     // 수정된 설정을 반환한다.

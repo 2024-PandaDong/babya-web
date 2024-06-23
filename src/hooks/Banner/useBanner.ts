@@ -2,8 +2,7 @@ import {useNavigate} from "react-router-dom";
 import React, {useState, useEffect} from "react";
 import {REQUEST_TOKEN_KEY, ACCESS_TOKEN_KEY} from "src/constants/tokens/token.constants"
 import Token from "src/libs/token/token";
-import config from "src/config/config.json";
-import axios from "axios";
+import { babyaAxios } from "src/libs/axios/CustomAxios";
 import Swal from "sweetalert2";
 import {showToast} from "src/libs/toast/Swal";
 import token from "src/libs/token/token";
@@ -49,8 +48,8 @@ const useBanner = () => {
         }).then(async (result) => {
             if (result.isConfirmed) {
                 try {
-                    await axios
-                        .delete(`${config.BABYA_Server}/banner/disable/${bannerId}`, {
+                    await babyaAxios
+                        .delete(`banner/disable/${bannerId}`, {
                             headers: {[REQUEST_TOKEN_KEY]: `Bearer ${token.getToken(ACCESS_TOKEN_KEY)}`,}
                         })
                         .then(() => {
@@ -68,7 +67,7 @@ const useBanner = () => {
     useEffect(() => {
         const GetBannerList = async () => {
             try {
-                await axios.get(`${config.BABYA_Server}/banner/list`, {
+                await babyaAxios.get(`banner/list`, {
                     params: {
                         page: 1,
                         size: 10,

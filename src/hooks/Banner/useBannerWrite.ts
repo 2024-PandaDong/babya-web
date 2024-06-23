@@ -1,6 +1,5 @@
 import React, {MutableRefObject, useRef, useState} from "react";
-import axios from "axios";
-import config from "src/config/config.json";
+import { babyaAxios } from "src/libs/axios/CustomAxios";
 import {REQUEST_TOKEN_KEY, ACCESS_TOKEN_KEY} from "src/constants/tokens/token.constants";
 import Token from "src/libs/token/token";
 import {BannerWriteProps} from "src/types/Banner/BannerWrite/BannerWrite.interface";
@@ -96,9 +95,8 @@ const useBannerWrite = () => {
             setFileImage(imageURL);
             formData.append("file", file);
 
-            await axios
-                .post(
-                    `${config.BABYA_Server}/upload`, formData,{
+            await babyaAxios
+                .post(`upload`, formData,{
                         headers: {
                             [REQUEST_TOKEN_KEY]: `Bearer ${Token.getToken(ACCESS_TOKEN_KEY)}`,
                             "Content-Type": "multipart/form-data",
@@ -124,7 +122,7 @@ const useBannerWrite = () => {
 
     const SubmitBannerCreate = async () => {
         try {
-            await axios.post(`${config.BABYA_Server}/banner`,{
+            await babyaAxios.post(`banner`,{
                 url: data.url,
                 title: data.title,
                 subTitle: data.subTitle,

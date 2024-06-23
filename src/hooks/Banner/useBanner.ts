@@ -1,11 +1,8 @@
 import {useNavigate} from "react-router-dom";
-import React, {useState, useEffect} from "react";
-import {REQUEST_TOKEN_KEY, ACCESS_TOKEN_KEY} from "src/constants/tokens/token.constants"
-import Token from "src/libs/token/token";
+import {useState, useEffect} from "react";
 import { babyaAxios } from "src/libs/axios/CustomAxios";
 import Swal from "sweetalert2";
 import {showToast} from "src/libs/toast/Swal";
-import token from "src/libs/token/token";
 
 interface BannerListProps {
     "id": number,
@@ -49,9 +46,7 @@ const useBanner = () => {
             if (result.isConfirmed) {
                 try {
                     await babyaAxios
-                        .delete(`banner/disable/${bannerId}`, {
-                            headers: {[REQUEST_TOKEN_KEY]: `Bearer ${token.getToken(ACCESS_TOKEN_KEY)}`,}
-                        })
+                        .delete(`banner/disable/${bannerId}`)
                         .then(() => {
                             showToast("success", "배너 비활성화 성공");
                             setBannerList(prevData => prevData.filter(item => item.id !== bannerId));
@@ -73,11 +68,7 @@ const useBanner = () => {
                         size: 10,
                         keyword: "all",
                         type: type,
-                    },
-                    headers: {
-                        [REQUEST_TOKEN_KEY]: `Bearer ${Token.getToken(ACCESS_TOKEN_KEY)}`
-                    }
-                }).then((res) => {
+                    }}).then((res) => {
                     setBannerList(res.data.data);
                 })
             } catch(error) {

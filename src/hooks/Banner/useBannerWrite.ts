@@ -1,7 +1,5 @@
 import React, {MutableRefObject, useRef, useState} from "react";
 import { babyaAxios } from "src/libs/axios/CustomAxios";
-import {REQUEST_TOKEN_KEY, ACCESS_TOKEN_KEY} from "src/constants/tokens/token.constants";
-import Token from "src/libs/token/token";
 import {BannerWriteProps} from "src/types/Banner/BannerWrite/BannerWrite.interface";
 import {showToast} from "src/libs/toast/Swal";
 import {NavigateFunction, useNavigate} from "react-router-dom";
@@ -90,15 +88,16 @@ const useBannerWrite = () => {
             const file = e.target.files[0];
             if (!file) return;
 
+            console.log(file)
+
             const formData = new FormData();
             const imageURL = URL.createObjectURL(file);
             setFileImage(imageURL);
             formData.append("file", file);
 
             await babyaAxios
-                .post(`upload`, formData,{
+                .post(`/upload`, formData,{
                         headers: {
-                            [REQUEST_TOKEN_KEY]: `Bearer ${Token.getToken(ACCESS_TOKEN_KEY)}`,
                             "Content-Type": "multipart/form-data",
                         },
                     }
@@ -122,7 +121,7 @@ const useBannerWrite = () => {
 
     const SubmitBannerCreate = async () => {
         try {
-            await babyaAxios.post(`banner`,{
+            await babyaAxios.post(`/banner`,{
                 url: data.url,
                 title: data.title,
                 subTitle: data.subTitle,
@@ -132,10 +131,6 @@ const useBannerWrite = () => {
                 source: data.source,
                 lc: data.lc,
                 fileUrl: data.fileUrl
-            },{
-                headers: {
-                    [REQUEST_TOKEN_KEY]: `Bearer ${Token.getToken(ACCESS_TOKEN_KEY)}`,
-                }
             }).then((res) => {
                 console.log(res);
                 showToast("success", "배너 생성 성공");

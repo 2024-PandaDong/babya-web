@@ -1,6 +1,6 @@
 import { Response } from "src/types/until/response.interface";
 
-export interface MemberType extends Response {
+export interface PostType extends Response {
     data: {
         postId: string,
         title: string,

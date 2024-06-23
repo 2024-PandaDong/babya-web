@@ -5,7 +5,7 @@ import BannerCreateIcon from "src/assets/img/Banner/BannerCreateIcon.svg";
 import dataTransform from "src/utils/Transform/dataTransform";
 
 const Banner = () => {
-    const {type, bannerList, handleChangeType, handleClickDisable, handleBannerWriteClick} = useBanner();
+    const { ...Banner } = useBanner();
 
     return (
         <S.BannerBackground>
@@ -22,15 +22,15 @@ const Banner = () => {
                             <S.BannerCheckboxWrap>
                                 <S.BannerCheckbox
                                     id="before"
-                                    checked={type === "1"}
-                                    onClick={() => handleChangeType("1")} />
+                                    checked={Banner.type === "1"}
+                                    onClick={() => Banner.handleChangeType("1")} />
                                 <S.BannerCheckboxText htmlFor="before">출산전 배너</S.BannerCheckboxText>
                             </S.BannerCheckboxWrap>
                             <S.BannerCheckboxWrap>
                                 <S.BannerCheckbox
                                     id="after"
-                                    checked={type === "2"}
-                                    onClick={() => handleChangeType("2")} />
+                                    checked={Banner.type === "2"}
+                                    onClick={() => Banner.handleChangeType("2")} />
                                 <S.BannerCheckboxText htmlFor="after">출산후 배너</S.BannerCheckboxText>
                             </S.BannerCheckboxWrap>
                         </S.BannerCheckboxContainer>
@@ -44,7 +44,7 @@ const Banner = () => {
                     <S.BannerBox>
                         <S.BannerButtonWrap>
                             <S.BannerAllDeleteButton>전체 삭제</S.BannerAllDeleteButton>
-                            <S.BannerCreateButtonWrap onClick={handleBannerWriteClick}>
+                            <S.BannerCreateButtonWrap onClick={Banner.handleBannerWriteClick}>
                                 <S.BannerCreateIcon src={BannerCreateIcon}></S.BannerCreateIcon>
                                 <S.BannerCreateText>배너 그룹 관리</S.BannerCreateText>
                             </S.BannerCreateButtonWrap>
@@ -64,7 +64,7 @@ const Banner = () => {
                                 </S.ManagementWrap>
                             </S.TitleWrap>
                             <S.ContentWrap>
-                                {bannerList.map((banner, i) => (
+                                {Banner.bannerList.map((banner, i) => (
                                     <S.Content key={banner.id}>
                                         <S.CheckBoxWrap>
                                             <S.CheckBox></S.CheckBox>
@@ -74,8 +74,8 @@ const Banner = () => {
                                         <S.Area>{dataTransform.AreaTypeDataTransform(banner.lc)}</S.Area>
                                         <S.Category>{banner.type === "1" ? "출산전" : "출산후"}</S.Category>
                                         <S.ManagementWrap>
-                                            <S.ModifyButton>수정</S.ModifyButton>
-                                            <S.DisableButton onClick={() => handleClickDisable(banner.id)}>비활성화</S.DisableButton>
+                                            <S.ModifyButton onClick={() => Banner.handleBannerModifyClick(banner.id)}>수정</S.ModifyButton>
+                                            <S.DisableButton onClick={() => Banner.handleClickDisable(banner.id)}>비활성화</S.DisableButton>
                                         </S.ManagementWrap>
                                     </S.Content>
                                 ))}

@@ -1,29 +1,28 @@
-import React, {MutableRefObject, useRef, useState} from "react";
+import React, {MutableRefObject, useEffect, useRef, useState} from "react";
 import { babyaAxios } from "src/libs/axios/CustomAxios";
-import {BannerWriteProps} from "src/types/Banner/BannerWrite/BannerWrite.interface";
+import {BannerModifyProps} from "src/types/Banner/BannerModify/BannerModify.interface";
 import {showToast} from "src/libs/toast/Swal";
-import {NavigateFunction, useNavigate} from "react-router-dom";
-import {format} from "date-fns";
+import {NavigateFunction, useNavigate, useParams} from "react-router-dom";
 
 const useBannerWrite = () => {
-    const date: Date = new Date();
-    const initialDate: string = format(date, "yyyy-MM-dd");
+    const { id } = useParams();
     const navigate: NavigateFunction = useNavigate();
     const fileRef: MutableRefObject<any> = useRef(null);
     const [isChecked, setIsChecked] = useState<{[key: string]: boolean}>({});
     const [isStartDateOpen, setIsStartDateOpen] = useState(false);
     const [isEndDateOpen, setIsEndDateOpen] = useState(false);
     const [fileImage, setFileImage] = useState<string>("");
-    const [data, setData] = useState<BannerWriteProps>({
+    const [data, setData] = useState<BannerModifyProps>({
+        id: 0,
         title: "",
         subTitle: "",
         source: "",
         url: "",
         fileUrl: "",
-        type: "1",
-        lc: "00",
-        startDate: initialDate,
-        endDate: initialDate,
+        type: "",
+        lc: "",
+        startDate: "",
+        endDate: "",
     })
 
     const handleChangeData = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -113,9 +112,10 @@ const useBannerWrite = () => {
         setFileImage("")
     }
 
-    const SubmitBannerCreate = async () => {
+    const SubmitBannerModify = async () => {
         try {
-            await babyaAxios.post("banner",{
+            await babyaAxios.patch("banner",{
+                id: data.id,
                 url: data.url,
                 title: data.title,
                 subTitle: data.subTitle,
@@ -135,10 +135,29 @@ const useBannerWrite = () => {
         }
     }
 
+    useEffect(() => {
+        const BannerRead = async () => {
+            try {
+                await babyaAxios
+                    .get(`banner`, { params: { id: id } })
+                    .then((res) => {
+                        const bannerData = res.data.data
+                        console.log(bannerData);
+
+                        setData((prevData) => {
+                            return { ...prevData, bannerData }
+                        })
+                    })
+            } catch(error) {
+                console.log(error);
+            }
+        }
+
+        BannerRead();
+    }, []);
+
     return {
         data,
-        date,
-        initialDate,
         isChecked,
         isStartDateOpen,
         isEndDateOpen,
@@ -154,7 +173,7 @@ const useBannerWrite = () => {
         handleFileClick,
         handleFileChange,
         handleFileDelete,
-        SubmitBannerCreate,
+        SubmitBannerModify,
     }
 }
 

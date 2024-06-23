@@ -27,6 +27,10 @@ const useBanner = () => {
         navigate("/banner-write");
     }
 
+    const handleBannerModifyClick = (id: number) => {
+        navigate(`/banner-modify/${id}`);
+    }
+
     const handleChangeType = (type) => {
         setType(type);
     }
@@ -62,7 +66,7 @@ const useBanner = () => {
     useEffect(() => {
         const GetBannerList = async () => {
             try {
-                await babyaAxios.get(`banner/list`, {
+                await babyaAxios.get("banner/list", {
                     params: {
                         page: 1,
                         size: 10,
@@ -84,6 +88,7 @@ const useBanner = () => {
         handleChangeType,
         handleClickDisable,
         handleBannerWriteClick,
+        handleBannerModifyClick,
     }
 }
 

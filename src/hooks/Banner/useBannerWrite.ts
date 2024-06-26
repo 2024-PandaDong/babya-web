@@ -126,7 +126,6 @@ const useBannerWrite = () => {
                 lc: data.lc,
                 fileUrl: data.fileUrl
             }).then((res) => {
-                console.log(res);
                 showToast("success", "배너 생성 성공");
                 navigate("/banner");
             })

@@ -4,7 +4,7 @@ export interface PostType extends Response {
     data: {
         postId: string,
         title: string,
-        category: string,
+        category: number,
         state: string,
         nickname: string
     }

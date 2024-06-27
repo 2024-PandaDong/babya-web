@@ -19,6 +19,7 @@ const PostContent = () => {
 
             const data = response.data.data;
             setPostList(data);
+            console.log("API Response Data:", data);
             console.log("성공");
         } catch (error) {
             const axiosError = error as AxiosError;
@@ -32,6 +33,20 @@ const PostContent = () => {
     useEffect(() => {
         fetchPostList();
     }, []);
+
+    const getCategoryName = (categoryId: number | string) => {
+        const id = Number(categoryId);
+        switch (id) {
+            case 1:
+                return "공유";
+            case 2:
+                return "질문";
+            case 3:
+                return "일상";
+            default:
+                return "알 수 없음";
+        }
+    };
 
     if (isLoading) {
         return <S.Message>Loading...</S.Message>;
@@ -59,7 +74,7 @@ const PostContent = () => {
                                 <S.Td>{item.postId}</S.Td>
                                 <S.Td>{item.title}</S.Td>
                                 <S.Td>{item.nickname}</S.Td>
-                                <S.Td>{item.category}</S.Td>
+                                <S.Td>{getCategoryName(item.category)}</S.Td>
                                 <S.Buttons>
                                     <button id="b">조회</button>
                                     <button id="r">삭제</button>

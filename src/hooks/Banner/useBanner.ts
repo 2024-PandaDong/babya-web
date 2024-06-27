@@ -12,9 +12,7 @@ const useBanner = () => {
     const [searchValue, setSearchValue] = useState<string>("");
     const [bannerList, setBannerList] = useState<BannerListProps[]>([]);
     const [bannerListFilter, setBannerListFilter] = useState<BannerListProps[]>([]);
-
-    console.log(bannerListFilter)
-
+    
     const handleChangeInputValue = (e: React.ChangeEvent<HTMLInputElement>) => {
         setSearchValue(e.target.value);
     }

@@ -8,7 +8,6 @@ const PostContent = () => {
     const [postList, setPostList] = useState<PostType["data"][]>([]);
     const [isLoading, setIsLoading] = useState(true);
     const [error, setError] = useState<Error | null>(null);
-    const [searchTerm, setSearchTerm] = useState("");
 
     const fetchPostList = async () => {
         setIsLoading(true);
@@ -19,7 +18,7 @@ const PostContent = () => {
             });
 
             const data = response.data.data;
-            setPostList(data); // 데이터를 설정합니다.
+            setPostList(data);
             console.log("성공");
         } catch (error) {
             const axiosError = error as AxiosError;
@@ -35,52 +34,42 @@ const PostContent = () => {
     }, []);
 
     if (isLoading) {
-        return <p>Loading...</p>;
+        return <S.Message>Loading...</S.Message>;
     }
     if (error) {
-        return <p>Error loading data: {error.message}</p>;
+        return <S.Message>Error loading data: {error.message}</S.Message>;
     }
 
     return (
-        <S.listWrap>
-            <S.tableWrap>
-                <Table data={postList} />
-            </S.tableWrap>
-        </S.listWrap>
-    );
-};
-
-const Table = ({ data }: { data: PostType["data"][] }) => {
-    return (
-        <>
-            <div className="thead">
-                <div className="thread-tr">
-                    <div>NO</div>
-                    <div>제목</div>
-                    <div>작성자</div>
-                    <div>카테고리</div>
-                    <div>관리</div>
-                </div>
-            </div>
-            <table className="table">
-                <tbody className="tbody">
-                {Array.isArray(data) && data.length > 0 ? (
-                    data.map((item, index) => (
-                        <tr key={index}>
-                            <td>{item.postId}</td>
-                            <td>{item.title}</td>
-                            <td>{item.category}</td>
-                            <td>{item.nickname}</td>
-                        </tr>
-                    ))
-                ) : (
-                    <tr>
-                        <td colSpan={5}>데이터가 존재하지 않습니다.</td>
-                    </tr>
-                )}
-                </tbody>
-            </table>
-        </>
+        <S.ListWrap>
+            <S.TableWrap>
+                <S.Table>
+                    <S.ListThead>
+                        <S.ListTheadTr>
+                            <div>번호</div>
+                            <div>제목</div>
+                            <div>작성자</div>
+                            <div>카테고리</div>
+                            <div>관리</div>
+                        </S.ListTheadTr>
+                    </S.ListThead>
+                    <S.Tbody>
+                        {postList.map((item, index) => (
+                            <S.Tr key={index}>
+                                <S.Td>{item.postId}</S.Td>
+                                <S.Td>{item.title}</S.Td>
+                                <S.Td>{item.nickname}</S.Td>
+                                <S.Td>{item.category}</S.Td>
+                                <S.Buttons>
+                                    <button id="b">조회</button>
+                                    <button id="r">삭제</button>
+                                </S.Buttons>
+                            </S.Tr>
+                        ))}
+                    </S.Tbody>
+                </S.Table>
+            </S.TableWrap>
+        </S.ListWrap>
     );
 };
 

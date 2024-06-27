@@ -4,7 +4,7 @@ import { babyaAxios } from "src/libs/axios/CustomAxios";
 import { AxiosError } from "axios";
 import * as S from "src/components/Post/PostList/style";
 
-const PostContent = () => {
+const PostList = () => {
     const [postList, setPostList] = useState<PostType["data"][]>([]);
     const [isLoading, setIsLoading] = useState(true);
     const [error, setError] = useState<Error | null>(null);
@@ -155,4 +155,4 @@ const PostContent = () => {
     );
 };
 
-export default PostContent;
+export default PostList;

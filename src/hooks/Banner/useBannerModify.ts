@@ -25,7 +25,7 @@ const useBannerWrite = () => {
         startDt: "",
         expiredDt: "",
     })
-    
+
     const handleChangeData = (e: React.ChangeEvent<HTMLInputElement>) => {
         const {id, value} = e.target;
 

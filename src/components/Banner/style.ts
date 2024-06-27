@@ -41,7 +41,7 @@ export const BannerTitle = styled.span`
 
 export const BannerFilterWrap = styled.div`
     width: 100%;
-    height: 12%;
+    height: 13%;
     
     border-radius: 10px;
     box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
@@ -178,7 +178,7 @@ export const BannerSearchButton = styled.button`
 
 export const BannerWrap = styled.div`
     width: 100%;
-    height: 80%;
+    height: 79%;
     
     display: flex;
     flex-direction: row;

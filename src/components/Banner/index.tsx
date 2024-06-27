@@ -1,6 +1,7 @@
 import React from 'react';
 import * as S from "./style";
 import useBanner from "src/hooks/Banner/useBanner";
+import {BannerListProps} from "src/types/Banner/Banner.interface";
 import BannerCreateIcon from "src/assets/img/Banner/BannerCreateIcon.svg";
 import dataTransform from "src/utils/Transform/dataTransform";
 
@@ -35,8 +36,11 @@ const Banner = () => {
                             </S.BannerCheckboxWrap>
                         </S.BannerCheckboxContainer>
                         <S.BannerSearchWrap>
-                            <S.BannerSearch placeholder="배너를 검색해주세요."></S.BannerSearch>
-                            <S.BannerSearchButton>검색</S.BannerSearchButton>
+                            <S.BannerSearch
+                                value={Banner.searchValue}
+                                placeholder="배너를 검색해주세요."
+                                onChange={Banner.handleChangeInputValue} />
+                            <S.BannerSearchButton onClick={Banner.handleClickFilterBanner}>검색</S.BannerSearchButton>
                         </S.BannerSearchWrap>
                     </S.BannerFilter>
                 </S.BannerFilterWrap>
@@ -64,12 +68,12 @@ const Banner = () => {
                                 </S.ManagementWrap>
                             </S.TitleWrap>
                             <S.ContentWrap>
-                                {Banner.bannerList.map((banner, i) => (
+                                {(Banner.bannerListFilter.length === 0 ? Banner.bannerList : Banner.bannerListFilter).map((banner: BannerListProps) => (
                                     <S.Content key={banner.id}>
                                         <S.CheckBoxWrap>
                                             <S.CheckBox></S.CheckBox>
                                         </S.CheckBoxWrap>
-                                        <S.Num>{i+1}</S.Num>
+                                        <S.Num>{banner.id}</S.Num>
                                         <S.TitleName>{banner.title}</S.TitleName>
                                         <S.Area>{dataTransform.AreaTypeDataTransform(banner.lc)}</S.Area>
                                         <S.Category>{banner.type === "1" ? "출산전" : "출산후"}</S.Category>

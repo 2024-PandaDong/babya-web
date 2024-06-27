@@ -1,4 +1,4 @@
-import PostContent from "src/components/Post/PostContent";
+import PostContent from "src/components/Post/PostList";
 import React from "react";
 import * as S from "src/components/Post/style";
 

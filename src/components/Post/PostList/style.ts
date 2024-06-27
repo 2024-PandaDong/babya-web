@@ -7,6 +7,7 @@ export const ListWrap = styled.div`
     width: 100%;
     height: 90%;
     margin-top: 60px;
+    overflow-x: auto;
 `;
 
 export const TableWrap = styled.div`
@@ -16,9 +17,11 @@ export const TableWrap = styled.div`
     border-radius: 20px;
     box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.25);
     display: flex;
-    justify-content: center;
+    flex-direction: column;
+    justify-content: flex-start;
     align-items: center;
     overflow: hidden;
+    padding-top: 50px; 
 
     @media (max-width: 768px) {
         width: 100%;
@@ -27,6 +30,7 @@ export const TableWrap = styled.div`
         border-radius: 0;
     }
 `;
+
 
 export const Table = styled.table`
     width: 95%;
@@ -44,11 +48,15 @@ export const ListThead = styled.thead`
     height: 50px;
     background: #DBD5FF;
     position: sticky;
+    margin-top: 10px;  
+    z-index: 10;
 
     @media (max-width: 768px) {
         display: none;
     }
 `;
+
+
 
 export const ListTheadTr = styled.tr`
     display: flex;
@@ -65,6 +73,13 @@ export const ListTheadTr = styled.tr`
     @media (max-width: 768px) {
         display: none;
     }
+`;
+
+export const ScrollableTbody = styled.div`
+    width: 100%;
+    height: 100%;
+    overflow-y: auto;
+    margin-top: -50px; 
 `;
 
 export const Tbody = styled.tbody`
@@ -94,7 +109,6 @@ export const Td = styled.td`
     align-items: center;
     flex: 1;
     padding: 8px;
-    margin-right: 90px;
 
     @media (max-width: 768px) {
         display: block;
@@ -141,5 +155,60 @@ export const Buttons = styled.div`
         font-size: 15px;
         background-color: #FF4B4B;
         border-radius: 5px;
+    }
+`;
+export const SearchWrap = styled.div`
+    display: flex;
+    position: relative;
+`;
+
+export const SearchInput = styled.input`
+    width: 300px;
+    height: 50px;
+    left: 830px;
+    color: #000;
+    font-family: Pretendard-Medium, sans-serif;
+    border: 1px solid #D9D9D9;
+    border-radius: 5px;
+    background-color: transparent;
+    padding: 0 15px;
+    outline: none;
+    position: absolute;
+    bottom: 320px;
+    &::placeholder {
+        color: #D9D9D9;
+    }
+`;
+export const BannerSearchButton = styled.button`
+    width: 100px;
+    height: 50px;
+    left: 1140px;
+    color: #FFFFFF;
+    font-family: Pretendard-Medium, sans-serif;
+    border-radius: 5px;
+    background-color: #BBAFFF;
+    padding: 0 15px;
+    position: absolute;
+    bottom: 320px;
+    font-size: 20px;
+`;
+export const CategoryFilter = styled.div`
+    width: 285px;
+    height: 50px;
+    left: 350px;
+    color: #000000;
+    font-family: Pretendard-Medium, sans-serif;
+    border-radius: 5px;
+    background-color: transparent;
+    border: 1px solid #D9D9D9;
+    padding: 0 15px;
+    position: absolute;
+    bottom: 770px;
+    font-size: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    label {
+        margin-right: 10px;
     }
 `;

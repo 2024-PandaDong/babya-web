@@ -29,7 +29,7 @@ const Quiz = () => {
                                 <S.ManagementWrap>관리</S.ManagementWrap>
                             </S.QuizListTitle>
                             <S.QuizListBox>
-                                {quiz.data.map((item, idx: number) => (
+                                {quiz.quizList.map((item, idx: number) => (
                                     <S.QuizList key={item.quizId}>
                                         <S.NumWrap>{idx+1}</S.NumWrap>
                                         <S.QuestionsWrap>{item.quizCn}</S.QuestionsWrap>
@@ -38,7 +38,7 @@ const Quiz = () => {
                                         <S.ManagementWrap>
                                             <S.BtnWrap>
                                                 <S.ReadBtn>조회</S.ReadBtn>
-                                                <S.DeleteBtn>삭제</S.DeleteBtn>
+                                                <S.DeleteBtn onClick={() => quiz.handleClickDelete(item.quizId)}>삭제</S.DeleteBtn>
                                             </S.BtnWrap>
                                         </S.ManagementWrap>
                                     </S.QuizList>

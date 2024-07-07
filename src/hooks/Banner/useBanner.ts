@@ -36,7 +36,6 @@ const useBanner = () => {
     }
 
     const handleClickDisable = (bannerId: number) => {
-        console.log(bannerId);
         Swal.fire({
             title: "정말로 배너를 비활성화하시겠습니까?",
             text: "배너를 비활성화하면 다시 되돌릴 수 없습니다.",

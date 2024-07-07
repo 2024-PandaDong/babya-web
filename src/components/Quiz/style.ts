@@ -34,7 +34,7 @@ export const QuizTitleWrap = styled.div`
 export const QuizTitle = styled.span`
     color: #000;
     font-family: Pretendard-SemiBold, sans-serif;
-    font-size: 1.4rem;
+    font-size: 1.5rem;
 `
 
 export const QuizWrap = styled.div`

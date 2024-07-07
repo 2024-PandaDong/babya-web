@@ -2,16 +2,10 @@ import {useEffect, useState} from "react";
 import {babyaAxios} from "src/libs/axios/CustomAxios";
 import Swal from "sweetalert2";
 import {showToast} from "src/libs/toast/Swal";
-
-interface Props {
-    "quizId": number,
-    "quizCn": string,
-    "answer": string,
-    "regDt": string
-}
+import {QuizListProps} from "src/types/Quiz/Quiz.interface"
 
 const useQuiz = () => {
-    const [quizList, setQuizList] = useState<Props[]>([]);
+    const [quizList, setQuizList] = useState<QuizListProps[]>([]);
 
     const handleClickDelete = (quizId: number) => {
         Swal.fire({

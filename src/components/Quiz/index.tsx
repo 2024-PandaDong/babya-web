@@ -1,8 +1,10 @@
 import React from "react";
 import * as S from "./style";
-import {BtnWrap, DeleteBtn, QuizListBox, ReadBtn} from "./style";
+import useQuiz from "src/hooks/Quiz/useQuiz";
 
 const Quiz = () => {
+    const { ...quiz} = useQuiz();
+
     return (
         <S.QuizBackground>
             <S.QuizContainer>
@@ -27,12 +29,12 @@ const Quiz = () => {
                                 <S.ManagementWrap>관리</S.ManagementWrap>
                             </S.QuizListTitle>
                             <S.QuizListBox>
-                                {Array.from({ length: 10 }).map((_, i: number) => (
-                                    <S.QuizList>
-                                        <S.NumWrap>{i+1}</S.NumWrap>
-                                        <S.QuestionsWrap>동찬이 별명은 동바오이다</S.QuestionsWrap>
-                                        <S.AnswerWrap>Y</S.AnswerWrap>
-                                        <S.CreateDateWrap>2024-06-27</S.CreateDateWrap>
+                                {quiz.data.map((item, idx: number) => (
+                                    <S.QuizList key={item.quizId}>
+                                        <S.NumWrap>{idx+1}</S.NumWrap>
+                                        <S.QuestionsWrap>{item.quizCn}</S.QuestionsWrap>
+                                        <S.AnswerWrap>{item.answer}</S.AnswerWrap>
+                                        <S.CreateDateWrap>{item.regDt}</S.CreateDateWrap>
                                         <S.ManagementWrap>
                                             <S.BtnWrap>
                                                 <S.ReadBtn>조회</S.ReadBtn>

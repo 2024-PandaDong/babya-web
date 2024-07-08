@@ -15,6 +15,7 @@ export const BannerBackground = styled.div`
 
 export const BannerContainer = styled.div`
     width: 88%;
+    min-width: 655px;
     height: 90%;
     
     display: flex;

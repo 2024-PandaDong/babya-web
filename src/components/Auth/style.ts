@@ -119,7 +119,6 @@ export const InputTitle = styled.label`
     color: #000;
     font-family: Pretendard-Bold, sans-serif;
     font-size: 22px;
-    font-weight: 700;
 `
 
 export const InputWrap = styled.div`
@@ -163,9 +162,15 @@ export const Input = styled.input`
     background-color: transparent;
     
     outline: none;
-    
+
+    &:-webkit-autofill,
+    &:-webkit-autofill:hover,
     &:-webkit-autofill:focus,
     &:-webkit-autofill:active { transition: background-color 5000s ease-in-out 0s; }
+
+    &::placeholder {
+        color: #757575;
+    }
 `
 
 export const InputFeatBtnWrap = styled.div`

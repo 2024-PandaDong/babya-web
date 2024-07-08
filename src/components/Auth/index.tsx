@@ -1,6 +1,6 @@
 import React from "react";
-import * as S from "src/components/Login/style";
-import useLogin from "src/hooks/Login/useLogin";
+import * as S from "src/components/Auth/style";
+import useLogin from "src/hooks/Auth/useLogin";
 import LoginPanelImg from "src/assets/img/Login/PanelImage.svg"
 import IdImage from "src/assets/img/Login/IdImage.svg";
 import DeleteImage from "src/assets/img/Login/IdDeleteImage.svg";
@@ -56,6 +56,7 @@ const Login = () => {
                                         type={login.isTextShow ? "text" : "password"}
                                         value={login.pwd}
                                         placeholder="비밀번호를 입력해주세요."
+                                        onKeyDown={login.handleKeyDown}
                                         onChange={login.handleChangeValue} />
                                     <S.InputFeatBtnWrap>
                                         {login.pwd &&

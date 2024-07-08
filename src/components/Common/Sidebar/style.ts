@@ -8,6 +8,8 @@ export const SidebarContainer = styled.div`
     display: flex;
     flex-direction: column;
     background: #F7F2FF;
+    
+    overflow: hidden;
 `
 
 export const InfoWrap = styled.div`

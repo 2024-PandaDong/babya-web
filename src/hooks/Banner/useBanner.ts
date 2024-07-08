@@ -17,6 +17,12 @@ const useBanner = () => {
         setSearchValue(e.target.value);
     }
 
+    const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
+        if (e.key === "Enter") {
+            handleClickFilterBanner();
+        }
+    }
+
     const handleClickFilterBanner = () => {
         if (searchValue !== "") {
             const filterData = bannerList.filter((item) => (
@@ -96,6 +102,7 @@ const useBanner = () => {
         handleChangeType,
         handleClickDisable,
         handleChangeInputValue,
+        handleKeyDown,
         handleClickFilterBanner,
         handleBannerWriteClick,
         handleBannerModifyClick,

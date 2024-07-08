@@ -179,7 +179,7 @@ export const BannerSearchButton = styled.button`
 
 export const BannerWrap = styled.div`
     width: 100%;
-    height: 79%;
+    min-height: 79%;
     
     display: flex;
     flex-direction: row;

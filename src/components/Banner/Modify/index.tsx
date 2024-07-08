@@ -48,6 +48,7 @@ const BannerModify = () => {
                 <S.AreaSelect>
                     <S.NationwideCheckboxWrap>
                         <S.NationwideCheckbox
+                            readOnly
                             id="Nationwide"
                             checked={BannerModify.isChecked["전국"]}
                             onClick={() => BannerModify.handleChangeArea("전국", "00")}></S.NationwideCheckbox>

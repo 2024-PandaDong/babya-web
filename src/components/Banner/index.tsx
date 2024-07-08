@@ -22,6 +22,7 @@ const Banner = () => {
                         <S.BannerCheckboxContainer>
                             <S.BannerCheckboxWrap>
                                 <S.BannerCheckbox
+                                    readOnly
                                     id="before"
                                     checked={Banner.type === "1"}
                                     onClick={() => Banner.handleChangeType("1")} />
@@ -29,6 +30,7 @@ const Banner = () => {
                             </S.BannerCheckboxWrap>
                             <S.BannerCheckboxWrap>
                                 <S.BannerCheckbox
+                                    readOnly
                                     id="after"
                                     checked={Banner.type === "2"}
                                     onClick={() => Banner.handleChangeType("2")} />

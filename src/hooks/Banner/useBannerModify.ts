@@ -63,7 +63,6 @@ const useBannerWrite = () => {
             if (!!prevState[name]) newIsChecked[name] = !prevState[name];
             else newIsChecked[name] = true;
 
-            console.log(newIsChecked);
             return newIsChecked;
         })
 

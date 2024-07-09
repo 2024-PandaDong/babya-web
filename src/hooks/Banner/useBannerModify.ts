@@ -151,7 +151,7 @@ const useBannerWrite = () => {
 
                         setData((prevData) => {return {...prevData, ...bannerData}});
                         setFileImage(bannerData.fileUrl);
-                        initialArea(DataTransform.AreaTypeDataTransform(bannerData.lc))
+                        initialArea(DataTransform.AreaNameTransform(bannerData.lc))
                     })
             } catch(error) {
                 console.log(error);

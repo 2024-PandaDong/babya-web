@@ -1,18 +1,20 @@
 import React from "react";
 import {useNavigate} from "react-router-dom";
 import {useState, useEffect} from "react";
+import DataTransform from "src/utils/Transform/dataTransform";
 import {BannerListProps} from "src/types/Banner/Banner.interface";
-import { babyaAxios } from "src/libs/axios/CustomAxios";
+import {babyaAxios} from "src/libs/axios/CustomAxios";
 import Swal from "sweetalert2";
 import {showToast} from "src/libs/toast/Swal";
 
 const useBanner = () => {
     const navigate = useNavigate();
     const [type, setType] = useState<string>("1");
+    const [keyword, setKeyword] = useState<string>("all");
     const [searchValue, setSearchValue] = useState<string>("");
     const [bannerList, setBannerList] = useState<BannerListProps[]>([]);
     const [bannerListFilter, setBannerListFilter] = useState<BannerListProps[]>([]);
-    
+
     const handleChangeInputValue = (e: React.ChangeEvent<HTMLInputElement>) => {
         setSearchValue(e.target.value);
     }
@@ -25,13 +27,19 @@ const useBanner = () => {
 
     const handleClickFilterBanner = () => {
         if (searchValue !== "") {
-            const filterData = bannerList.filter((item) => (
-                item.title.toLowerCase().includes(searchValue.toLowerCase())
-            ))
-            console.log(filterData);
-            setBannerListFilter(filterData);
+            if (DataTransform.AreaCodeTransform(searchValue)) {
+                setKeyword(DataTransform.AreaCodeTransform(searchValue));
+                setBannerList([]);
+            } else {
+                const filterData = bannerList.filter((item) => (
+                    item.title.toLowerCase().includes(searchValue.toLowerCase())
+                ))
+                setBannerListFilter(filterData);
+                setKeyword("all");
+            }
         } else {
             setBannerListFilter([]);
+            setKeyword("all");
         }
     }
 
@@ -82,7 +90,7 @@ const useBanner = () => {
                     params: {
                         page: 1,
                         size: 10,
-                        keyword: "all",
+                        keyword: keyword,
                         type: type,
                     }}).then((res) => {
                     setBannerList(res.data.data);
@@ -93,7 +101,7 @@ const useBanner = () => {
         }
 
         GetBannerList();
-    }, [type])
+    }, [type, keyword])
     return {
         type,
         bannerList,

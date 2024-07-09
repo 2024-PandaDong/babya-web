@@ -80,7 +80,7 @@ const Banner = () => {
                                             </S.CheckBoxWrap>
                                             <S.Num>{banner.id}</S.Num>
                                             <S.TitleName>{banner.title}</S.TitleName>
-                                            <S.Area>{dataTransform.AreaTypeDataTransform(banner.lc)}</S.Area>
+                                            <S.Area>{dataTransform.AreaNameTransform(banner.lc)}</S.Area>
                                             <S.Category>{banner.type === "1" ? "출산전" : "출산후"}</S.Category>
                                             <S.ManagementWrap>
                                                 <S.ModifyButton onClick={() => Banner.handleBannerModifyClick(banner.id)}>수정</S.ModifyButton>

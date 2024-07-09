@@ -36,15 +36,18 @@ const useQuiz = () => {
 
     useEffect(() => {
         const QuizRead = async () => {
-            await babyaAxios.get("quiz/list", {
-                params: {
-                    page: 1,
-                    size: 10,
-                }
-            }).then((res) => {
-                setQuizList(res.data.data);
-                console.log(res.data.data);
-            })
+            try {
+                await babyaAxios.get("quiz/list", {
+                    params: {
+                        page: 1,
+                        size: 10,
+                    }
+                }).then((res) => {
+                    setQuizList(res.data.data);
+                })
+            } catch (error) {
+                console.log(error)
+            }
         }
 
         QuizRead();

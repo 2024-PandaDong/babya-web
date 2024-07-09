@@ -423,7 +423,7 @@ export const DisableButton = styled.button`
     font-size: 0.95rem;
 
     border-radius: 5px;
-    background: #BEBEBE;
+    background: #FF4B4B;
     
     cursor: pointer;
 `

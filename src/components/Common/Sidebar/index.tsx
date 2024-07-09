@@ -7,7 +7,7 @@ import Logo from "src/assets/img/Common/Sidebar/BabyaLogo.svg";
 import Profile from "src/assets/img/Common/Sidebar/ExamProfile.svg";
 
 const Sidebar = () => {
-    const { pathname, handleMenuClick } = useSidebar();
+    const { pathname, profileData, handleMenuClick } = useSidebar();
     const { handleLogOutClick } = useLogOut();
 
     return (
@@ -18,13 +18,13 @@ const Sidebar = () => {
                         <S.Logo src={Logo}></S.Logo>
                         <S.LogoName>애기야</S.LogoName>
                     </S.LogoWrap>
-                    <S.Profile src={Profile}></S.Profile>
-                    <S.ProfileName>김주환 관리자님</S.ProfileName>
+                    <S.Profile src={profileData?.profileImg || Profile}></S.Profile>
+                    <S.ProfileName>{profileData?.nickname || ""}</S.ProfileName>
                 </S.Info>
             </S.InfoWrap>
             <S.MenuWrap>
                 {MenuData.map((data) => (
-                    <S.MenuBox key={data.id} $isbackground={pathname === data.path ? "#BBAFFF" : "transparent"}>
+                    <S.MenuBox key={data.id} $isbackground={pathname === data.path}>
                         <S.Menu onClick={()=>handleMenuClick(data.path)}>
                             <S.MenuImg src={data.icon} />
                             <S.MenuName>{data.name}</S.MenuName>

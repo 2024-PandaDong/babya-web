@@ -29,9 +29,9 @@ const Quiz = () => {
                                 <S.ManagementWrap>관리</S.ManagementWrap>
                             </S.QuizListTitle>
                             <S.QuizListBox>
-                                {quiz.quizList.map((item, idx: number) => (
+                                {quiz.quizList.map((item) => (
                                     <S.QuizList key={item.quizId}>
-                                        <S.NumWrap>{idx+1}</S.NumWrap>
+                                        <S.NumWrap>{item.quizId}</S.NumWrap>
                                         <S.QuestionsWrap>{item.quizCn}</S.QuestionsWrap>
                                         <S.AnswerWrap>{item.answer}</S.AnswerWrap>
                                         <S.CreateDateWrap>{item.regDt}</S.CreateDateWrap>

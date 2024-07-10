@@ -109,7 +109,6 @@ export const Td = styled.td`
     align-items: center;
     flex: 1;
     padding: 8px;
-
     @media (max-width: 768px) {
         display: block;
         width: 100%;
@@ -142,19 +141,21 @@ export const Buttons = styled.div`
     button#b {
         width: 90px;
         height: 35px;
-        color: #FFFFFF;
+        color: #000000;
         font-size: 15px;
-        background-color: #7896FF;
+        //background-color: #7896FF;
         border-radius: 5px;
+        border: 1px solid #D9D9D9;
         margin-right: 10px;
     }
     button#r {
         width: 90px;
         height: 35px;
-        color: #FFFFFF;
+        color: #000000;
         font-size: 15px;
-        background-color: #FF4B4B;
+        //background-color: #FF4B4B;
         border-radius: 5px;
+        border: 1px solid #D9D9D9;
     }
 `;
 export const SearchWrap = styled.div`
@@ -193,7 +194,7 @@ export const BannerSearchButton = styled.button`
     font-size: 20px;
 `;
 export const CategoryFilter = styled.div`
-    width: 285px;
+    width: 355px;
     height: 50px;
     left: 350px;
     color: #000000;
@@ -208,7 +209,8 @@ export const CategoryFilter = styled.div`
     display: flex;
     align-items: center;
     justify-content: center;
+    margin-right: 10px;
     label {
-        margin-right: 10px;
+        margin-right: 25px;
     }
 `;

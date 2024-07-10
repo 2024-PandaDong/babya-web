@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { PostType } from "src/types/Post/Post.interface";
-import { babyaAxios } from "src/libs/axios/CustomAxios";
+import { babyaAxios, babyaAxiosSetAccessToken } from "src/libs/axios/CustomAxios";
 import { AxiosError } from "axios";
 import * as S from "src/components/Post/PostList/style";
 
@@ -62,6 +62,27 @@ const PostList = () => {
         );
     };
 
+    const handleTogglePostState = async (postId: string, currentState: string) => {
+        setIsLoading(true);
+        setError(null);
+        try {
+            const newState = currentState === "ACTIVATE" ? "DEACTIVATE" : "ACTIVATE";
+            await babyaAxios.delete(`/post/${postId}`);
+            setPostList((prevPostList) =>
+                prevPostList.map((post) =>
+                    post.postId === postId ? { ...post, state: newState } : post
+                )
+            );
+        } catch (error) {
+            const axiosError = error as AxiosError;
+            console.error("실패", axiosError);
+            setError(axiosError);
+        } finally {
+            setIsLoading(false);
+        }
+    };
+
+
     const filteredPosts = postList.filter((post) => {
         const categoryName = getCategoryName(post.category).toLowerCase();
         const matchesSearchTerm =
@@ -70,7 +91,7 @@ const PostList = () => {
             categoryName.includes(searchTerm);
         const matchesCategory =
             selectedCategories.length === 0 ||
-            selectedCategories.includes(post.category);
+            selectedCategories.includes(Number(post.category));
 
         return matchesSearchTerm && matchesCategory;
     });
@@ -94,7 +115,9 @@ const PostList = () => {
                 <S.BannerSearchButton>검색</S.BannerSearchButton>
             </S.SearchWrap>
             <S.CategoryFilter>
-                카테고리:
+                <label>
+                    카테고리:
+                </label>
                 <label>
                     <input
                         type="checkbox"
@@ -143,7 +166,12 @@ const PostList = () => {
                                     <S.Td>{getCategoryName(item.category)}</S.Td>
                                     <S.Buttons>
                                         <button id="b">조회</button>
-                                        <button id="r">삭제</button>
+                                        <button
+                                            id="r"
+                                            onClick={() => handleTogglePostState(item.postId, item.state)}
+                                        >
+                                            {item.state === "ACTIVATE" ? "비활성화" : "활성화"}
+                                        </button>
                                     </S.Buttons>
                                 </S.Tr>
                             ))}

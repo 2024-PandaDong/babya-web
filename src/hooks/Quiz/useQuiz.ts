@@ -5,7 +5,30 @@ import {showToast} from "src/libs/toast/Swal";
 import {QuizListProps} from "src/types/Quiz/Quiz.interface"
 
 const useQuiz = () => {
+    const [searchValue, setSearchValue] = useState<string>("");
     const [quizList, setQuizList] = useState<QuizListProps[]>([]);
+    const [quizListFilter, setQuizListFilter] = useState<QuizListProps[]>([]);
+
+    const handleChangeValue = (e: React.ChangeEvent<HTMLInputElement>) => {
+        setSearchValue(e.target.value);
+    }
+
+    const handleKeydown = (e: React.KeyboardEvent<HTMLInputElement>) => {
+        if (e.key === "Enter") {
+            handleClickFilterQuiz();
+        }
+    }
+
+    const handleClickFilterQuiz = () => {
+        if (searchValue !== "") {
+            const filterData = quizList.filter((item) => (
+                item.quizCn.toLowerCase().includes(searchValue.toLowerCase())
+            ))
+            setQuizListFilter(filterData);
+        } else {
+            setQuizListFilter([]);
+        }
+    }
 
     const handleClickDelete = (quizId: number) => {
         Swal.fire({
@@ -17,7 +40,7 @@ const useQuiz = () => {
             confirmButtonText: "퀴즈 삭제",
             cancelButtonText: "취소",
             reverseButtons: false,
-        }).then(async (result) => {
+        }).then( async (result) => {
             if (result.isConfirmed) {
                 try {
                     await babyaAxios
@@ -54,6 +77,11 @@ const useQuiz = () => {
     }, [])
     return {
         quizList,
+        searchValue,
+        quizListFilter,
+        handleChangeValue,
+        handleKeydown,
+        handleClickFilterQuiz,
         handleClickDelete,
     }
 }

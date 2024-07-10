@@ -16,7 +16,11 @@ const Quiz = () => {
                         <S.OptionWrap>
                             <S.QuizCreateBtn>퀴즈 생성</S.QuizCreateBtn>
                             <S.QuizSearchWrap>
-                                <S.QuizSearch placeholder="원하는 퀴즈를 입력해주세요"></S.QuizSearch>
+                                <S.QuizSearch
+                                    value={quiz.searchValue}
+                                    placeholder="원하는 퀴즈를 입력해주세요"
+                                    onChange={quiz.handleChangeValue}
+                                    onKeyDown={quiz.handleKeydown}></S.QuizSearch>
                                 <S.QuizSearchBtn>검색</S.QuizSearchBtn>
                             </S.QuizSearchWrap>
                         </S.OptionWrap>
@@ -29,7 +33,9 @@ const Quiz = () => {
                                 <S.ManagementWrap>관리</S.ManagementWrap>
                             </S.QuizListTitle>
                             <S.QuizListBox>
-                                {quiz.quizList.map((item) => (
+                                {(quiz.quizListFilter.length
+                                    ? quiz.quizListFilter
+                                    : quiz.quizList).map((item) => (
                                     <S.QuizList key={item.quizId}>
                                         <S.NumWrap>{item.quizId}</S.NumWrap>
                                         <S.QuestionsWrap>{item.quizCn}</S.QuestionsWrap>

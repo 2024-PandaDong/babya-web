@@ -33,9 +33,9 @@ const PostContent = () => {
         setIsLoading(true);
         setError(null);
         try {
-            const response = await babyaAxios.get(`/post/comment?page=1&size=10&postId=${id}`);
+            const response = await babyaAxios.get(`/post/comment?page=1&size=20&postId=${id}`);
             const data = response.data.data;
-            setComments(data); // Assuming the structure of comments array
+            setComments(data);
         } catch (error) {
             const axiosError = error as AxiosError;
             setError(axiosError);
@@ -52,9 +52,9 @@ const PostContent = () => {
             await babyaAxios.put(`/post/comment/${id}`, { enabled: newCommentsEnabled });
             setCommentsEnabled(newCommentsEnabled);
             if (newCommentsEnabled) {
-                fetchComments(); // If enabling comments, fetch the updated comments
+                fetchComments();
             } else {
-                setComments([]); // If disabling comments, clear the comments array
+                setComments([]);
             }
         } catch (error) {
             const axiosError = error as AxiosError;

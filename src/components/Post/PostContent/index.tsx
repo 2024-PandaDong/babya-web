@@ -8,6 +8,7 @@ import { PostContentType } from "src/types/Post/PostContent/PostContent.interfac
 const PostContent = () => {
     const { id } = useParams();
     const [postContent, setPostContent] = useState<PostContentType["data"] | null>(null);
+    const [comments, setComments] = useState<any[]>([]); // Assuming comment structure
     const [isLoading, setIsLoading] = useState(true);
     const [error, setError] = useState<Error | null>(null);
 
@@ -26,8 +27,24 @@ const PostContent = () => {
         }
     };
 
+    const fetchComments = async () => {
+        setIsLoading(true);
+        setError(null);
+        try {
+            const response = await babyaAxios.get(`/post/comment?page=1&size=10&postId=${id}`);
+            const data = response.data.data;
+            setComments(data); // Assuming the structure of comments array
+        } catch (error) {
+            const axiosError = error as AxiosError;
+            setError(axiosError);
+        } finally {
+            setIsLoading(false);
+        }
+    };
+
     useEffect(() => {
         fetchPostContent();
+        fetchComments();
     }, [id]);
 
     if (isLoading) {
@@ -63,6 +80,21 @@ const PostContent = () => {
         });
     };
 
+    const renderComments = () => {
+        return (
+            <S.CommentWrap>
+                <S.CommentsTitle>댓글</S.CommentsTitle>
+                {comments.map((comment) => (
+                    <S.Comment key={comment.commentId}>
+                        <S.CommentNickname>{comment.nickname}</S.CommentNickname>
+                        <S.CommentContent>{comment.content}</S.CommentContent>
+                        <S.CommentDate>{comment.createdAt}</S.CommentDate>
+                    </S.Comment>
+                ))}
+            </S.CommentWrap>
+        );
+    };
+
     return (
         <S.MainWrap>
             <S.mainTitle>게시물 관리</S.mainTitle>
@@ -81,6 +113,7 @@ const PostContent = () => {
                         {renderFiles()}
                     </S.Files>
                     <S.Content>{postContent.content}</S.Content>
+                    {comments.length > 0 && renderComments()}
                 </S.PostWrap>
             </S.ListWrap>
         </S.MainWrap>

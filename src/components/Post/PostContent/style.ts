@@ -138,3 +138,41 @@ export const Message = styled.p`
         font-size: 16px;
     }
 `;
+export const CommentWrap = styled.div`
+    margin-top: 50px;
+    width: 100%; 
+    margin-left: 130px;
+`;
+
+export const CommentsTitle = styled.h3`
+    font-size: 20px;
+    margin-bottom: 10px;
+    text-align: left; 
+`;
+
+
+export const Comment = styled.li`
+    border-bottom: 1px solid #ccc;
+    padding: 10px 0;
+    width: 100%;
+    &:last-child {
+        border-bottom: none;
+    }
+    text-align: left; 
+`;
+
+export const CommentNickname = styled.span`
+    font-weight: bold;
+    display: block; 
+`;
+
+export const CommentContent = styled.p`
+    margin-top: 5px;
+    display: block; 
+`;
+
+export const CommentDate = styled.span`
+    font-style: italic;
+    font-size: 12px;
+    display: block; 
+`;

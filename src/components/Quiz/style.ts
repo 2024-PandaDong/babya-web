@@ -78,7 +78,7 @@ export const QuizCreateBtn = styled.button`
     font-size: 1.1rem;
     
     border-radius: 10px;
-    background: #FFCB29;
+    background: #BBAFFF;
     
     cursor: pointer;
 `
@@ -186,21 +186,31 @@ export const NumWrap = styled.div`
 `
 
 export const QuestionsWrap = styled.div`
-    width: 35%;
+    width: 42%;
     height: 100%;
-
-    color: #000;
-    font-family: Pretendard-Medium, sans-serif;
-    font-size: 0.95rem;
 
     display: flex;
     flex-direction: row;
-    justify-content: center;
+    justify-content: flex-start;
     align-items: center;
 `
 
+export const Question = styled.p`
+    width: 100%;
+    
+    color: #000;
+    font-family: Pretendard-Medium, sans-serif;
+    font-size: 0.95rem;
+    
+    text-align: center;
+    
+    word-break: keep-all;
+    white-space: nowrap;
+    overflow: hidden;
+`
+
 export const AnswerWrap = styled.div`
-    width: 12%;
+    width: 10%;
     height: 100%;
 
     color: #000;
@@ -214,7 +224,7 @@ export const AnswerWrap = styled.div`
 `
 
 export const CreateDateWrap = styled.div`
-    width: 21%;
+    width: 16%;
     height: 100%;
 
     color: #000;

@@ -1,6 +1,7 @@
 import React from "react";
 import * as S from "./style";
 import useQuiz from "src/hooks/Quiz/useQuiz";
+import {Question} from "./style";
 
 const Quiz = () => {
     const { ...quiz} = useQuiz();
@@ -38,7 +39,9 @@ const Quiz = () => {
                                     : quiz.quizList).map((item) => (
                                     <S.QuizList key={item.quizId}>
                                         <S.NumWrap>{item.quizId}</S.NumWrap>
-                                        <S.QuestionsWrap>{item.quizCn}</S.QuestionsWrap>
+                                        <S.QuestionsWrap>
+                                            <S.Question>{item.title}</S.Question>
+                                        </S.QuestionsWrap>
                                         <S.AnswerWrap>{item.answer}</S.AnswerWrap>
                                         <S.CreateDateWrap>{item.regDt}</S.CreateDateWrap>
                                         <S.ManagementWrap>

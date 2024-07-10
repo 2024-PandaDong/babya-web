@@ -63,7 +63,7 @@ const useQuiz = () => {
                 await babyaAxios.get("quiz/list", {
                     params: {
                         page: 1,
-                        size: 10,
+                        size: 25,
                     }
                 }).then((res) => {
                     setQuizList(res.data.data);

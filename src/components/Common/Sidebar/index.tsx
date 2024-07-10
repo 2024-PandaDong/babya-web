@@ -4,7 +4,7 @@ import useSidebar from "src/hooks/Sidebar/useSidebar";
 import useLogOut from "src/hooks/Auth/useLogOut";
 import {MenuData} from "src/constants/datas/Sidebar/MenuData";
 import Logo from "src/assets/img/Common/Sidebar/BabyaLogo.svg";
-import Profile from "src/assets/img/Common/Sidebar/ExamProfile.svg";
+import DefaultProfile from "src/assets/img/Common/Sidebar/DefaultImage.svg";
 
 const Sidebar = () => {
     const { pathname, profileData, handleMenuClick } = useSidebar();
@@ -18,7 +18,7 @@ const Sidebar = () => {
                         <S.Logo src={Logo}></S.Logo>
                         <S.LogoName>애기야</S.LogoName>
                     </S.LogoWrap>
-                    <S.Profile src={profileData?.profileImg || Profile}></S.Profile>
+                    <S.Profile src={profileData?.profileImg || DefaultProfile}></S.Profile>
                     <S.ProfileName>{profileData?.nickname || ""}</S.ProfileName>
                 </S.Info>
             </S.InfoWrap>

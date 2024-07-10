@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { PostType } from "src/types/Post/PostList/PostList.interface";
 import { babyaAxios, babyaAxiosSetAccessToken } from "src/libs/axios/CustomAxios";
 import { AxiosError } from "axios";
@@ -10,6 +11,8 @@ const PostList = () => {
     const [error, setError] = useState<Error | null>(null);
     const [searchTerm, setSearchTerm] = useState("");
     const [selectedCategories, setSelectedCategories] = useState<number[]>([]);
+
+    const navigate = useNavigate();
 
     const fetchPostList = async () => {
         setIsLoading(true);
@@ -86,6 +89,10 @@ const PostList = () => {
         }
     };
 
+    const handleViewPost = (postId: string) => {
+        navigate(`/post/${postId}`);
+    };
+
     const filteredPosts = postList.filter((post) => {
         const categoryName = getCategoryName(post.category).toLowerCase();
         const matchesSearchTerm =
@@ -118,9 +125,7 @@ const PostList = () => {
                 <S.ListSearchButton>검색</S.ListSearchButton>
             </S.SearchWrap>
             <S.CategoryFilter>
-                <label>
-                    카테고리:
-                </label>
+                <label>카테고리:</label>
                 <label>
                     <input
                         type="checkbox"
@@ -168,7 +173,9 @@ const PostList = () => {
                                     <S.Td>{item.nickname}</S.Td>
                                     <S.Td>{getCategoryName(item.category)}</S.Td>
                                     <S.Buttons>
-                                        <button id="b">조회</button>
+                                        <button id="b" onClick={() => handleViewPost(item.postId)}>
+                                            조회
+                                        </button>
                                         <S.ToggleButton
                                             id="r"
                                             state={item.state}

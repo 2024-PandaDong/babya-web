@@ -72,7 +72,7 @@ export const MenuWrap = styled.div`
     height: auto;
 `
 
-export const MenuBox = styled.div<{ $isbackground: string }>`
+export const MenuBox = styled.div<{ $isbackground: boolean }>`
     width: 100%;
     height: 70px;
     
@@ -81,7 +81,7 @@ export const MenuBox = styled.div<{ $isbackground: string }>`
     justify-content: center;
     align-items: center;
     
-    background-color: ${({ $isbackground }) => ($isbackground)};
+    background-color: ${({ $isbackground }) => ($isbackground ? "#BBAFFF" : "transparent")};
 `
 
 export const Menu = styled.div`

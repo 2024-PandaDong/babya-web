@@ -176,3 +176,16 @@ export const CommentDate = styled.span`
     font-size: 12px;
     display: block; 
 `;
+
+export const ToggleButton = styled.button`
+    background-color: #FF4B4B;
+    color: white;
+    padding: 8px 16px;
+    border: none;
+    cursor: pointer;
+    font-size: 14px;
+    margin-top: 16px;
+    &:hover {
+        background-color: #0056b3;
+    }
+`;

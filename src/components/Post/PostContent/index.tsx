@@ -11,6 +11,8 @@ const PostContent = () => {
     const [comments, setComments] = useState<any[]>([]); // Assuming comment structure
     const [isLoading, setIsLoading] = useState(true);
     const [error, setError] = useState<Error | null>(null);
+    const [commentsEnabled, setCommentsEnabled] = useState(true); // Default to true
+    const [commentId, setCommentId] = useState<number | null>(null); // State to store commentId
 
     const fetchPostContent = async () => {
         setIsLoading(true);
@@ -34,6 +36,43 @@ const PostContent = () => {
             const response = await babyaAxios.get(`/post/comment?page=1&size=10&postId=${id}`);
             const data = response.data.data;
             setComments(data); // Assuming the structure of comments array
+        } catch (error) {
+            const axiosError = error as AxiosError;
+            setError(axiosError);
+        } finally {
+            setIsLoading(false);
+        }
+    };
+
+    const toggleComments = async () => {
+        const newCommentsEnabled = !commentsEnabled;
+        setIsLoading(true);
+        setError(null);
+        try {
+            await babyaAxios.put(`/post/comment/${id}`, { enabled: newCommentsEnabled });
+            setCommentsEnabled(newCommentsEnabled);
+            if (newCommentsEnabled) {
+                fetchComments(); // If enabling comments, fetch the updated comments
+            } else {
+                setComments([]); // If disabling comments, clear the comments array
+            }
+        } catch (error) {
+            const axiosError = error as AxiosError;
+            setError(axiosError);
+        } finally {
+            setIsLoading(false);
+        }
+    };
+
+    const handleDisableComment = async (commentId: number) => {
+        setIsLoading(true);
+        setError(null);
+        try {
+            await babyaAxios.delete(`/post/comment/${commentId}`);
+            const updatedComments = comments.map(comment =>
+                comment.commentId === commentId ? { ...comment, enabled: false } : comment
+            );
+            setComments(updatedComments);
         } catch (error) {
             const axiosError = error as AxiosError;
             setError(axiosError);
@@ -86,9 +125,16 @@ const PostContent = () => {
                 <S.CommentsTitle>댓글</S.CommentsTitle>
                 {comments.map((comment) => (
                     <S.Comment key={comment.commentId}>
-                        <S.CommentNickname>{comment.nickname}</S.CommentNickname>
+                        <div>
+                            <S.CommentNickname>{comment.nickname}</S.CommentNickname>
+                            <S.CommentDate>{comment.createdAt}</S.CommentDate>
+                        </div>
                         <S.CommentContent>{comment.content}</S.CommentContent>
-                        <S.CommentDate>{comment.createdAt}</S.CommentDate>
+                        {commentsEnabled && (
+                            <S.ToggleButton onClick={() => handleDisableComment(comment.commentId)}>
+                                댓글 비활성화{comment.commentId === commentId ? "댓글 비활성화" : ""}
+                            </S.ToggleButton>
+                        )}
                     </S.Comment>
                 ))}
             </S.CommentWrap>
@@ -113,7 +159,7 @@ const PostContent = () => {
                         {renderFiles()}
                     </S.Files>
                     <S.Content>{postContent.content}</S.Content>
-                    {comments.length > 0 && renderComments()}
+                    {renderComments()}
                 </S.PostWrap>
             </S.ListWrap>
         </S.MainWrap>

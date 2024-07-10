@@ -1,10 +1,12 @@
 import React, {useEffect, useState} from "react";
+import {useNavigate} from "react-router-dom";
 import {babyaAxios} from "src/libs/axios/CustomAxios";
 import Swal from "sweetalert2";
 import {showToast} from "src/libs/toast/Swal";
 import {QuizListProps} from "src/types/Quiz/Quiz.interface"
 
 const useQuiz = () => {
+    const navigate = useNavigate();
     const [page, setPage] = useState<number>(0);
     const [isLoading, setIsLoading] = useState(false);
     const [searchValue, setSearchValue] = useState<string>("");
@@ -37,30 +39,9 @@ const useQuiz = () => {
         };
     }, [isLoading]);
 
-    useEffect(() => {
-        const QuizRead = async () => {
-            if (page) {
-                try {
-                    await babyaAxios.get("quiz/list", {
-                        params: {
-                            page: page,
-                            size: 20,
-                        }
-                    }).then((res) => {
-                        const newQuizList = res.data.data;
-
-                        setIsLoading(newQuizList.length === 0);
-                        setQuizList((prevQuizList) => [...prevQuizList, ...newQuizList]);
-                    })
-                } catch (error) {
-                    console.log(error)
-                    setIsLoading(false);
-                }
-            }
-        }
-
-        QuizRead();
-    }, [page])
+    const handleClickQuizWrite = () => {
+        navigate("/quiz-write");
+    }
 
     const handleChangeValue = (e: React.ChangeEvent<HTMLInputElement>) => {
         setSearchValue(e.target.value);
@@ -109,10 +90,36 @@ const useQuiz = () => {
             }
         });
     }
+
+    useEffect(() => {
+        const QuizRead = async () => {
+            if (page) {
+                try {
+                    await babyaAxios.get("quiz/list", {
+                        params: {
+                            page: page,
+                            size: 20,
+                        }
+                    }).then((res) => {
+                        const newQuizList = res.data.data;
+
+                        setIsLoading(newQuizList.length === 0);
+                        setQuizList((prevQuizList) => [...prevQuizList, ...newQuizList]);
+                    })
+                } catch (error) {
+                    console.log(error)
+                    setIsLoading(false);
+                }
+            }
+        }
+
+        QuizRead();
+    }, [page])
     return {
         quizList,
         searchValue,
         quizListFilter,
+        handleClickQuizWrite,
         handleChangeValue,
         handleKeydown,
         handleClickFilterQuiz,

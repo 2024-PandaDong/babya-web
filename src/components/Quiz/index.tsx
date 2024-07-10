@@ -15,7 +15,7 @@ const Quiz = () => {
                 <S.QuizWrap>
                     <S.Quiz>
                         <S.OptionWrap>
-                            <S.QuizCreateBtn>퀴즈 생성</S.QuizCreateBtn>
+                            <S.QuizCreateBtn onClick={quiz.handleClickQuizWrite}>퀴즈 생성</S.QuizCreateBtn>
                             <S.QuizSearchWrap>
                                 <S.QuizSearch
                                     value={quiz.searchValue}

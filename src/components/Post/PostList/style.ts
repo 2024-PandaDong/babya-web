@@ -21,7 +21,7 @@ export const TableWrap = styled.div`
     justify-content: flex-start;
     align-items: center;
     overflow: hidden;
-    padding-top: 50px; 
+    padding-top: 50px;
 
     @media (max-width: 768px) {
         width: 100%;
@@ -48,15 +48,13 @@ export const ListThead = styled.thead`
     height: 50px;
     background: #DBD5FF;
     position: sticky;
-    margin-top: 10px;  
+    margin-top: 10px;
     z-index: 10;
 
     @media (max-width: 768px) {
         display: none;
     }
 `;
-
-
 
 export const ListTheadTr = styled.tr`
     display: flex;
@@ -79,7 +77,7 @@ export const ScrollableTbody = styled.div`
     width: 100%;
     height: 100%;
     overflow-y: auto;
-    margin-top: -50px; 
+    margin-top: -50px;
 `;
 
 export const Tbody = styled.tbody`
@@ -141,23 +139,25 @@ export const Buttons = styled.div`
     button#b {
         width: 90px;
         height: 35px;
-        color: #000000;
+        color: #FFFFFF;
         font-size: 15px;
-        //background-color: #7896FF;
+        background-color: #7896FF;
         border-radius: 5px;
-        border: 1px solid #D9D9D9;
+        //border: 1px solid #D9D9D9;
         margin-right: 10px;
     }
-    button#r {
-        width: 90px;
-        height: 35px;
-        color: #000000;
-        font-size: 15px;
-        //background-color: #FF4B4B;
-        border-radius: 5px;
-        border: 1px solid #D9D9D9;
-    }
 `;
+
+export const ToggleButton = styled.button<{ state: string }>`
+    width: 90px;
+    height: 35px;
+    color: #FFFFFF;
+    font-size: 15px;
+    background-color: ${({ state }) => (state === "ACTIVATE" ? "#FF4B4B" : "#00FF0A")};
+    border-radius: 5px;
+    //border: 1px solid #D9D9D9;
+`;
+
 export const SearchWrap = styled.div`
     display: flex;
     position: relative;
@@ -180,7 +180,7 @@ export const SearchInput = styled.input`
         color: #D9D9D9;
     }
 `;
-export const BannerSearchButton = styled.button`
+export const ListSearchButton = styled.button`
     width: 100px;
     height: 50px;
     left: 1140px;

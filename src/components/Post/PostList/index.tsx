@@ -67,7 +67,11 @@ const PostList = () => {
         setError(null);
         try {
             const newState = currentState === "ACTIVATE" ? "DEACTIVATE" : "ACTIVATE";
-            await babyaAxios.delete(`/post/${postId}`);
+            if (currentState === "ACTIVATE") {
+                await babyaAxios.delete(`/post/${postId}`);
+            } else {
+                await babyaAxios.patch(`/post/toActive/${postId}`);
+            }
             setPostList((prevPostList) =>
                 prevPostList.map((post) =>
                     post.postId === postId ? { ...post, state: newState } : post
@@ -81,7 +85,6 @@ const PostList = () => {
             setIsLoading(false);
         }
     };
-
 
     const filteredPosts = postList.filter((post) => {
         const categoryName = getCategoryName(post.category).toLowerCase();
@@ -112,7 +115,7 @@ const PostList = () => {
                     value={searchTerm}
                     onChange={handleSearchTermChange}
                 />
-                <S.BannerSearchButton>검색</S.BannerSearchButton>
+                <S.ListSearchButton>검색</S.ListSearchButton>
             </S.SearchWrap>
             <S.CategoryFilter>
                 <label>
@@ -166,12 +169,13 @@ const PostList = () => {
                                     <S.Td>{getCategoryName(item.category)}</S.Td>
                                     <S.Buttons>
                                         <button id="b">조회</button>
-                                        <button
+                                        <S.ToggleButton
                                             id="r"
+                                            state={item.state}
                                             onClick={() => handleTogglePostState(item.postId, item.state)}
                                         >
                                             {item.state === "ACTIVATE" ? "비활성화" : "활성화"}
-                                        </button>
+                                        </S.ToggleButton>
                                     </S.Buttons>
                                 </S.Tr>
                             ))}

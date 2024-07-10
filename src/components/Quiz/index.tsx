@@ -28,7 +28,9 @@ const Quiz = () => {
                         <S.QuizListWrap>
                             <S.QuizListTitle>
                                 <S.NumWrap>No</S.NumWrap>
-                                <S.QuestionsWrap>질문</S.QuestionsWrap>
+                                <S.QuestionsWrap>
+                                    <S.Question>질문</S.Question>
+                                </S.QuestionsWrap>
                                 <S.AnswerWrap>정답</S.AnswerWrap>
                                 <S.CreateDateWrap>만든 날짜</S.CreateDateWrap>
                                 <S.ManagementWrap>관리</S.ManagementWrap>
@@ -52,6 +54,7 @@ const Quiz = () => {
                                         </S.ManagementWrap>
                                     </S.QuizList>
                                 ))}
+                                <div id="observer" style={{minHeight: "10px"}}></div>
                             </S.QuizListBox>
                         </S.QuizListWrap>
                     </S.Quiz>

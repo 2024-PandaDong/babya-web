@@ -5,6 +5,7 @@ import BannerPage from "src/pages/Banner/page";
 import BannerWritePage from "src/pages/BannerWrite/page";
 import BannerModifyPage from "src/pages/BannerModify/page";
 import Post from "src/pages/Post/page";
+import PostContent from "src/components/Post/PostContent";
 
 const Router = () => {
     return (
@@ -14,6 +15,7 @@ const Router = () => {
             <Route path="/banner-write" element={<BannerWritePage />} />
             <Route path="/banner-modify/:id" element={<BannerModifyPage />} />
             <Route path="/post" element={<Post />} />
+            <Route path="/post/:id" element={<PostContent />} />
         </Routes>
     )
 }

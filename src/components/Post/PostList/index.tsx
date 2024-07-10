@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { PostType } from "src/types/Post/Post.interface";
+import { PostType } from "src/types/Post/PostList/PostList.interface";
 import { babyaAxios, babyaAxiosSetAccessToken } from "src/libs/axios/CustomAxios";
 import { AxiosError } from "axios";
 import * as S from "src/components/Post/PostList/style";

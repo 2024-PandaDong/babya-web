@@ -42,11 +42,11 @@ const errorResponseHandler = async (error: AxiosError) => {
 
                 try {
                     // 리프레시 토큰을 사용하여 새로운 액세스 토큰을 요청
-                    const data = await axios.post(`${CONFIG.BABYA_Server}/refresh`, {
+                    const data = await axios.post(`${CONFIG.BABYA_Server}/auth/reissue`, {
                         refreshToken: usingRefreshToken,
                     });
 
-                    const newAccessToken = data.data.data.access_token;
+                    const newAccessToken = data.data.data.accessToken;
                     // 새로운 액세스 토큰을 저장
                     token.setToken(ACCESS_TOKEN_KEY, newAccessToken);
                     isRefreshing = false;

@@ -170,7 +170,7 @@ export const AnswerText = styled.span`
     margin-right: 5px;
 `
 
-export const AnswerBtn = styled.button`
+export const AnswerTrueBtn = styled.button<{$isAnswer: boolean}>`
     width: 45px;
     height: 45px;
     
@@ -179,7 +179,21 @@ export const AnswerBtn = styled.button`
     font-size: 1.4rem;
     
     border-radius: 10px;
-    background: #D9D9D9;
+    background: ${({$isAnswer}) => $isAnswer === true ? "#7896FF" : "#D9D9D9"};
+    
+    cursor: pointer;
+`
+
+export const AnswerFalseBtn = styled.button<{$isAnswer: boolean}>`
+    width: 45px;
+    height: 45px;
+    
+    color: #FFF;
+    font-family: Pretendard-SemiBold, sans-serif;
+    font-size: 1.4rem;
+    
+    border-radius: 10px;
+    background: ${({$isAnswer}) => $isAnswer === false ? "#FF4B4B" : "#D9D9D9"};
     
     cursor: pointer;
 `

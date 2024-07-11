@@ -1,6 +1,7 @@
 import React from 'react';
 import * as S from "./style";
 import useBanner from "src/hooks/Banner/useBanner";
+import {BannerListProps} from "src/types/Banner/Banner.interface";
 import BannerCreateIcon from "src/assets/img/Banner/BannerCreateIcon.svg";
 import dataTransform from "src/utils/Transform/dataTransform";
 
@@ -21,6 +22,7 @@ const Banner = () => {
                         <S.BannerCheckboxContainer>
                             <S.BannerCheckboxWrap>
                                 <S.BannerCheckbox
+                                    readOnly
                                     id="before"
                                     checked={Banner.type === "1"}
                                     onClick={() => Banner.handleChangeType("1")} />
@@ -28,6 +30,7 @@ const Banner = () => {
                             </S.BannerCheckboxWrap>
                             <S.BannerCheckboxWrap>
                                 <S.BannerCheckbox
+                                    readOnly
                                     id="after"
                                     checked={Banner.type === "2"}
                                     onClick={() => Banner.handleChangeType("2")} />
@@ -35,8 +38,12 @@ const Banner = () => {
                             </S.BannerCheckboxWrap>
                         </S.BannerCheckboxContainer>
                         <S.BannerSearchWrap>
-                            <S.BannerSearch placeholder="배너를 검색해주세요."></S.BannerSearch>
-                            <S.BannerSearchButton>검색</S.BannerSearchButton>
+                            <S.BannerSearch
+                                value={Banner.searchValue}
+                                placeholder="배너를 검색해주세요."
+                                onChange={Banner.handleChangeInputValue}
+                                onKeyDown={Banner.handleKeyDown}/>
+                            <S.BannerSearchButton onClick={Banner.handleClickFilterBanner}>검색</S.BannerSearchButton>
                         </S.BannerSearchWrap>
                     </S.BannerFilter>
                 </S.BannerFilterWrap>
@@ -64,20 +71,22 @@ const Banner = () => {
                                 </S.ManagementWrap>
                             </S.TitleWrap>
                             <S.ContentWrap>
-                                {Banner.bannerList.map((banner, i) => (
-                                    <S.Content key={banner.id}>
-                                        <S.CheckBoxWrap>
-                                            <S.CheckBox></S.CheckBox>
-                                        </S.CheckBoxWrap>
-                                        <S.Num>{i+1}</S.Num>
-                                        <S.TitleName>{banner.title}</S.TitleName>
-                                        <S.Area>{dataTransform.AreaTypeDataTransform(banner.lc)}</S.Area>
-                                        <S.Category>{banner.type === "1" ? "출산전" : "출산후"}</S.Category>
-                                        <S.ManagementWrap>
-                                            <S.ModifyButton onClick={() => Banner.handleBannerModifyClick(banner.id)}>수정</S.ModifyButton>
-                                            <S.DisableButton onClick={() => Banner.handleClickDisable(banner.id)}>비활성화</S.DisableButton>
-                                        </S.ManagementWrap>
-                                    </S.Content>
+                                {(Banner.bannerListFilter.length
+                                    ? Banner.bannerListFilter
+                                    : Banner.bannerList).map((banner: BannerListProps) => (
+                                        <S.Content key={banner.id}>
+                                            <S.CheckBoxWrap>
+                                                <S.CheckBox></S.CheckBox>
+                                            </S.CheckBoxWrap>
+                                            <S.Num>{banner.id}</S.Num>
+                                            <S.TitleName>{banner.title}</S.TitleName>
+                                            <S.Area>{dataTransform.AreaNameTransform(banner.lc)}</S.Area>
+                                            <S.Category>{banner.type === "1" ? "출산전" : "출산후"}</S.Category>
+                                            <S.ManagementWrap>
+                                                <S.ModifyButton onClick={() => Banner.handleBannerModifyClick(banner.id)}>수정</S.ModifyButton>
+                                                <S.DisableButton onClick={() => Banner.handleClickDisable(banner.id)}>비활성화</S.DisableButton>
+                                            </S.ManagementWrap>
+                                        </S.Content>
                                 ))}
                             </S.ContentWrap>
                         </S.Container>

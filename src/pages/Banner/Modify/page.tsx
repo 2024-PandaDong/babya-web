@@ -1,5 +1,5 @@
 import React from "react";
-import BannerModify from "src/components/Banner/BannerModify/index";
+import BannerModify from "src/components/Banner/Modify";
 
 const BannerModifyPage = () => {
     return <BannerModify />

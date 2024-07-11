@@ -7,6 +7,6 @@ export interface BannerModifyProps {
     fileUrl: string,
     type: string,
     lc: string,
-    startDate: string,
-    endDate: string,
+    startDt: string,
+    expiredDt: string,
 }

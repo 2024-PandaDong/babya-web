@@ -3,6 +3,7 @@ import { babyaAxios } from "src/libs/axios/CustomAxios";
 import {BannerModifyProps} from "src/types/Banner/BannerModify/BannerModify.interface";
 import {showToast} from "src/libs/toast/Swal";
 import {NavigateFunction, useNavigate, useParams} from "react-router-dom";
+import DataTransform from "src/utils/Transform/dataTransform";
 
 const useBannerWrite = () => {
     const { id } = useParams();
@@ -21,8 +22,8 @@ const useBannerWrite = () => {
         fileUrl: "",
         type: "",
         lc: "",
-        startDate: "",
-        endDate: "",
+        startDt: "",
+        expiredDt: "",
     })
 
     const handleChangeData = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -46,7 +47,13 @@ const useBannerWrite = () => {
         }
     }
 
-    const handleChangeArea = (name, code) => {
+    const initialArea = (name: string) => {
+        setIsChecked((prevState) => {
+            return {...prevState, [name]: true}
+        })
+    }
+
+    const handleChangeArea = (name: string, code: string) => {
         setIsChecked((prevState) => {
             const newIsChecked = Object.keys(prevState).reduce((obj, key) => {
                 obj[key] = false;
@@ -67,14 +74,14 @@ const useBannerWrite = () => {
     const handleChangeStartDate = (date: string) => {
         setIsStartDateOpen(false);
         setData((prevData) => {
-            return {...prevData, startDate: date}
+            return {...prevData, startDt: date}
         });
     }
 
     const handleChangeEndDate = (date: string) => {
         setIsEndDateOpen(false);
         setData((prevData) => {
-            return {...prevData, endDate: date}
+            return {...prevData, expiredDt: date}
         });
     }
 
@@ -119,15 +126,14 @@ const useBannerWrite = () => {
                 url: data.url,
                 title: data.title,
                 subTitle: data.subTitle,
-                startDt: data.startDate,
-                expireDt: data.endDate,
+                startDt: data.startDt,
+                expireDt: data.expiredDt,
                 type: data.type,
                 source: data.source,
                 lc: data.lc,
                 fileUrl: data.fileUrl
-            }).then((res) => {
-                console.log(res);
-                showToast("success", "배너 생성 성공");
+            }).then(() => {
+                showToast("success", "배너 수정 성공");
                 navigate("/banner");
             })
         } catch (error) {
@@ -142,11 +148,10 @@ const useBannerWrite = () => {
                     .get(`banner`, { params: { id: id } })
                     .then((res) => {
                         const bannerData = res.data.data
-                        console.log(bannerData);
 
-                        setData((prevData) => {
-                            return { ...prevData, bannerData }
-                        })
+                        setData((prevData) => {return {...prevData, ...bannerData}});
+                        setFileImage(bannerData.fileUrl);
+                        initialArea(DataTransform.AreaNameTransform(bannerData.lc))
                     })
             } catch(error) {
                 console.log(error);

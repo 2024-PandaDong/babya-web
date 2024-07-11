@@ -15,6 +15,7 @@ export const BannerBackground = styled.div`
 
 export const BannerContainer = styled.div`
     width: 88%;
+    min-width: 655px;
     height: 90%;
     
     display: flex;
@@ -41,7 +42,7 @@ export const BannerTitle = styled.span`
 
 export const BannerFilterWrap = styled.div`
     width: 100%;
-    height: 12%;
+    min-height: 12%;
     
     border-radius: 10px;
     box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
@@ -178,7 +179,7 @@ export const BannerSearchButton = styled.button`
 
 export const BannerWrap = styled.div`
     width: 100%;
-    height: 80%;
+    min-height: 80%;
     
     display: flex;
     flex-direction: row;
@@ -422,7 +423,7 @@ export const DisableButton = styled.button`
     font-size: 0.95rem;
 
     border-radius: 5px;
-    background: #BEBEBE;
+    background: #FF4B4B;
     
     cursor: pointer;
 `

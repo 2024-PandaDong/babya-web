@@ -1,7 +1,6 @@
 import React from "react";
 import * as S from "./style";
 import useQuiz from "src/hooks/Quiz/useQuiz";
-import {Question} from "./style";
 
 const Quiz = () => {
     const { ...quiz} = useQuiz();

@@ -7,6 +7,7 @@ import BannerModifyPage from "src/pages/BannerModify/page";
 import Post from "src/pages/Post/page";
 import PostContent from "src/components/Post/PostContent";
 import QuizPage from "src/pages/Quiz/page";
+import QuizWritePage from "src/pages/Quiz/QuizWrite/page";
 import Prepare from "src/components/Common/Prepare";
 
 const Router = () => {
@@ -20,8 +21,8 @@ const Router = () => {
             <Route path="/post" element={<Post />} />
             <Route path="/post/:id" element={<PostContent />} />
             <Route path="/quiz" element={<QuizPage />} />
+            <Route path="/quiz-write" element={<QuizWritePage />} />
             <Route path="/company" element={<Prepare />} />
-
             <Route path="/FAQ" element={<Prepare />} />
             <Route path="/inquiry" element={<Prepare />} />
         </Routes>

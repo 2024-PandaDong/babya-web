@@ -14,25 +14,35 @@ const Quiz = () => {
                 <S.QuizWrap>
                     <S.Quiz>
                         <S.OptionWrap>
-                            <S.QuizCreateBtn>퀴즈 생성</S.QuizCreateBtn>
+                            <S.QuizCreateBtn onClick={quiz.handleClickQuizWrite}>퀴즈 생성</S.QuizCreateBtn>
                             <S.QuizSearchWrap>
-                                <S.QuizSearch placeholder="원하는 퀴즈를 입력해주세요"></S.QuizSearch>
+                                <S.QuizSearch
+                                    value={quiz.searchValue}
+                                    placeholder="원하는 퀴즈를 입력해주세요"
+                                    onChange={quiz.handleChangeValue}
+                                    onKeyDown={quiz.handleKeydown}></S.QuizSearch>
                                 <S.QuizSearchBtn>검색</S.QuizSearchBtn>
                             </S.QuizSearchWrap>
                         </S.OptionWrap>
                         <S.QuizListWrap>
                             <S.QuizListTitle>
                                 <S.NumWrap>No</S.NumWrap>
-                                <S.QuestionsWrap>질문</S.QuestionsWrap>
+                                <S.QuestionsWrap>
+                                    <S.Question>질문</S.Question>
+                                </S.QuestionsWrap>
                                 <S.AnswerWrap>정답</S.AnswerWrap>
                                 <S.CreateDateWrap>만든 날짜</S.CreateDateWrap>
                                 <S.ManagementWrap>관리</S.ManagementWrap>
                             </S.QuizListTitle>
                             <S.QuizListBox>
-                                {quiz.quizList.map((item) => (
+                                {(quiz.quizListFilter.length
+                                    ? quiz.quizListFilter
+                                    : quiz.quizList).map((item) => (
                                     <S.QuizList key={item.quizId}>
                                         <S.NumWrap>{item.quizId}</S.NumWrap>
-                                        <S.QuestionsWrap>{item.quizCn}</S.QuestionsWrap>
+                                        <S.QuestionsWrap>
+                                            <S.Question>{item.title}</S.Question>
+                                        </S.QuestionsWrap>
                                         <S.AnswerWrap>{item.answer}</S.AnswerWrap>
                                         <S.CreateDateWrap>{item.regDt}</S.CreateDateWrap>
                                         <S.ManagementWrap>
@@ -43,6 +53,7 @@ const Quiz = () => {
                                         </S.ManagementWrap>
                                     </S.QuizList>
                                 ))}
+                                <div id="observer" style={{minHeight: "10px"}}></div>
                             </S.QuizListBox>
                         </S.QuizListWrap>
                     </S.Quiz>

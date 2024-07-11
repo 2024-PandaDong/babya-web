@@ -1,11 +1,68 @@
-import {useEffect, useState} from "react";
+import React, {useEffect, useState} from "react";
+import {useNavigate} from "react-router-dom";
 import {babyaAxios} from "src/libs/axios/CustomAxios";
 import Swal from "sweetalert2";
 import {showToast} from "src/libs/toast/Swal";
 import {QuizListProps} from "src/types/Quiz/Quiz.interface"
 
 const useQuiz = () => {
+    const navigate = useNavigate();
+    const [page, setPage] = useState<number>(0);
+    const [isLoading, setIsLoading] = useState(false);
+    const [searchValue, setSearchValue] = useState<string>("");
     const [quizList, setQuizList] = useState<QuizListProps[]>([]);
+    const [quizListFilter, setQuizListFilter] = useState<QuizListProps[]>([]);
+
+    const handleObserver = (entries: IntersectionObserverEntry[]) => {
+        const target = entries[0];
+        if (target.isIntersecting && !isLoading) {
+            setIsLoading(true);
+            setPage((prevPage) => prevPage + 1);
+        }
+    }
+
+    useEffect(() => {
+        const observer = new IntersectionObserver(handleObserver, {
+            threshold: 0,
+        });
+
+        const observerTarget = document.getElementById("observer");
+
+        if (observerTarget) {
+            observer.observe(observerTarget);
+        }
+
+        return () => {
+            if (observerTarget) {
+                observer.unobserve(observerTarget);
+            }
+        };
+    }, [isLoading]);
+
+    const handleClickQuizWrite = () => {
+        navigate("/quiz-write");
+    }
+
+    const handleChangeValue = (e: React.ChangeEvent<HTMLInputElement>) => {
+        setSearchValue(e.target.value);
+    }
+
+    const handleKeydown = (e: React.KeyboardEvent<HTMLInputElement>) => {
+        if (e.key === "Enter") {
+            handleClickFilterQuiz();
+        }
+    }
+
+    const handleClickFilterQuiz = () => {
+        if (searchValue !== "") {
+            const filterData = quizList.filter((item) => (
+                item.quizCn.toLowerCase().includes(searchValue.toLowerCase())
+            ))
+            setQuizListFilter(filterData);
+        } else {
+            setQuizListFilter([]);
+        }
+    }
 
     const handleClickDelete = (quizId: number) => {
         Swal.fire({
@@ -17,7 +74,7 @@ const useQuiz = () => {
             confirmButtonText: "퀴즈 삭제",
             cancelButtonText: "취소",
             reverseButtons: false,
-        }).then(async (result) => {
+        }).then( async (result) => {
             if (result.isConfirmed) {
                 try {
                     await babyaAxios
@@ -36,24 +93,36 @@ const useQuiz = () => {
 
     useEffect(() => {
         const QuizRead = async () => {
-            try {
-                await babyaAxios.get("quiz/list", {
-                    params: {
-                        page: 1,
-                        size: 10,
-                    }
-                }).then((res) => {
-                    setQuizList(res.data.data);
-                })
-            } catch (error) {
-                console.log(error)
+            if (page) {
+                try {
+                    await babyaAxios.get("quiz/list", {
+                        params: {
+                            page: page,
+                            size: 20,
+                        }
+                    }).then((res) => {
+                        const newQuizList = res.data.data;
+
+                        setIsLoading(newQuizList.length === 0);
+                        setQuizList((prevQuizList) => [...prevQuizList, ...newQuizList]);
+                    })
+                } catch (error) {
+                    console.log(error)
+                    setIsLoading(false);
+                }
             }
         }
 
         QuizRead();
-    }, [])
+    }, [page])
     return {
         quizList,
+        searchValue,
+        quizListFilter,
+        handleClickQuizWrite,
+        handleChangeValue,
+        handleKeydown,
+        handleClickFilterQuiz,
         handleClickDelete,
     }
 }

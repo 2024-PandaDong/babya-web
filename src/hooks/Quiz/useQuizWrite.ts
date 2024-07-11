@@ -33,6 +33,10 @@ const useQuizWrite = () => {
     }
 
     const handleClickQuizCreate = async () => {
+        if (title.length === 0) return
+        if (answer === null) return
+        if (description.length === 0) return
+
         try {
             await babyaAxios.post("quiz", {
                 title: title,

@@ -10,7 +10,7 @@ const QuizWrite = () => {
         <S.QuizWriteBackground>
             <S.QuizWriteContainer>
                 <S.QuizWriteTitleWrap>
-                    <S.QuizWriteTitle onClick={quizWrite.handleClickQuizCreate}>퀴즈 생성</S.QuizWriteTitle>
+                    <S.QuizWriteTitle>퀴즈 생성</S.QuizWriteTitle>
                 </S.QuizWriteTitleWrap>
                 <S.QuizWriteWrap>
                     <S.QuizWrite>
@@ -21,7 +21,7 @@ const QuizWrite = () => {
                                 placeholder="제목을 입력해주세요"
                                 onChange={quizWrite.handleChangeTitle}></S.TitleInput>
                             <S.QuizCreateBtnWrap>
-                                <S.QuizCreateBtn>퀴즈 생성</S.QuizCreateBtn>
+                                <S.QuizCreateBtn onClick={quizWrite.handleClickQuizCreate}>퀴즈 생성</S.QuizCreateBtn>
                             </S.QuizCreateBtnWrap>
                         </S.TitleWrap>
                         <S.AnswerWrap>

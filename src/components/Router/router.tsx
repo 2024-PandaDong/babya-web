@@ -8,6 +8,7 @@ import Post from "src/components/Post";
 import PostContent from "src/components/Post/PostContent";
 import Prepare from "src/components/Common/Prepare";
 import QuizPage from "src/pages/Quiz/page";
+import QuizWritePage from "src/pages/Quiz/QuizWrite/page";
 
 const Router = () => {
     return (
@@ -19,6 +20,7 @@ const Router = () => {
             <Route path="/post" element={<Post />} />
             <Route path="/post/:id" element={<PostContent />} />
             <Route path="/quiz" element={<QuizPage />} />
+            <Route path="/quiz-write" element={<QuizWritePage />} />
             <Route path="/company" element={<Prepare />} />
             <Route path="/" element={<Prepare />} />
             <Route path="/FAQ" element={<Prepare />} />

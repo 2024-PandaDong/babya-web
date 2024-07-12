@@ -120,24 +120,30 @@ const useBannerWrite = () => {
     }
 
     const SubmitBannerModify = async () => {
-        try {
-            await babyaAxios.patch("banner",{
-                id: data.id,
-                url: data.url,
-                title: data.title,
-                subTitle: data.subTitle,
-                startDt: data.startDt,
-                expireDt: data.expiredDt,
-                type: data.type,
-                source: data.source,
-                lc: data.lc,
-                fileUrl: data.fileUrl
-            }).then(() => {
-                showToast("success", "배너 수정 성공");
-                navigate("/banner");
-            })
-        } catch (error) {
-            console.log(error);
+        if (data.id && data.title && data.subTitle
+            && data.source && data.url && data.fileUrl
+            && data.type && data.lc && data.startDt && data.expiredDt) {
+            try {
+                await babyaAxios.patch("banner",{
+                    id: data.id,
+                    url: data.url,
+                    title: data.title,
+                    subTitle: data.subTitle,
+                    startDt: data.startDt,
+                    expireDt: data.expiredDt,
+                    type: data.type,
+                    source: data.source,
+                    lc: data.lc,
+                    fileUrl: data.fileUrl
+                }).then(() => {
+                    showToast("success", "배너 수정 성공");
+                    navigate("/banner");
+                })
+            } catch (error) {
+                console.log(error);
+            }
+        } else {
+            showToast("error", "데이터를 전부 작성해주세요");
         }
     }
 

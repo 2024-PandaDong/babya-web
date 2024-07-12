@@ -114,23 +114,28 @@ const useBannerWrite = () => {
     }
 
     const SubmitBannerCreate = async () => {
-        try {
-            await babyaAxios.post("banner",{
-                url: data.url,
-                title: data.title,
-                subTitle: data.subTitle,
-                startDt: data.startDate,
-                expireDt: data.endDate,
-                type: data.type,
-                source: data.source,
-                lc: data.lc,
-                fileUrl: data.fileUrl
-            }).then((res) => {
-                showToast("success", "배너 생성 성공");
-                navigate("/banner");
-            })
-        } catch (error) {
-            console.log(error);
+        if (data.title && data.subTitle && data.source && data.url &&
+            data.fileUrl && data.type && data.lc && data.startDate && data.endDate) {
+            try {
+                await babyaAxios.post("banner",{
+                    url: data.url,
+                    title: data.title,
+                    subTitle: data.subTitle,
+                    startDt: data.startDate,
+                    expireDt: data.endDate,
+                    type: data.type,
+                    source: data.source,
+                    lc: data.lc,
+                    fileUrl: data.fileUrl
+                }).then((res) => {
+                    showToast("success", "배너 생성 성공");
+                    navigate("/banner");
+                })
+            } catch (error) {
+                console.log(error);
+            }
+        } else {
+            showToast("error", "데이터를 전부 작성해주세요")
         }
     }
 

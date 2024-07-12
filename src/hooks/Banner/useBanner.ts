@@ -59,12 +59,12 @@ const useBanner = () => {
 
     const handleClickDisable = (bannerId: number) => {
         Swal.fire({
-            title: "정말로 배너를 비활성화하시겠습니까?",
-            text: "배너를 비활성화하면 다시 되돌릴 수 없습니다.",
+            title: "정말로 배너를 삭제하시겠습니까?",
+            text: "배너를 삭제하면 다시 되돌릴 수 없습니다.",
             showCancelButton: true,
             confirmButtonColor: "#d33",
             cancelButtonColor: "#D9D9D9",
-            confirmButtonText: "배너 비활성화",
+            confirmButtonText: "배너 삭제",
             cancelButtonText: "취소",
             reverseButtons: false,
         }).then(async (result) => {
@@ -73,11 +73,11 @@ const useBanner = () => {
                     await babyaAxios
                         .delete(`banner/disable/${bannerId}`)
                         .then(() => {
-                            showToast("success", "배너 비활성화 성공");
+                            showToast("success", "배너 삭제 성공");
                             setBannerList(prevData => prevData.filter(item => item.id !== bannerId));
                         });
                 } catch (error) {
-                    showToast("error", "배너 비활성화 실패");
+                    showToast("error", "배너 삭제 실패");
                     console.log(error);
                 }
             }

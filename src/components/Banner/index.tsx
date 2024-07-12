@@ -25,7 +25,7 @@ const Banner = () => {
                                     readOnly
                                     id="before"
                                     checked={Banner.type === "1"}
-                                    onClick={() => Banner.handleChangeType("1")} />
+                                    onClick={() => Banner.handleChangeType("1")}/>
                                 <S.BannerCheckboxText htmlFor="before">출산전 배너</S.BannerCheckboxText>
                             </S.BannerCheckboxWrap>
                             <S.BannerCheckboxWrap>

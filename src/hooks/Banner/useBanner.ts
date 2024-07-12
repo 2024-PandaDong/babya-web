@@ -53,6 +53,8 @@ const useBanner = () => {
 
     const handleChangeType = (type: string) => {
         setType(type);
+        setSearchValue("");
+        setBannerListFilter([]);
     }
 
     const handleClickDisable = (bannerId: number) => {

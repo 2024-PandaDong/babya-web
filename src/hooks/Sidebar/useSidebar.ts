@@ -7,7 +7,7 @@ const useSidebar = () => {
     const { pathname } = useLocation()
     const navigate = useNavigate();
     const [profileData, setProfileData] = useState<MemberDataProps>();
-
+    
     const handleMenuClick = (path: string) => {
         navigate(path);
     }

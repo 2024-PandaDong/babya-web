@@ -19,7 +19,7 @@ const Sidebar = () => {
                         <S.LogoName>애기야</S.LogoName>
                     </S.LogoWrap>
                     <S.Profile src={profileData?.profileImg || DefaultProfile}></S.Profile>
-                    <S.ProfileName>{profileData?.nickname || ""}</S.ProfileName>
+                    <S.ProfileName>{profileData?.nickname || "이름 없음"}</S.ProfileName>
                 </S.Info>
             </S.InfoWrap>
             <S.MenuWrap>

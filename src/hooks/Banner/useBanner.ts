@@ -71,8 +71,11 @@ const useBanner = () => {
             if (result.isConfirmed) {
                 try {
                     await babyaAxios
-                        .delete(`banner/disable/${bannerId}`)
-                        .then(() => {
+                        .delete(`banner`, {
+                                params: {
+                                    id: bannerId
+                                }
+                        }).then(() => {
                             showToast("success", "배너 삭제 성공");
                             setBannerList(prevData => prevData.filter(item => item.id !== bannerId));
                         });

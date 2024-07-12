@@ -225,7 +225,7 @@ export const BannerAllDeleteButton = styled.button`
 `
 
 export const BannerCreateButtonWrap = styled.div`
-    width: 20%;
+    width: 15%;
     height: 100%;
     
     display: flex;

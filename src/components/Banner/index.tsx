@@ -53,7 +53,7 @@ const Banner = () => {
                             <S.BannerAllDeleteButton>전체 삭제</S.BannerAllDeleteButton>
                             <S.BannerCreateButtonWrap onClick={Banner.handleBannerWriteClick}>
                                 <S.BannerCreateIcon src={BannerCreateIcon}></S.BannerCreateIcon>
-                                <S.BannerCreateText>배너 그룹 관리</S.BannerCreateText>
+                                <S.BannerCreateText>배너 생성</S.BannerCreateText>
                             </S.BannerCreateButtonWrap>
                         </S.BannerButtonWrap>
                         {/* <BannerPost> */}

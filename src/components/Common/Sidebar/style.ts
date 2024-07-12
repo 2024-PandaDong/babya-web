@@ -90,7 +90,6 @@ export const Menu = styled.div`
     
     display: flex;
     flex-direction: row;
-    justify-content: space-between;
     align-items: center;
     
     cursor: pointer;
@@ -103,12 +102,16 @@ export const MenuImg = styled.img`
     display: flex;
     flex-direction: row;
     justify-content: center;
+    
+    margin-right: 25px;
 `
 
 export const MenuName = styled.p`
     color: black;
     font-size: 1.3rem;
     font-family: Pretendard-Medium;
+    
+    white-space: nowrap;
 `
 
 export const LogOutWrap = styled.div`

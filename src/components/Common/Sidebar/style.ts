@@ -2,38 +2,39 @@ import styled from "styled-components";
 
 export const SidebarContainer = styled.div`
     width: 18%;
-    min-width: 265px;
+    min-width: 260px;
     height: 100vh;
     
     display: flex;
     flex-direction: column;
-    background: #F7F2FF;
+    background: #2C2E3D;
     
     overflow: hidden;
 `
 
 export const InfoWrap = styled.div`
     width: 100%;
-    height: 33%;
+    height: 62px;
     
     display: flex;
     flex-direction: row;
     justify-content: center;
     align-items: center;
+
+    background: #282A39;
 `
 
 export const Info = styled.div`
-    width: 70%;
+    width: 100%;
     height: 85%;
     
     display: flex;
-    flex-direction: column;
-    align-items: center;
     justify-content: space-between;
+    align-items: center;
 `
 
 export const LogoWrap = styled.div`
-    width: 100%;
+    width: 73%;
     height: auto;
     
     display: flex;
@@ -41,74 +42,116 @@ export const LogoWrap = styled.div`
     justify-content: center;
     align-items: center;
     
-    column-gap: 30px;
+    gap: 15px;
 `
 
 export const Logo = styled.img`
-    width: 40px;
+    width: 32px;
     height: auto;
+    
+    margin-bottom: 5px;
 `
 
 export const LogoName = styled.p`
-    color: #000;
-    font-size: 1.8rem;
+    color: #FFF;
+    font-size: 1.4rem;
     font-family: Pretendard-Medium;
 `
 
-export const Profile = styled.img`
-    width: 110px;
-    height: 110px;
-    border-radius: 50%;
+export const SortWrap = styled.div`
+    width: 40px;
+    height: auto;
+    
+    display: flex;
+    justify-content: center;
+    align-content: center;
 `
 
-export const ProfileName = styled.p`
-    color: #000;
-    font-size: 1.4rem;
-    font-family: Pretendard-Bold;
+export const Sort = styled.img`
+    width: 28px;
+    height: auto;
+    
+    cursor: pointer;
+`
+
+export const ContentWrap = styled.div`
+    width: 100%;
+    height: calc(100% - 70px);
+    
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
 `
 
 export const MenuWrap = styled.div`
     width: 100%;
     height: auto;
+    
+    display: flex;
+    flex-direction: column;
+    
+    gap: 10px;
+`
+
+export const MenuTitleWrap = styled.div`
+    width: 100%;
+    height: 60px;
+    
+    display: flex;
+    justify-content: center;
+    align-items: center;
+`
+
+export const MenuTitle = styled.p`
+    color: #FFF;
+    font-size: 0.85rem;
+    font-family: Pretendard-Medium;
+    
+    width: 65%;
+    height: 90%;
+    
+    display: flex;
+    align-items: flex-end;
 `
 
 export const MenuBox = styled.div<{ $isbackground: boolean }>`
     width: 100%;
-    height: 70px;
+    height: 65px;
     
     display: flex;
     flex-direction: row;
     justify-content: center;
     align-items: center;
     
-    background-color: ${({ $isbackground }) => ($isbackground ? "#BBAFFF" : "transparent")};
+    background-color: ${({ $isbackground }) => ($isbackground ? "#4A4E69" : "transparent")};
 `
 
 export const Menu = styled.div`
-    width: 50%;
-    height: 40%;
+    width: 60%;
+    height: 38%;
     
     display: flex;
     flex-direction: row;
     align-items: center;
     
     cursor: pointer;
+    margin-right: 10px;
 `
 
 export const MenuImg = styled.img`
-    width: 28px;
+    width: 26px;
     height: 100%;
     
     display: flex;
     flex-direction: row;
     justify-content: center;
     
-    margin-right: 25px;
+    margin-right: 45px;
 `
 
 export const MenuName = styled.p`
-    color: black;
-    font-size: 1.3rem;
+    color: #FFF;
+    font-size: 1.1rem;
     font-family: Pretendard-Medium;
     
     white-space: nowrap;
@@ -125,7 +168,7 @@ export const LogOutWrap = styled.div`
 `
 
 export const LogOut = styled.button`
-    color: #757575;
+    color: #FFF;
     font-size: 1.2rem;
     
     cursor: pointer;

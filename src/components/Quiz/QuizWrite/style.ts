@@ -9,7 +9,7 @@ export const QuizWriteBackground = styled.div`
     justify-content: center;
     align-items: center;
 
-    background: #DBD5FF;
+    background: #F2F3F7;
 `
 
 export const QuizWriteContainer = styled.div`
@@ -125,14 +125,14 @@ export const QuizCreateBtnWrap = styled.div`
 export const QuizCreateBtn = styled.button`
     min-width: 80px;
     width: 62%;
-    height: 42%;
+    height: 48%;
     
     color: #FFF;
     font-family: Pretendard-Bold, sans-serif;
-    font-size: 1.1rem;
+    font-size: 1rem;
     
     border-radius: 10px;
-    background: #BBAFFF;
+    background: #4A4E69;
     
     cursor: pointer;
     white-space: nowrap;

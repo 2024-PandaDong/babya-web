@@ -70,8 +70,6 @@ export const SortWrap = styled.div`
 export const Sort = styled.img`
     width: 28px;
     height: auto;
-    
-    cursor: pointer;
 `
 
 export const ContentWrap = styled.div`

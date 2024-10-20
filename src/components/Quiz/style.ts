@@ -9,7 +9,7 @@ export const QuizBackground = styled.div`
     justify-content: center;
     align-items: center;
 
-    background: #DBD5FF;
+    background: #F2F3F7;
 `
 
 export const QuizContainer = styled.div`
@@ -75,10 +75,10 @@ export const QuizCreateBtn = styled.button`
     
     color: #FFF;
     font-family: Pretendard-Bold, sans-serif;
-    font-size: 1.1rem;
+    font-size: 1rem;
     
     border-radius: 10px;
-    background: #BBAFFF;
+    background: #4A4E69;
     
     cursor: pointer;
 `
@@ -91,10 +91,20 @@ export const QuizSearchWrap = styled.div`
     flex-direction: row;
     justify-content: flex-end;
     align-items: center;
+    
+    position: relative;
+`
+
+export const QuizSearchImg = styled.img`
+    width: 18px;
+    height: auto;
+    
+    position: absolute;
+    left: 10px;
 `
 
 export const QuizSearch = styled.input`
-    width: 300px;
+    width: 350px;
     height: 100%;
     
     color: #000;
@@ -104,27 +114,13 @@ export const QuizSearch = styled.input`
     border-radius: 5px;
     background-color: transparent;
 
-    padding: 0 15px;
+    padding-left: 40px;
+    padding-right: 15px;
     outline: none;
     
     &::placeholder {
         color: #D9D9D9;
     }
-`
-
-export const QuizSearchBtn = styled.button`
-    width: 85px;
-    height: 100%;
-    
-    color: #FFF;
-    font-family: Pretendard-SemiBold, sans-serif;
-    font-size: 1.1rem;
-    
-    border-radius: 5px;
-    background: #BBAFFF;
-    
-    cursor: pointer;
-    margin-left: 10px;
 `
 
 export const QuizListWrap = styled.div`
@@ -143,7 +139,7 @@ export const QuizListTitle = styled.div`
     flex-direction: row;
     
     border-bottom: 1px solid #D9D9D9;
-    background: #DDD7FF;
+    background: #F2F2F2;
 `
 
 export const QuizListBox = styled.div`
@@ -265,12 +261,12 @@ export const ReadBtn = styled.button`
     width: 42%;
     height: 70%;
 
-    color: #FFF;
+    color: #424242;
     font-family: Pretendard-SemiBold, sans-serif;
-    font-size: 1rem;
+    font-size: 0.95rem;
     
     border-radius: 5px;
-    background: #7896FF;
+    background: #F2F2F2;
     
     cursor: pointer;
 `
@@ -281,7 +277,7 @@ export const DeleteBtn = styled.button`
 
     color: #FFF;
     font-family: Pretendard-SemiBold, sans-serif;
-    font-size: 1rem;
+    font-size: 0.95rem;
 
     border-radius: 5px;
     background: #FF4B4B;

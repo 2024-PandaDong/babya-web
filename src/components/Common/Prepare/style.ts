@@ -9,7 +9,7 @@ export const PrepareBackground = styled.div`
     justify-content: center;
     align-items: center;
     
-    background: #DBD5FF;
+    background: #F2F3F7;
 `
 
 export const PrepareContainer = styled.div`
@@ -29,7 +29,7 @@ export const PrepareImg = styled.img`
 `
 
 export const PrepareText = styled.span`
-    color: #7896FF;
+    color: #4A4E69;
     font-family: Pretendard-Bold, sans-serif;
     font-size: 1.6rem;
 `

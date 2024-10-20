@@ -1,6 +1,7 @@
 import React from "react";
 import * as S from "./style";
 import useQuiz from "src/hooks/Quiz/useQuiz";
+import SearchIcon from "src/assets/img/Common/SearchIcon.svg";
 
 const Quiz = () => {
     const { ...quiz} = useQuiz();
@@ -16,12 +17,12 @@ const Quiz = () => {
                         <S.OptionWrap>
                             <S.QuizCreateBtn onClick={quiz.handleClickQuizWrite}>퀴즈 생성</S.QuizCreateBtn>
                             <S.QuizSearchWrap>
+                                <S.QuizSearchImg src={SearchIcon}></S.QuizSearchImg>
                                 <S.QuizSearch
                                     value={quiz.searchValue}
                                     placeholder="원하는 퀴즈를 입력해주세요"
                                     onChange={quiz.handleChangeValue}
                                     onKeyDown={quiz.handleKeydown}></S.QuizSearch>
-                                <S.QuizSearchBtn>검색</S.QuizSearchBtn>
                             </S.QuizSearchWrap>
                         </S.OptionWrap>
                         <S.QuizListWrap>

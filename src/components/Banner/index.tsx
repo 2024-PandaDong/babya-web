@@ -2,7 +2,7 @@ import React from 'react';
 import * as S from "./style";
 import useBanner from "src/hooks/Banner/useBanner";
 import {BannerListProps} from "src/types/Banner/Banner.interface";
-import BannerSearch from "src/assets/img/Banner/SearchIcon.svg"
+import BannerSearch from "src/assets/img/Common/SearchIcon.svg"
 import dataTransform from "src/utils/Transform/dataTransform";
 
 const Banner = () => {

@@ -263,7 +263,7 @@ export const ReadBtn = styled.button`
 
     color: #424242;
     font-family: Pretendard-SemiBold, sans-serif;
-    font-size: 1rem;
+    font-size: 0.95rem;
     
     border-radius: 5px;
     background: #F2F2F2;
@@ -277,7 +277,7 @@ export const DeleteBtn = styled.button`
 
     color: #FFF;
     font-family: Pretendard-SemiBold, sans-serif;
-    font-size: 1rem;
+    font-size: 0.95rem;
 
     border-radius: 5px;
     background: #FF4B4B;

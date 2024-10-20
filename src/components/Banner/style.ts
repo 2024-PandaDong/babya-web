@@ -10,7 +10,7 @@ export const BannerBackground = styled.div`
     justify-content: center;
     align-items: center;
     
-    background: #DBD5FF;
+    background: #F2F3F7;
 `
 
 export const BannerContainer = styled.div`
@@ -20,31 +20,13 @@ export const BannerContainer = styled.div`
     
     display: flex;
     flex-direction: column;
-    gap: 12px;
-`
-
-export const BannerTitleWrap = styled.div`
-    width: 100%;
-    height: 8%;
-    
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    
-    padding-left: 10px;
-`
-
-export const BannerTitle = styled.span`
-    color: #000;
-    font-family: Pretendard-SemiBold, sans-serif;
-    font-size: 1.4rem;
+    gap: 40px;
 `
 
 export const BannerFilterWrap = styled.div`
     width: 100%;
     min-height: 12%;
     
-    border-radius: 10px;
     box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
     background: #FFF;
     
@@ -117,9 +99,9 @@ export const BannerCheckbox = styled.input.attrs({ type: "checkbox" })`
         content: '';
         display: block;
         color: #FFF;
-        background: #BBAFFF url(${Check}) no-repeat center center;
+        background: #1A6DFF url(${Check}) no-repeat center center;
         background-size: calc(55%);
-        border: 1px solid #BBAFFF;
+        border: 1px solid #1A6DFF;
         border-radius: 5px;
     }
 `
@@ -139,10 +121,20 @@ export const BannerSearchWrap = styled.div`
     flex-direction: row;
     justify-content: flex-end;
     align-items: center;
+    
+    position: relative;
+`
+
+export const BannerSearchImg = styled.img`
+    width: 18px;
+    height: auto;
+    
+    position: absolute;
+    right: 60%;
 `
 
 export const BannerSearch = styled.input`
-    width: 60%;
+    width: 65%;
     min-width: 180px;
     height: 90%;
     
@@ -153,28 +145,14 @@ export const BannerSearch = styled.input`
     border-radius: 5px;
     background-color: transparent;
 
-    padding: 0 15px;
+    padding-left: 40px;
+    padding-right: 15px;
+    
     outline: none;
     
     &::placeholder {
         color: #D9D9D9;
     }
-`
-
-export const BannerSearchButton = styled.button`
-    width: 15%;
-    min-width: 70px;
-    height: 90%;
-    
-    color: #FFF;
-    font-family: Pretendard-SemiBold, sans-serif;
-    font-size: 1.1rem;
-    
-    border-radius: 5px;
-    background: #BBAFFF;
-    
-    cursor: pointer;
-    margin-left: 10px;
 `
 
 export const BannerWrap = styled.div`
@@ -186,7 +164,6 @@ export const BannerWrap = styled.div`
     justify-content: center;
     align-items: center;
     
-    border-radius: 10px;
     background: #FFF;
     box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
 `
@@ -230,27 +207,19 @@ export const BannerCreateButtonWrap = styled.div`
     
     display: flex;
     flex-direction: row;
-    justify-content: space-evenly;
+    justify-content: center;
     align-items: center;
     
-    border-radius: 15px;
-    background: #BBAFFF;
+    border-radius: 5px;
+    background: #CFCFCF;
     
     cursor: pointer;
-    padding: 0 10px;
-`
-
-export const BannerCreateIcon = styled.img`
-    width: auto;
-    height: 90%;
 `
 
 export const BannerCreateText = styled.span`
     color: #FFF;
-    font-family: Pretendard-SemiBold, sans-serif;
-    font-size: 1.1rem;
-    
-    margin-right: 10px;
+    font-family: Pretendard-Medium, sans-serif;
+    font-size: 0.9rem;
 `
 
 export const Container = styled.div`
@@ -264,7 +233,7 @@ export const TitleWrap = styled.div`
     
     display: flex;
     
-    background: #DDD7FF;
+    background: #F2F2F2;
 `
 
 export const ContentWrap = styled.div`
@@ -320,9 +289,9 @@ export const CheckBox = styled.input.attrs({ type: "checkbox" })`
         content: '';
         display: block;
         color: #FFF;
-        background: #BBAFFF url(${Check}) no-repeat center center;
+        background: #1A6DFF url(${Check}) no-repeat center center;
         background-size: calc(55%);
-        border: 1px solid #BBAFFF;
+        border: 1px solid #1A6DFF;
         border-radius: 5px;
     }
 `
@@ -403,12 +372,12 @@ export const ModifyButton = styled.button`
     width: 40%;
     height: 50%;
     
-    color: #FFF;
+    color: #424242;
     font-family: Pretendard-Bold, sans-serif;
     font-size: 0.95rem;
     
     border-radius: 5px;
-    background: #BFB3FF;
+    background: #F2F2F2;
     
     cursor: pointer;
     margin-right: 10px;

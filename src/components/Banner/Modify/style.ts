@@ -67,7 +67,7 @@ export const CategoryButtonWrap = styled.button<{$border: boolean}>`
     justify-content: space-evenly;
     align-items: center;
     
-    border-bottom: 3px solid ${({$border}) => $border ? "#BBAFFF" : "transparent"};
+    border-bottom: 3px solid ${({$border}) => $border ? "#4A4E69" : "transparent"};
     cursor: pointer;
     padding-top: 3px;
 `
@@ -78,7 +78,7 @@ export const CategoryButtonImg = styled.img`
 `
 
 export const CategoryButtonText = styled.span<{$color: boolean}>`
-    color: ${({$color}) => $color ? "#BBAFFF": "#D9D9D9"};
+    color: ${({$color}) => $color ? "#4A4E69": "#D9D9D9"};
     font-family: Pretendard-SemiBold, sans-serif;
     font-size: 1.3rem;
 `
@@ -100,10 +100,10 @@ export const SaveButton = styled.button`
     
     color: #FFF;
     font-family: Pretendard-SemiBold, sans-serif;
-    font-size: 1.4rem;
+    font-size: 1.3rem;
     
     border-radius: 10px;
-    background: #BBAFFF;
+    background: #4A4E69;
     
     cursor: pointer;
 `
@@ -171,9 +171,9 @@ export const NationwideCheckbox = styled.input.attrs({ type: 'checkbox' })`
         content: '';
         display: block;
         color: #FFF;
-        background: #BBAFFF url(${Check}) no-repeat center center;
+        background: #4A4E69 url(${Check}) no-repeat center center;
         background-size: calc(55%);
-        border: 1px solid #BBAFFF;
+        border: 1px solid #4A4E69;
         border-radius: 5px;
     }
 `
@@ -226,9 +226,9 @@ export const AreaCheckbox = styled.input.attrs({ type: 'checkbox' })`
         content: '';
         display: block;
         color: #FFF;
-        background: #BBAFFF url(${Check}) no-repeat center center;
+        background: #4A4E69 url(${Check}) no-repeat center center;
         background-size: calc(55%);
-        border: 1px solid #BBAFFF;
+        border: 1px solid #4A4E69;
         border-radius: 5px;
     }
 `
@@ -325,7 +325,7 @@ export const TitleWrap = styled.div`
     align-items: center;
     
     border-bottom: 1px solid #FFF;
-    background: #DDD7FF;
+    background: #4A4E69;
 `
 
 export const Title = styled.span`
@@ -382,7 +382,7 @@ export const BannerPeriodTitleWrap = styled.div`
     align-items: center;
 
     border-bottom: 1px solid #FFF;
-    background: #DDD7FF;
+    background: #4A4E69;
 `
 
 export const BannerPeriodTitle = styled.span`
@@ -460,7 +460,7 @@ export const BannerImageTitleWrap = styled.div`
     align-items: center;
 
     border-bottom: 1px solid #D9D9D9;
-    background: #DDD7FF;
+    background: #4A4E69;
 `
 
 export const BannerImageTitle = styled.span`
@@ -519,10 +519,10 @@ export const BannerImageChangeButton = styled.button`
     
     color: #FFF;
     font-family: Pretendard-Bold, sans-serif;
-    font-size: 1.2rem;
+    font-size: 1.1rem;
     
     border-radius: 10px;
-    background: #BFB3FF;
+    background: #4A4E69;
     
     cursor: pointer;
 `
@@ -533,7 +533,7 @@ export const BannerImageDeleteButton = styled.button`
 
     color: #FFF;
     font-family: Pretendard-Bold, sans-serif;
-    font-size: 1.2rem;
+    font-size: 1.1rem;
 
     border-radius: 10px;
     background: #BEBEBE;

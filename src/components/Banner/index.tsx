@@ -2,7 +2,7 @@ import React from 'react';
 import * as S from "./style";
 import useBanner from "src/hooks/Banner/useBanner";
 import {BannerListProps} from "src/types/Banner/Banner.interface";
-import BannerCreateIcon from "src/assets/img/Banner/BannerCreateIcon.svg";
+import BannerSearch from "src/assets/img/Banner/SearchIcon.svg"
 import dataTransform from "src/utils/Transform/dataTransform";
 
 const Banner = () => {
@@ -11,9 +11,6 @@ const Banner = () => {
     return (
         <S.BannerBackground>
             <S.BannerContainer>
-                <S.BannerTitleWrap>
-                    <S.BannerTitle>배너 그룹 관리</S.BannerTitle>
-                </S.BannerTitleWrap>
                 <S.BannerFilterWrap>
                     <S.BannerFilter>
                         <S.BannerFilterTitleWrap>
@@ -38,12 +35,12 @@ const Banner = () => {
                             </S.BannerCheckboxWrap>
                         </S.BannerCheckboxContainer>
                         <S.BannerSearchWrap>
+                            <S.BannerSearchImg src={BannerSearch}></S.BannerSearchImg>
                             <S.BannerSearch
                                 value={Banner.searchValue}
                                 placeholder="배너를 검색해주세요."
                                 onChange={Banner.handleChangeInputValue}
                                 onKeyDown={Banner.handleKeyDown}/>
-                            <S.BannerSearchButton onClick={Banner.handleClickFilterBanner}>검색</S.BannerSearchButton>
                         </S.BannerSearchWrap>
                     </S.BannerFilter>
                 </S.BannerFilterWrap>
@@ -52,8 +49,7 @@ const Banner = () => {
                         <S.BannerButtonWrap>
                             <S.BannerAllDeleteButton>전체 삭제</S.BannerAllDeleteButton>
                             <S.BannerCreateButtonWrap onClick={Banner.handleBannerWriteClick}>
-                                <S.BannerCreateIcon src={BannerCreateIcon}></S.BannerCreateIcon>
-                                <S.BannerCreateText>배너 생성</S.BannerCreateText>
+                                <S.BannerCreateText>배너 그룹 추가</S.BannerCreateText>
                             </S.BannerCreateButtonWrap>
                         </S.BannerButtonWrap>
                         {/* <BannerPost> */}

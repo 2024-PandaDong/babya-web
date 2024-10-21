@@ -24,7 +24,6 @@ const Router = () => {
             <Route path="/quiz-write" element={<QuizWritePage />} />
             <Route path="/company" element={<Prepare />} />
             <Route path="/" element={<Prepare />} />
-            <Route path="/FAQ" element={<Prepare />} />
             <Route path="/inquiry" element={<Prepare />} />
             <Route path="/download" element={<Download />} />
         </Routes>

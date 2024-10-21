@@ -18,7 +18,7 @@ export const Wrap = styled.div`
     margin-bottom: 80px;
 `
 
-export const Android = styled.a`
+export const Text = styled.a`
     font-size: 30px;
     font-weight: 500;
 `

@@ -1,13 +1,18 @@
 import React from 'react'
 import * as S from "./style"
 import {Link} from "react-router-dom";
+import {Text} from "./style";
 
 const Download = () => {
     return (
             <S.Container>
                 <S.Wrap>
-                    <Link to="">Android Download</Link>
-                    <Link to="">iOS Download</Link>
+                    <Link to="">
+                        <S.Text>Android Download</S.Text>
+                    </Link>
+                    <Link to="">
+                        <S.Text>iOS Download</S.Text>
+                    </Link>
                 </S.Wrap>
             </S.Container>
     )

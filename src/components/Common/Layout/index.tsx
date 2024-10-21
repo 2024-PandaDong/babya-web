@@ -9,7 +9,7 @@ const Layout = ({ children }: ProviderProps) => {
 
     return (
         <Container>
-            {pathname !== "/login" && <HeaderBar />}
+            {pathname !== "/login" && pathname !== "/download" && <HeaderBar />}
             {children}
         </Container>
     )

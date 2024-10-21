@@ -10,7 +10,7 @@ const PageTemplate = ({children}: ProviderProps) => {
 
     return (
         <Container>
-            {pathname !== "/login" && <Sidebar />}
+            {pathname !== "/login" && pathname !== "/download" && <Sidebar />}
             <Layout>{children}</Layout>
         </Container>
     )

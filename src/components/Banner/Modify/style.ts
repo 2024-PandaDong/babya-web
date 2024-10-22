@@ -14,7 +14,7 @@ export const BannerModifyBackground = styled.div`
     padding: 60px 0;
     overflow: hidden auto;
     
-    background: #DBD5FF;
+    background: #F2F3F7;
 `
 
 export const GroupManagementWrap = styled.div`

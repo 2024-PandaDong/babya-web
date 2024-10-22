@@ -7,6 +7,8 @@ import BannerModifyPage from "src/pages/Banner/Modify/page";
 import Post from "src/components/Post";
 import PostContent from "src/components/Post/PostContent";
 import Prepare from "src/components/Common/Prepare";
+import MemberPage from "src/pages/Member/page";
+import CompanyPage from "src/pages/Company/page";
 import QuizPage from "src/pages/Quiz/page";
 import QuizWritePage from "src/pages/Quiz/QuizWrite/page";
 import Download from "src/components/Common/Download";
@@ -22,8 +24,8 @@ const Router = () => {
             <Route path="/post/:id" element={<PostContent />} />
             <Route path="/quiz" element={<QuizPage />} />
             <Route path="/quiz-write" element={<QuizWritePage />} />
-            <Route path="/company" element={<Prepare />} />
-            <Route path="/" element={<Prepare />} />
+            <Route path="/company" element={<CompanyPage />} />
+            <Route path="/" element={<MemberPage />} />
             <Route path="/inquiry" element={<Prepare />} />
             <Route path="/download" element={<Download />} />
         </Routes>

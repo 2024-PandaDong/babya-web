@@ -9,6 +9,7 @@ import PostContent from "src/components/Post/PostContent";
 import Prepare from "src/components/Common/Prepare";
 import QuizPage from "src/pages/Quiz/page";
 import QuizWritePage from "src/pages/Quiz/QuizWrite/page";
+import Download from "src/components/Common/Download";
 
 const Router = () => {
     return (
@@ -23,8 +24,8 @@ const Router = () => {
             <Route path="/quiz-write" element={<QuizWritePage />} />
             <Route path="/company" element={<Prepare />} />
             <Route path="/" element={<Prepare />} />
-            <Route path="/FAQ" element={<Prepare />} />
             <Route path="/inquiry" element={<Prepare />} />
+            <Route path="/download" element={<Download />} />
         </Routes>
     )
 }

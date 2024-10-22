@@ -39,12 +39,6 @@ export const MenuData = [
     },
     {
         id: 5,
-        name: "FAQ 관리",
-        icon: FAQIcon,
-        path: "/FAQ",
-    },
-    {
-        id: 6,
         name: "문의 관리",
         icon: InquiryIcon,
         path: "/inquiry",

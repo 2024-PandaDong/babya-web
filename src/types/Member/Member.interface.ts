@@ -1,6 +1,6 @@
 export interface MemberListProps {
     "email": string,
     "nickname": string,
-    "state": boolean,
+    "state": string,
     "createdAt": string
 }

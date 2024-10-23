@@ -31,14 +31,14 @@ export const MenuData = [
         icon: CompanyIcon,
         path: "/company",
     },
+    // {
+    //     id: 4,
+    //     name: "게시물 관리",
+    //     icon: PostIcon,
+    //     path: "/post",
+    // },
     {
         id: 4,
-        name: "게시물 관리",
-        icon: PostIcon,
-        path: "/post",
-    },
-    {
-        id: 5,
         name: "문의 관리",
         icon: InquiryIcon,
         path: "/inquiry",

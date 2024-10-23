@@ -8,7 +8,7 @@ export const CompanyBackground = styled.div`
     flex-direction: row;
     justify-content: center;
     align-items: center;
-
+    
     background: #F2F3F7;
 `
 

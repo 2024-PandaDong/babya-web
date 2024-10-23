@@ -80,7 +80,7 @@ const Banner = () => {
                                             <S.Category>{banner.type === "1" ? "출산전" : "출산후"}</S.Category>
                                             <S.ManagementWrap>
                                                 <S.ModifyButton onClick={() => Banner.handleBannerModifyClick(banner.id)}>수정</S.ModifyButton>
-                                                <S.DisableButton onClick={() => Banner.handleClickDisable(banner.id)}>비활성화</S.DisableButton>
+                                                <S.DisableButton onClick={() => Banner.handleClickDisable(banner.id)}>삭제</S.DisableButton>
                                             </S.ManagementWrap>
                                         </S.Content>
                                 ))}

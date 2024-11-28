@@ -4,7 +4,6 @@ import useSidebar from "src/hooks/Sidebar/useSidebar";
 import useLogOut from "src/hooks/Auth/useLogOut";
 import {MenuData} from "src/constants/datas/Sidebar/MenuData";
 import Logo from "src/assets/img/Common/Sidebar/BabyaLogo.svg";
-import SortIcon from "src/assets/img/Common/Sidebar/SortIcon.svg"
 
 const Sidebar = () => {
     const { pathname, profileData, handleMenuClick } = useSidebar();
@@ -18,9 +17,6 @@ const Sidebar = () => {
                         <S.Logo src={Logo}></S.Logo>
                         <S.LogoName>애기야</S.LogoName>
                     </S.LogoWrap>
-                    <S.SortWrap>
-                        <S.Sort src={SortIcon}></S.Sort>
-                    </S.SortWrap>
                 </S.Info>
             </S.InfoWrap>
             <S.ContentWrap>

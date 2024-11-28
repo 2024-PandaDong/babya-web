@@ -243,20 +243,6 @@ export const BtnWrap = styled.div`
     align-items: center;
 `
 
-export const ReadBtn = styled.button`
-    width: 42%;
-    height: 70%;
-
-    color: #424242;
-    font-family: Pretendard-SemiBold, sans-serif;
-    font-size: 0.95rem;
-    
-    border-radius: 5px;
-    background: #F2F2F2;
-    
-    cursor: pointer;
-`
-
 export const PatchBtn = styled.button`
     width: 42%;
     height: 70%;

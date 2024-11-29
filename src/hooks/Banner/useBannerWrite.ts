@@ -47,7 +47,7 @@ const useBannerWrite = () => {
         }
     }
 
-    const handleChangeArea = (name, code) => {
+    const handleChangeArea = (name: string, code: string) => {
         setIsChecked((prevState) => {
             const newIsChecked = Object.keys(prevState).reduce((obj, key) => {
                 obj[key] = false;

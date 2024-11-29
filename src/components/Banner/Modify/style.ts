@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import DatePicker from 'react-datepicker';
+import DatePicker from "react-datepicker";
 import Check from "src/assets/img/Banner/Check.svg";
 
 export const BannerModifyBackground = styled.div`

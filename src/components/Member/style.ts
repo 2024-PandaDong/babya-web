@@ -1,90 +1,59 @@
 import styled from "styled-components";
+import { flexBox, fontStyle, boxStyle, noScrollBar } from "src/styles/mixins";
 
 export const MemberBackground = styled.div`
     width: 100%;
     height: 100%;
-
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
-    
+    ${flexBox()}
     background: #F2F3F7;
 `
 
 export const MemberContainer = styled.div`
     width: 88%;
     height: 90%;
-    
-    display: flex;
-    flex-direction: column;
+    ${flexBox("column")}
 `
 
 export const MemberTitleWrap = styled.div`
     width: 100%;
     height: 15%;
-    
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-
+    ${flexBox("row", "flex-start", "center")}
     padding-left: 10px;
 `
 
 export const MemberTitle = styled.span`
-    color: #000;
-    font-family: Pretendard-SemiBold, sans-serif;
-    font-size: 1.5rem;
+    ${fontStyle("1.5rem", "SemiBold")}
 `
 
 export const MemberWrap = styled.div`
     width: 100%;
     height: 85%;
-    
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
-    
-    border-radius: 10px;
-    background: #FFF;
-    box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
+    ${flexBox()}
+    ${boxStyle("#FFF", "10px", "0 4px 4px rgba(0, 0, 0, 0.25)")}
 `
 
 export const Member = styled.div`
     width: 95%;
     height: 90%;
-    
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
+    ${flexBox("column", "space-between")}
 `
 
 export const OptionWrap = styled.div`
     width: 100%;
     height: auto;
-    
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
+    ${flexBox("row", "space-between")}
 `
 
 export const MemberSearchWrap = styled.div`
     width: auto;
     height: 40px;
-    
-    display: flex;
-    flex-direction: row;
-    justify-content: flex-end;
-    align-items: center;
-    
+    ${flexBox("row", "flex-end")}
     position: relative;
-`
+`;
 
 export const MemberSearchImg = styled.img`
     width: 18px;
     height: auto;
-    
     position: absolute;
     left: 10px;
 `
@@ -92,18 +61,12 @@ export const MemberSearchImg = styled.img`
 export const MemberSearch = styled.input`
     width: 350px;
     height: 100%;
-    
-    color: #000;
-    font-family: Pretendard-Medium, sans-serif;
-
+    ${fontStyle("1rem", "Medium", "#000")}
+    ${boxStyle("transparent", "5px")}
     border: 1px solid #D9D9D9;
-    border-radius: 5px;
-    background-color: transparent;
-
-    padding-left: 40px;
-    padding-right: 15px;
+    padding: 0 15px 0 40px;
     outline: none;
-    
+
     &::placeholder {
         color: #D9D9D9;
     }
@@ -112,9 +75,7 @@ export const MemberSearch = styled.input`
 export const MemberListWrap = styled.div`
     width: 100%;
     height: 85%;
-    
-    display: flex;
-    flex-direction: column;
+    ${flexBox("column")}
 `
 
 export const MemberListTitle = styled.div`
@@ -131,15 +92,9 @@ export const MemberListTitle = styled.div`
 export const MemberListBox = styled.div`
     width: 100%;
     height: 90%;
-
-    display: flex;
-    flex-direction: column;
-    
+    ${flexBox("column")}
     overflow-y: auto;
-
-    &::-webkit-scrollbar{
-        display: none;
-    }
+    ${noScrollBar}
 `
 
 export const MemberList = styled.div`
@@ -236,37 +191,13 @@ export const ManagementWrap = styled.div`
 export const BtnWrap = styled.div`
     width: 100%;
     height: 100%;
-    
-    display: flex;
-    flex-direction: row;
-    justify-content: space-evenly;
-    align-items: center;
-`
-
-export const ReadBtn = styled.button`
-    width: 42%;
-    height: 70%;
-
-    color: #424242;
-    font-family: Pretendard-SemiBold, sans-serif;
-    font-size: 0.95rem;
-    
-    border-radius: 5px;
-    background: #F2F2F2;
-    
-    cursor: pointer;
+    ${flexBox("row", "space-evenly")}
 `
 
 export const PatchBtn = styled.button`
     width: 42%;
     height: 70%;
-
-    color: #FFF;
-    font-family: Pretendard-SemiBold, sans-serif;
-    font-size: 0.95rem;
-
-    border-radius: 5px;
-    background: #FD7D7C;
-
+    ${fontStyle("0.95rem", "SemiBold", "#FFF")}
+    ${boxStyle("#FD7D7C", "5px")}
     cursor: pointer;
 `

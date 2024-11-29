@@ -58,20 +58,6 @@ export const LogoName = styled.p`
     font-family: Pretendard-Medium;
 `
 
-export const SortWrap = styled.div`
-    width: 40px;
-    height: auto;
-    
-    display: flex;
-    justify-content: center;
-    align-content: center;
-`
-
-export const Sort = styled.img`
-    width: 28px;
-    height: auto;
-`
-
 export const ContentWrap = styled.div`
     width: 100%;
     height: calc(100% - 70px);

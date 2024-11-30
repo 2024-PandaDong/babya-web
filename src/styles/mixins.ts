@@ -13,11 +13,17 @@ export const fontStyle = (size = "1rem", weight = "Medium", color = "#000") => c
     color: ${color};
 `;
 
-export const boxStyle = (bgColor: string | (() => string), radius = "5px", shadow = "none") => css`
-    background: ${typeof bgColor === "function" ? bgColor() : bgColor};
+export const boxStyle = (
+    bgColor: string | ((props: any) => string),
+    radius = "5px",
+    shadow = "none"
+) => css`
+    background: ${typeof bgColor === "function" ? bgColor({}) : bgColor};
     border-radius: ${radius};
     box-shadow: ${shadow};
 `;
+
+
 
 
 export const noScrollBar = css`

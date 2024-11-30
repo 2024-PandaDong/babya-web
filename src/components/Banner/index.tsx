@@ -1,12 +1,15 @@
-import React from 'react';
+import React, { useMemo } from 'react';
 import * as S from "./style";
 import useBanner from "src/hooks/Banner/useBanner";
-import {BannerListProps} from "src/types/Banner/Banner.interface";
-import BannerSearch from "src/assets/img/Common/SearchIcon.svg"
+import { BannerListProps } from "src/types/Banner/Banner.interface";
+import BannerSearch from "src/assets/img/Common/SearchIcon.svg";
 import dataTransform from "src/utils/Transform/dataTransform";
 
 const Banner = () => {
     const { ...Banner } = useBanner();
+    const bannerListToShow = useMemo(() => {
+        return (Banner.bannerListFilter.length ? Banner.bannerListFilter : Banner.bannerList);
+    }, [Banner.bannerListFilter, Banner.bannerList]);
 
     return (
         <S.BannerBackground>
@@ -22,7 +25,8 @@ const Banner = () => {
                                     readOnly
                                     id="before"
                                     checked={Banner.type === "1"}
-                                    onClick={() => Banner.handleChangeType("1")}/>
+                                    onClick={() => Banner.handleChangeType("1")}
+                                />
                                 <S.BannerCheckboxText htmlFor="before">출산전 배너</S.BannerCheckboxText>
                             </S.BannerCheckboxWrap>
                             <S.BannerCheckboxWrap>
@@ -30,17 +34,19 @@ const Banner = () => {
                                     readOnly
                                     id="after"
                                     checked={Banner.type === "2"}
-                                    onClick={() => Banner.handleChangeType("2")} />
+                                    onClick={() => Banner.handleChangeType("2")}
+                                />
                                 <S.BannerCheckboxText htmlFor="after">출산후 배너</S.BannerCheckboxText>
                             </S.BannerCheckboxWrap>
                         </S.BannerCheckboxContainer>
                         <S.BannerSearchWrap>
-                            <S.BannerSearchImg src={BannerSearch}></S.BannerSearchImg>
+                            <S.BannerSearchImg src={BannerSearch} />
                             <S.BannerSearch
                                 value={Banner.searchValue}
                                 placeholder="배너를 검색해주세요."
                                 onChange={Banner.handleChangeInputValue}
-                                onKeyDown={Banner.handleKeyDown}/>
+                                onKeyDown={Banner.handleKeyDown}
+                            />
                         </S.BannerSearchWrap>
                     </S.BannerFilter>
                 </S.BannerFilterWrap>
@@ -52,7 +58,6 @@ const Banner = () => {
                                 <S.BannerCreateText>배너 그룹 추가</S.BannerCreateText>
                             </S.BannerCreateButtonWrap>
                         </S.BannerButtonWrap>
-                        {/* <BannerPost> */}
                         <S.Container>
                             <S.TitleWrap>
                                 <S.CheckBoxWrap>
@@ -67,31 +72,28 @@ const Banner = () => {
                                 </S.ManagementWrap>
                             </S.TitleWrap>
                             <S.ContentWrap>
-                                {(Banner.bannerListFilter.length
-                                    ? Banner.bannerListFilter
-                                    : Banner.bannerList).map((banner: BannerListProps) => (
-                                        <S.Content key={banner.id}>
-                                            <S.CheckBoxWrap>
-                                                <S.CheckBox></S.CheckBox>
-                                            </S.CheckBoxWrap>
-                                            <S.Num>{banner.id}</S.Num>
-                                            <S.TitleName>{banner.title}</S.TitleName>
-                                            <S.Area>{dataTransform.AreaNameTransform(banner.lc)}</S.Area>
-                                            <S.Category>{banner.type === "1" ? "출산전" : "출산후"}</S.Category>
-                                            <S.ManagementWrap>
-                                                <S.ModifyButton onClick={() => Banner.handleBannerModifyClick(banner.id)}>수정</S.ModifyButton>
-                                                <S.DisableButton onClick={() => Banner.handleClickDisable(banner.id)}>삭제</S.DisableButton>
-                                            </S.ManagementWrap>
-                                        </S.Content>
+                                {bannerListToShow.map((banner: BannerListProps) => (
+                                    <S.Content key={banner.id}>
+                                        <S.CheckBoxWrap>
+                                            <S.CheckBox></S.CheckBox>
+                                        </S.CheckBoxWrap>
+                                        <S.Num>{banner.id}</S.Num>
+                                        <S.TitleName>{banner.title}</S.TitleName>
+                                        <S.Area>{dataTransform.AreaNameTransform(banner.lc)}</S.Area>
+                                        <S.Category>{banner.type === "1" ? "출산전" : "출산후"}</S.Category>
+                                        <S.ManagementWrap>
+                                            <S.ModifyButton onClick={() => Banner.handleBannerModifyClick(banner.id)}>수정</S.ModifyButton>
+                                            <S.DisableButton onClick={() => Banner.handleClickDisable(banner.id)}>삭제</S.DisableButton>
+                                        </S.ManagementWrap>
+                                    </S.Content>
                                 ))}
                             </S.ContentWrap>
                         </S.Container>
-                        {/* </BannerPost> */}
                     </S.BannerBox>
                 </S.BannerWrap>
             </S.BannerContainer>
         </S.BannerBackground>
-    )
+    );
 }
 
 export default Banner;

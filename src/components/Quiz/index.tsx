@@ -1,21 +1,32 @@
-import React, { useRef, useEffect } from "react";
+import React, { useRef, useEffect, useMemo, useCallback } from "react";
 import * as S from "./style";
 import useQuiz from "src/hooks/Quiz/useQuiz";
 import SearchIcon from "src/assets/img/Common/SearchIcon.svg";
 
 const Quiz = () => {
-    const { ...quiz } = useQuiz();
-    const listBoxRef = useRef(null);
+    const {
+        quizList,
+        searchValue,
+        handleClickQuizWrite,
+        handleChangeValue,
+        handleKeydown,
+        handleClickDelete
+    } = useQuiz();
+    const listBoxRef = useRef<HTMLDivElement | null>(null);
 
-    const currentData = quiz.quizList.length
-        ? quiz.quizList
-        : quiz.quizList;
+    const currentData = useMemo(() => {
+        return quizList.length ? quizList : [];
+    }, [quizList]);
 
     useEffect(() => {
         if (listBoxRef.current) {
             listBoxRef.current.scrollTop = 0;
         }
     }, [currentData]);
+
+    const handleDelete = useCallback((quizId: number) => {
+        handleClickDelete(quizId);
+    }, [handleClickDelete]);
 
     return (
         <S.QuizBackground>
@@ -26,16 +37,16 @@ const Quiz = () => {
                 <S.QuizWrap>
                     <S.Quiz>
                         <S.OptionWrap>
-                            <S.QuizCreateBtn onClick={quiz.handleClickQuizWrite}>
+                            <S.QuizCreateBtn onClick={handleClickQuizWrite}>
                                 퀴즈 생성
                             </S.QuizCreateBtn>
                             <S.QuizSearchWrap>
-                                <S.QuizSearchImg src={SearchIcon} />
+                                <S.QuizSearchImg src={SearchIcon} alt="검색 아이콘" />
                                 <S.QuizSearch
-                                    value={quiz.searchValue}
+                                    value={searchValue}
                                     placeholder="원하는 퀴즈를 입력해주세요"
-                                    onChange={quiz.handleChangeValue}
-                                    onKeyDown={quiz.handleKeydown}
+                                    onChange={handleChangeValue}
+                                    onKeyDown={handleKeydown}
                                 />
                             </S.QuizSearchWrap>
                         </S.OptionWrap>
@@ -57,29 +68,18 @@ const Quiz = () => {
                                             <S.Question>{item.title}</S.Question>
                                         </S.QuestionsWrap>
                                         <S.AnswerWrap>{item.answer}</S.AnswerWrap>
-                                        <S.CreateDateWrap>
-                                            {item.regDt}
-                                        </S.CreateDateWrap>
+                                        <S.CreateDateWrap>{item.regDt}</S.CreateDateWrap>
                                         <S.ManagementWrap>
                                             <S.BtnWrap>
                                                 <S.ReadBtn>조회</S.ReadBtn>
-                                                <S.DeleteBtn
-                                                    onClick={() =>
-                                                        quiz.handleClickDelete(
-                                                            item.quizId
-                                                        )
-                                                    }
-                                                >
+                                                <S.DeleteBtn onClick={() => handleDelete(item.quizId)}>
                                                     삭제
                                                 </S.DeleteBtn>
                                             </S.BtnWrap>
                                         </S.ManagementWrap>
                                     </S.QuizList>
                                 ))}
-                                <div
-                                    id="observer"
-                                    style={{ minHeight: "10px" }}
-                                ></div>
+                                <div id="observer" style={{ minHeight: "10px" }}></div>
                             </S.QuizListBox>
                         </S.QuizListWrap>
                     </S.Quiz>

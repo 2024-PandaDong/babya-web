@@ -1,11 +1,10 @@
-import React from "react";
-import {useNavigate} from "react-router-dom";
-import {useState, useEffect} from "react";
+import React, { useMemo, useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import DataTransform from "src/utils/Transform/dataTransform";
-import {BannerListProps} from "src/types/Banner/Banner.interface";
-import {babyaAxios} from "src/libs/axios/CustomAxios";
+import { BannerListProps } from "src/types/Banner/Banner.interface";
+import { babyaAxios } from "src/libs/axios/CustomAxios";
 import Swal from "sweetalert2";
-import {showToast} from "src/libs/toast/Swal";
+import { showToast } from "src/libs/toast/Swal";
 
 const useBanner = () => {
     const navigate = useNavigate();
@@ -17,13 +16,13 @@ const useBanner = () => {
 
     const handleChangeInputValue = (e: React.ChangeEvent<HTMLInputElement>) => {
         setSearchValue(e.target.value);
-    }
+    };
 
     const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
         if (e.key === "Enter") {
             handleClickFilterBanner();
         }
-    }
+    };
 
     const handleClickFilterBanner = () => {
         if (searchValue !== "") {
@@ -31,9 +30,9 @@ const useBanner = () => {
                 setKeyword(DataTransform.AreaCodeTransform(searchValue));
                 setBannerList([]);
             } else {
-                const filterData = bannerList.filter((item) => (
+                const filterData = bannerList.filter((item) =>
                     item.title.toLowerCase().includes(searchValue.toLowerCase())
-                ))
+                );
                 setBannerListFilter(filterData);
                 setKeyword("all");
             }
@@ -41,21 +40,21 @@ const useBanner = () => {
             setBannerListFilter([]);
             setKeyword("all");
         }
-    }
+    };
 
     const handleBannerWriteClick = () => {
         navigate("/banner-write");
-    }
+    };
 
     const handleBannerModifyClick = (id: number) => {
         navigate(`/banner-modify/${id}`);
-    }
+    };
 
     const handleChangeType = (type: string) => {
         setType(type);
         setSearchValue("");
         setBannerListFilter([]);
-    }
+    };
 
     const handleClickDisable = (bannerId: number) => {
         Swal.fire({
@@ -70,22 +69,19 @@ const useBanner = () => {
         }).then(async (result) => {
             if (result.isConfirmed) {
                 try {
-                    await babyaAxios
-                        .delete(`banner`, {
-                                params: {
-                                    id: bannerId
-                                }
-                        }).then(() => {
-                            showToast("success", "배너 삭제 성공");
-                            setBannerList(prevData => prevData.filter(item => item.id !== bannerId));
-                        });
+                    await babyaAxios.delete("banner", {
+                        params: { id: bannerId },
+                    }).then(() => {
+                        showToast("success", "배너 삭제 성공");
+                        setBannerList(prevData => prevData.filter(item => item.id !== bannerId));
+                    });
                 } catch (error) {
                     showToast("error", "배너 삭제 실패");
                     console.log(error);
                 }
             }
         });
-    }
+    };
 
     useEffect(() => {
         const GetBannerList = async () => {
@@ -96,19 +92,30 @@ const useBanner = () => {
                         size: 10,
                         keyword: keyword,
                         type: type,
-                    }}).then((res) => {
+                    },
+                }).then((res) => {
                     setBannerList(res.data.data);
-                })
-            } catch(error) {
+                });
+            } catch (error) {
                 console.log(error);
             }
-        }
+        };
 
         GetBannerList();
-    }, [type, keyword])
+    }, [type, keyword]);
+    
+    const filteredBannerList = useMemo(() => {
+        if (searchValue !== "") {
+            return bannerListFilter.length ? bannerListFilter : bannerList.filter((item) =>
+                item.title.toLowerCase().includes(searchValue.toLowerCase())
+            );
+        }
+        return bannerListFilter.length ? bannerListFilter : bannerList;
+    }, [bannerList, bannerListFilter, searchValue]);
+
     return {
         type,
-        bannerList,
+        bannerList: filteredBannerList,
         searchValue,
         bannerListFilter,
         handleChangeType,
@@ -118,7 +125,7 @@ const useBanner = () => {
         handleClickFilterBanner,
         handleBannerWriteClick,
         handleBannerModifyClick,
-    }
-}
+    };
+};
 
 export default useBanner;

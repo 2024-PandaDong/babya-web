@@ -7,8 +7,8 @@ const Quiz = () => {
     const { ...quiz } = useQuiz();
     const listBoxRef = useRef(null);
 
-    const currentData = quiz.quizListFilter.length
-        ? quiz.quizListFilter
+    const currentData = quiz.quizList.length
+        ? quiz.quizList
         : quiz.quizList;
 
     useEffect(() => {

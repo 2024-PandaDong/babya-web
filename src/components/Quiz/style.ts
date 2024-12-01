@@ -1,104 +1,66 @@
 import styled from "styled-components";
+import { flexBox, fontStyle, boxStyle, noScrollBar } from "src/styles/mixins";
 
 export const QuizBackground = styled.div`
     width: 100%;
     height: 100%;
-
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
-
+    ${flexBox()}
     background: #F2F3F7;
 `
 
 export const QuizContainer = styled.div`
     width: 88%;
     height: 90%;
-    
-    display: flex;
-    flex-direction: column;
+    ${flexBox("column")}
 `
 
 export const QuizTitleWrap = styled.div`
     width: 100%;
     height: 15%;
-    
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-
+    ${flexBox("row", "flex-start", "center")}
     padding-left: 10px;
 `
 
 export const QuizTitle = styled.span`
-    color: #000;
-    font-family: Pretendard-SemiBold, sans-serif;
-    font-size: 1.5rem;
+    ${fontStyle("1.5rem", "SemiBold")}
 `
 
 export const QuizWrap = styled.div`
     width: 100%;
     height: 85%;
-    
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
-    
-    border-radius: 10px;
-    background: #FFF;
-    box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
+    ${flexBox()}
+    ${boxStyle("#FFF", "10px", "0 4px 4px rgba(0, 0, 0, 0.25)")}
 `
 
 export const Quiz = styled.div`
     width: 95%;
     height: 90%;
-    
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
+    ${flexBox("column", "space-between")}
 `
 
 export const OptionWrap = styled.div`
     width: 100%;
-    height: auto;
-    
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
+    ${flexBox("row", "space-between")}
 `
 
 export const QuizCreateBtn = styled.button`
     width: 110px;
     height: 40px;
-    
-    color: #FFF;
-    font-family: Pretendard-Bold, sans-serif;
-    font-size: 1rem;
-    
-    border-radius: 10px;
-    background: #4A4E69;
-    
+    ${fontStyle("1rem", "Bold", "#FFF")}
+    ${boxStyle("#4A4E69", "10px")}
     cursor: pointer;
 `
 
 export const QuizSearchWrap = styled.div`
     width: auto;
     height: 40px;
-    
-    display: flex;
-    flex-direction: row;
-    justify-content: flex-end;
-    align-items: center;
-    
+    ${flexBox("row", "flex-end")}
     position: relative;
 `
 
 export const QuizSearchImg = styled.img`
     width: 18px;
     height: auto;
-    
     position: absolute;
     left: 10px;
 `
@@ -106,18 +68,12 @@ export const QuizSearchImg = styled.img`
 export const QuizSearch = styled.input`
     width: 350px;
     height: 100%;
-    
-    color: #000;
-    font-family: Pretendard-Medium, sans-serif;
-
+    ${fontStyle("1rem", "Medium", "#000")}
+    ${boxStyle("transparent", "5px")}
     border: 1px solid #D9D9D9;
-    border-radius: 5px;
-    background-color: transparent;
-
-    padding-left: 40px;
-    padding-right: 15px;
+    padding: 0 15px 0 40px;
     outline: none;
-    
+
     &::placeholder {
         color: #D9D9D9;
     }
@@ -126,18 +82,13 @@ export const QuizSearch = styled.input`
 export const QuizListWrap = styled.div`
     width: 100%;
     height: 85%;
-    
-    display: flex;
-    flex-direction: column;
+    ${flexBox("column")}
 `
 
 export const QuizListTitle = styled.div`
     width: 100%;
     height: 10%;
-    
-    display: flex;
-    flex-direction: row;
-    
+    ${flexBox("row")}
     border-bottom: 1px solid #D9D9D9;
     background: #F2F2F2;
 `
@@ -145,24 +96,15 @@ export const QuizListTitle = styled.div`
 export const QuizListBox = styled.div`
     width: 100%;
     height: 90%;
-
-    display: flex;
-    flex-direction: column;
-    
+    ${flexBox("column")}
     overflow-y: auto;
-
-    &::-webkit-scrollbar{
-        display: none;
-    }
+    ${noScrollBar}
 `
 
 export const QuizList = styled.div`
     width: 100%;
     min-height: 12%;
-
-    display: flex;
-    flex-direction: row;
-    
+    ${flexBox("row")}
     border: 1px solid #D9D9D9;
     border-top: none;
 `
@@ -170,36 +112,20 @@ export const QuizList = styled.div`
 export const NumWrap = styled.div`
     width: 10%;
     height: 100%;
-
-    color: #000;
-    font-family: Pretendard-Medium, sans-serif;
-    font-size: 0.95rem;
-    
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
+    ${fontStyle("0.95rem", "Medium")}
+    ${flexBox("row", "center")}
 `
 
 export const QuestionsWrap = styled.div`
     width: 42%;
     height: 100%;
-
-    display: flex;
-    flex-direction: row;
-    justify-content: flex-start;
-    align-items: center;
+    ${flexBox("row", "flex-start")}
 `
 
 export const Question = styled.p`
     width: 100%;
-    
-    color: #000;
-    font-family: Pretendard-Medium, sans-serif;
-    font-size: 0.95rem;
-    
+    ${fontStyle("0.95rem", "Medium")}
     text-align: center;
-    
     word-break: keep-all;
     white-space: nowrap;
     overflow: hidden;
@@ -208,79 +134,42 @@ export const Question = styled.p`
 export const AnswerWrap = styled.div`
     width: 10%;
     height: 100%;
-
-    color: #000;
-    font-family: Pretendard-Medium, sans-serif;
-    font-size: 0.95rem;
-    
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
+    ${fontStyle("0.95rem", "Medium")}
+    ${flexBox("row", "center")}
 `
 
 export const CreateDateWrap = styled.div`
     width: 16%;
     height: 100%;
-
-    color: #000;
-    font-family: Pretendard-Medium, sans-serif;
-    font-size: 0.95rem;
-
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
+    ${fontStyle("0.95rem", "Medium")}
+    ${flexBox("row", "center")}
 `
 
 export const ManagementWrap = styled.div`
     width: 22%;
     height: 100%;
-
-    color: #000;
-    font-family: Pretendard-Medium, sans-serif;
-    font-size: 0.95rem;
-
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
+    ${fontStyle("0.95rem", "Medium")}
+    ${flexBox("row", "center")}
 `
 
 export const BtnWrap = styled.div`
     width: 100%;
     height: 100%;
-    
-    display: flex;
-    flex-direction: row;
-    justify-content: space-evenly;
-    align-items: center;
+    ${flexBox("row", "space-evenly")}
 `
 
 export const ReadBtn = styled.button`
     width: 42%;
     height: 70%;
-
-    color: #424242;
-    font-family: Pretendard-SemiBold, sans-serif;
-    font-size: 0.95rem;
-    
-    border-radius: 5px;
-    background: #F2F2F2;
-    
+    ${fontStyle("0.95rem", "SemiBold", "#424242")}
+    ${boxStyle("#F2F2F2", "5px")}
     cursor: pointer;
 `
 
 export const DeleteBtn = styled.button`
     width: 42%;
     height: 70%;
-
-    color: #FFF;
-    font-family: Pretendard-SemiBold, sans-serif;
-    font-size: 0.95rem;
-
-    border-radius: 5px;
-    background: #FF4B4B;
-
+    ${fontStyle("0.95rem", "SemiBold", "#FFF")}
+    ${boxStyle("#FF4B4B", "5px")}
     cursor: pointer;
 `

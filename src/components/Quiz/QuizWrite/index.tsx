@@ -1,10 +1,31 @@
-import React from "react";
+import React, { useCallback } from "react";
 import * as S from "./style";
 import useQuizWrite from "src/hooks/Quiz/useQuizWrite";
-import quiz from "src/components/Quiz";
 
 const QuizWrite = () => {
-    const { ...quizWrite } = useQuizWrite();
+    const {
+        title,
+        answer,
+        description,
+        handleChangeTitle,
+        handleClickQuizCreate,
+        handleClickAnswer,
+        handleKeyDown,
+        handleChangeDescription
+    } = useQuizWrite();
+
+    const onTitleChange = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
+        handleChangeTitle(e);
+    }, [handleChangeTitle]);
+
+    const onDescriptionChange = useCallback((e: React.ChangeEvent<HTMLTextAreaElement>) => {
+        handleChangeDescription(e);
+    }, [handleChangeDescription]);
+
+
+    const onAnswerClick = useCallback((e: React.MouseEvent<HTMLButtonElement>) => {
+        handleClickAnswer(e);
+    }, [handleClickAnswer]);
 
     return (
         <S.QuizWriteBackground>
@@ -17,31 +38,50 @@ const QuizWrite = () => {
                         <S.TitleWrap>
                             <S.TitleText>제목:</S.TitleText>
                             <S.TitleInput
-                                value={quizWrite.title}
+                                value={title}
                                 placeholder="제목을 입력해주세요"
-                                onChange={quizWrite.handleChangeTitle}></S.TitleInput>
+                                onChange={onTitleChange}
+                            />
                             <S.QuizCreateBtnWrap>
-                                <S.QuizCreateBtn onClick={quizWrite.handleClickQuizCreate}>퀴즈 생성</S.QuizCreateBtn>
+                                <S.QuizCreateBtn onClick={handleClickQuizCreate}>
+                                    퀴즈 생성
+                                </S.QuizCreateBtn>
                             </S.QuizCreateBtnWrap>
                         </S.TitleWrap>
+
                         <S.AnswerWrap>
                             <S.AnswerText>정답:</S.AnswerText>
-                            <S.AnswerTrueBtn id="true" $isAnswer={quizWrite.answer} onClick={quizWrite.handleClickAnswer}>O</S.AnswerTrueBtn>
-                            <S.AnswerFalseBtn id="false" $isAnswer={quizWrite.answer} onClick={quizWrite.handleClickAnswer}>X</S.AnswerFalseBtn>
+                            <S.AnswerTrueBtn
+                                id="true"
+                                $isAnswer={answer}
+                                onClick={onAnswerClick}
+                            >
+                                O
+                            </S.AnswerTrueBtn>
+                            <S.AnswerFalseBtn
+                                id="false"
+                                $isAnswer={answer}
+                                onClick={onAnswerClick}
+                            >
+                                X
+                            </S.AnswerFalseBtn>
                         </S.AnswerWrap>
+
+                        {/* 설명 입력 */}
                         <S.DescriptionWrap>
                             <S.DescriptionText>설명:</S.DescriptionText>
                             <S.DescriptionInput
-                                value={quizWrite.description}
+                                value={description}
                                 placeholder="설명을 입력해주세요"
-                                onKeyDown={quizWrite.handleKeyDown}
-                                onChange={quizWrite.handleChangeDescription}></S.DescriptionInput>
+                                onKeyDown={handleKeyDown}
+                                onChange={onDescriptionChange}
+                            />
                         </S.DescriptionWrap>
                     </S.QuizWrite>
                 </S.QuizWriteWrap>
             </S.QuizWriteContainer>
         </S.QuizWriteBackground>
-    )
-}
+    );
+};
 
 export default QuizWrite;

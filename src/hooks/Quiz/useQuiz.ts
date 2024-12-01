@@ -1,9 +1,9 @@
-import React, {useEffect, useState} from "react";
-import {useNavigate} from "react-router-dom";
-import {babyaAxios} from "src/libs/axios/CustomAxios";
+import React, { useEffect, useState, useCallback, useMemo } from "react";
+import { useNavigate } from "react-router-dom";
+import { babyaAxios } from "src/libs/axios/CustomAxios";
 import Swal from "sweetalert2";
-import {showToast} from "src/libs/toast/Swal";
-import {QuizListProps} from "src/types/Quiz/Quiz.interface"
+import { showToast } from "src/libs/toast/Swal";
+import { QuizListProps } from "src/types/Quiz/Quiz.interface";
 
 const useQuiz = () => {
     const navigate = useNavigate();
@@ -11,15 +11,21 @@ const useQuiz = () => {
     const [isLoading, setIsLoading] = useState(false);
     const [searchValue, setSearchValue] = useState<string>("");
     const [quizList, setQuizList] = useState<QuizListProps[]>([]);
-    const [quizListFilter, setQuizListFilter] = useState<QuizListProps[]>([]);
 
-    const handleObserver = (entries: IntersectionObserverEntry[]) => {
+    const filteredQuizList = useMemo(() => {
+        if (searchValue === "") return quizList;
+        return quizList.filter((item) =>
+            item.quizCn.toLowerCase().includes(searchValue.toLowerCase())
+        );
+    }, [quizList, searchValue]);
+
+    const handleObserver = useCallback((entries: IntersectionObserverEntry[]) => {
         const target = entries[0];
         if (target.isIntersecting && !isLoading) {
             setIsLoading(true);
             setPage((prevPage) => prevPage + 1);
         }
-    }
+    }, [isLoading]);
 
     useEffect(() => {
         const observer = new IntersectionObserver(handleObserver, {
@@ -37,94 +43,95 @@ const useQuiz = () => {
                 observer.unobserve(observerTarget);
             }
         };
-    }, [isLoading]);
+    }, [handleObserver]);
 
-    const handleClickQuizWrite = () => {
+    const handleClickQuizWrite = useCallback(() => {
         navigate("/quiz-write");
-    }
+    }, [navigate]);
 
-    const handleChangeValue = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const handleChangeValue = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
         setSearchValue(e.target.value);
-    }
+    }, []);
 
-    const handleKeydown = (e: React.KeyboardEvent<HTMLInputElement>) => {
-        if (e.key === "Enter") {
-            handleClickFilterQuiz();
-        }
-    }
-
-    const handleClickFilterQuiz = () => {
-        if (searchValue !== "") {
-            const filterData = quizList.filter((item) => (
-                item.quizCn.toLowerCase().includes(searchValue.toLowerCase())
-            ))
-            setQuizListFilter(filterData);
-        } else {
-            setQuizListFilter([]);
-        }
-    }
-
-    const handleClickDelete = (quizId: number) => {
-        Swal.fire({
-            title: "정말로 퀴즈를 삭제하시겠습니까?",
-            text: "퀴즈를 삭제하면 다시 되돌릴 수 없습니다.",
-            showCancelButton: true,
-            confirmButtonColor: "#d33",
-            cancelButtonColor: "#D9D9D9",
-            confirmButtonText: "퀴즈 삭제",
-            cancelButtonText: "취소",
-            reverseButtons: false,
-        }).then( async (result) => {
-            if (result.isConfirmed) {
-                try {
-                    await babyaAxios
-                        .delete(`quiz/${quizId}`)
-                        .then(() => {
-                            showToast("success", "퀴즈 삭제 성공");
-                            setQuizList(prevData => prevData.filter(item => item.quizId !== quizId));
-                        });
-                } catch (error) {
-                    showToast("error", "퀴즈 삭제 실패");
-                    console.log(error);
-                }
+    const handleKeydown = useCallback(
+        (e: React.KeyboardEvent<HTMLInputElement>) => {
+            if (e.key === "Enter") {
             }
-        });
-    }
+        },
+        []
+    );
+
+    const handleClickDelete = useCallback(
+        (quizId: number) => {
+            Swal.fire({
+                title: "정말로 퀴즈를 삭제하시겠습니까?",
+                text: "퀴즈를 삭제하면 다시 되돌릴 수 없습니다.",
+                showCancelButton: true,
+                confirmButtonColor: "#d33",
+                cancelButtonColor: "#D9D9D9",
+                confirmButtonText: "퀴즈 삭제",
+                cancelButtonText: "취소",
+                reverseButtons: false,
+            }).then(async (result) => {
+                if (result.isConfirmed) {
+                    try {
+                        await babyaAxios
+                            .delete(`quiz/${quizId}`)
+                            .then(() => {
+                                showToast("success", "퀴즈 삭제 성공");
+                                setQuizList((prevData) =>
+                                    prevData.filter((item) => item.quizId !== quizId)
+                                );
+                            });
+                    } catch (error) {
+                        showToast("error", "퀴즈 삭제 실패");
+                        console.error(error);
+                    }
+                }
+            });
+        },
+        []
+    );
 
     useEffect(() => {
         const QuizRead = async () => {
             if (page) {
                 try {
-                    await babyaAxios.get("quiz/list", {
-                        params: {
-                            page: page,
-                            size: 20,
-                        }
-                    }).then((res) => {
-                        const newQuizList = res.data.data;
+                    await babyaAxios
+                        .get("quiz/list", {
+                            params: {
+                                page: page,
+                                size: 20,
+                            },
+                        })
+                        .then((res) => {
+                            const newQuizList = res.data.data;
 
-                        setIsLoading(newQuizList.length === 0);
-                        setQuizList((prevQuizList) => [...prevQuizList, ...newQuizList]);
-                    })
+                            setIsLoading(newQuizList.length === 0);
+                            setQuizList((prevQuizList) => [
+                                ...prevQuizList,
+                                ...newQuizList,
+                            ]);
+                        });
                 } catch (error) {
-                    console.log(error)
+                    console.error(error);
                     setIsLoading(false);
                 }
             }
-        }
+        };
 
         QuizRead();
-    }, [page])
+    }, [page]);
+
     return {
         quizList,
         searchValue,
-        quizListFilter,
+        filteredQuizList,
         handleClickQuizWrite,
         handleChangeValue,
         handleKeydown,
-        handleClickFilterQuiz,
         handleClickDelete,
-    }
-}
+    };
+};
 
 export default useQuiz;

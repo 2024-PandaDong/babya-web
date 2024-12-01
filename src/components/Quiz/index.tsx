@@ -1,10 +1,32 @@
-import React from "react";
+import React, { useRef, useEffect, useMemo, useCallback } from "react";
 import * as S from "./style";
 import useQuiz from "src/hooks/Quiz/useQuiz";
 import SearchIcon from "src/assets/img/Common/SearchIcon.svg";
 
 const Quiz = () => {
-    const { ...quiz} = useQuiz();
+    const {
+        quizList,
+        searchValue,
+        handleClickQuizWrite,
+        handleChangeValue,
+        handleKeydown,
+        handleClickDelete
+    } = useQuiz();
+    const listBoxRef = useRef<HTMLDivElement | null>(null);
+
+    const currentData = useMemo(() => {
+        return quizList.length ? quizList : [];
+    }, [quizList]);
+
+    useEffect(() => {
+        if (listBoxRef.current) {
+            listBoxRef.current.scrollTop = 0;
+        }
+    }, [currentData]);
+
+    const handleDelete = useCallback((quizId: number) => {
+        handleClickDelete(quizId);
+    }, [handleClickDelete]);
 
     return (
         <S.QuizBackground>
@@ -15,14 +37,17 @@ const Quiz = () => {
                 <S.QuizWrap>
                     <S.Quiz>
                         <S.OptionWrap>
-                            <S.QuizCreateBtn onClick={quiz.handleClickQuizWrite}>퀴즈 생성</S.QuizCreateBtn>
+                            <S.QuizCreateBtn onClick={handleClickQuizWrite}>
+                                퀴즈 생성
+                            </S.QuizCreateBtn>
                             <S.QuizSearchWrap>
-                                <S.QuizSearchImg src={SearchIcon}></S.QuizSearchImg>
+                                <S.QuizSearchImg src={SearchIcon} alt="검색 아이콘" />
                                 <S.QuizSearch
-                                    value={quiz.searchValue}
+                                    value={searchValue}
                                     placeholder="원하는 퀴즈를 입력해주세요"
-                                    onChange={quiz.handleChangeValue}
-                                    onKeyDown={quiz.handleKeydown}></S.QuizSearch>
+                                    onChange={handleChangeValue}
+                                    onKeyDown={handleKeydown}
+                                />
                             </S.QuizSearchWrap>
                         </S.OptionWrap>
                         <S.QuizListWrap>
@@ -35,10 +60,8 @@ const Quiz = () => {
                                 <S.CreateDateWrap>만든 날짜</S.CreateDateWrap>
                                 <S.ManagementWrap>관리</S.ManagementWrap>
                             </S.QuizListTitle>
-                            <S.QuizListBox>
-                                {(quiz.quizListFilter.length
-                                    ? quiz.quizListFilter
-                                    : quiz.quizList).map((item) => (
+                            <S.QuizListBox ref={listBoxRef}>
+                                {currentData.map((item) => (
                                     <S.QuizList key={item.quizId}>
                                         <S.NumWrap>{item.quizId}</S.NumWrap>
                                         <S.QuestionsWrap>
@@ -49,19 +72,21 @@ const Quiz = () => {
                                         <S.ManagementWrap>
                                             <S.BtnWrap>
                                                 <S.ReadBtn>조회</S.ReadBtn>
-                                                <S.DeleteBtn onClick={() => quiz.handleClickDelete(item.quizId)}>삭제</S.DeleteBtn>
+                                                <S.DeleteBtn onClick={() => handleDelete(item.quizId)}>
+                                                    삭제
+                                                </S.DeleteBtn>
                                             </S.BtnWrap>
                                         </S.ManagementWrap>
                                     </S.QuizList>
                                 ))}
-                                <div id="observer" style={{minHeight: "10px"}}></div>
+                                <div id="observer" style={{ minHeight: "10px" }}></div>
                             </S.QuizListBox>
                         </S.QuizListWrap>
                     </S.Quiz>
                 </S.QuizWrap>
             </S.QuizContainer>
         </S.QuizBackground>
-    )
-}
+    );
+};
 
 export default Quiz;
